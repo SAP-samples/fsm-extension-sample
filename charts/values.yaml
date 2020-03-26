@@ -1,0 +1,4 @@
+image:
+  pullPolicy: Always
+  registry: {{Your public image registry}}
+  name: example-plugin

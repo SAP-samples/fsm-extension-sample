@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-plugin
+  labels:
+    app: example-plugin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-plugin
+  template:
+    metadata:
+      labels:
+        app: example-plugin
+    spec:
+      containers:
+        - name: example-plugin
+          image: {{ .Values.image.registry }}/example-plugin:0.1.0
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
