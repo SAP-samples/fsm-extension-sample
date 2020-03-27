@@ -31,7 +31,10 @@ Your docker image must be uploaded to public image registry, otherwise the deplo
 There are no known issues at this time.
 
 # How to obtain support
-If you need support, please contact SAP FSM Support Team.
+If you need support, please contact SAP FSM Extension-Catalog Team via below Email address:
+```$xslt
+DL CX Service Cloud SCAD Chengdu Team 2 <DL_56306F8C7BCF84F8D800027C@exchange.sap.corp>
+```
 
 # License
-Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the “SAP Sample Code License” except as noted otherwise in the LICENSE file.
+Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, v. 2 except as noted otherwise in the [LICENSE](./LICENSE) file.
