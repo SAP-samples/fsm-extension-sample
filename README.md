@@ -1,12 +1,12 @@
-# SAP Field Service Management Extension-Sample Repository
+# SAP Field Service Management Extension Sample Repository
 This sample provides a template that helps configure deployment information that can be uploaded and then integrated into SAP Field Service Management.
 
 # Description
-In FSM system, the customer is allowed to deploy himself an application to his Kyma Cluster, then this UI app can be embedded to FSM’s UI by iframe mode.
-The extension-catalog solution to help customer automatically complete above requirement.
-Since the Extension-Sample can help the customer to deploy his application to his Kyma cluster.
-The customer can download this template and fill some necessary information (Docker image public address for this app) and upload this template to his public hub (Public docker hub etc).
-Finally, the FSM extension-catalog will use uploaded template to deploy this UI app to his Kyma cluster.
+In an SAP Field Service Management system, customers can deploy an application to a Kyma cluster; this UI app can then be embedded into the SAP FSM UI by iframe mode.
+
+This extension sample can facilitate this scenario by helping the customer automatically deploy his application to his Kyma cluster. The customer can download this template, fill in the necessary information (e.g. Docker image public address for this app), and upload the template to his public hub (e.g. public Docker hub, etc.).
+
+Finally, the SAP FSM extension catalog will use the uploaded template to deploy this UI app to the Kyma cluster.
 
 # Requirements / Download and Installation
 * Install Node.js version 10.x or 12.x on your development machine
@@ -37,4 +37,4 @@ DL CX Service Cloud SCAD Chengdu Team 2 <DL_56306F8C7BCF84F8D800027C@exchange.sa
 ```
 
 # License
-Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, v. 2 except as noted otherwise in the [LICENSE](./LICENSE) file.
+Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](./LICENSE) file.
