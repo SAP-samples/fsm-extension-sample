@@ -1,14 +1,18 @@
 {{- if .Values.kyma_apiv1.enabled -}}
-{{- $fullName := include "fsm-extension-sample.fullname" . -}}
+{{- $name := include "chart.name" . -}}
 {{- $svcPort := .Values.service.port -}}
 apiVersion: gateway.kyma-project.io/v1alpha2
 kind: Api
 metadata:
-  name: {{ $fullName }}
+  {{- include "default_metadata" . | indent 2 }}
+{{- with .Values.ingress.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   authentication: []
-  hostname: {{ $fullName }}
+  hostname: {{ $name }}
   service:
-    name: {{ $fullName }}
+    name: {{ $name }}
     port: {{ $svcPort }}
 {{- end }}

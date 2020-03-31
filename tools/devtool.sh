@@ -6,7 +6,7 @@
 
 # replace .Chart.Name .Chart.appVersion and .Chart.version in Chart.yaml
 
-# replace .image.repository in values.yaml
+# replace .image.registry and .image.name in values.yaml
 
 # helm lint (skip it if you don't have helm installed locally)
 

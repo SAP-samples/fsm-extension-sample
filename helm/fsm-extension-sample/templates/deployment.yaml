@@ -1,31 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "fsm-extension-sample.fullname" . }}
-  labels:
-    {{- include "fsm-extension-sample.labels" . | nindent 4 }}
+  {{- include "default_metadata" . | indent 2 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "fsm-extension-sample.selectorLabels" . | nindent 6 }}
+      {{- include "default_labels" . | indent 6 }}
   template:
     metadata:
       labels:
-        {{- include "fsm-extension-sample.selectorLabels" . | nindent 8 }}
+        {{- include "default_labels" . | indent 8 }}
+        version: {{ .Chart.Version }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "fsm-extension-sample.serviceAccountName" . }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
