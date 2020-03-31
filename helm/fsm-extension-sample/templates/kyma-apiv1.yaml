@@ -1,0 +1,14 @@
+{{- if .Values.kyma_apiv1.enabled -}}
+{{- $fullName := include "fsm-extension-sample.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+apiVersion: gateway.kyma-project.io/v1alpha2
+kind: Api
+metadata:
+  name: {{ $fullName }}
+spec:
+  authentication: []
+  hostname: {{ $fullName }}
+  service:
+    name: {{ $fullName }}
+    port: {{ $svcPort }}
+{{- end }}
