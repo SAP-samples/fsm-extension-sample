@@ -4,8 +4,8 @@
 replicaCount: 1
 
 image:
-  registry: ${docker_registry}
-  name: ${application_name}
+  docker_registry: ${docker_registry}
+  docker_image_name: ${application_name}
   pullPolicy: Always
 
 imagePullSecrets: []
