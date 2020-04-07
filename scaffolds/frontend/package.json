@@ -1,0 +1,11 @@
+{
+    "name": "frontend",
+    "version": "0.0.0",
+    "scripts": {
+        "start:local": "http-server . --port 1234"
+    },
+    "private": true,
+    "dependencies": {
+        "http-server": "^0.12.1"
+    }
+}

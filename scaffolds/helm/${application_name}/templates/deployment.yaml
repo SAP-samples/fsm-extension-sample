@@ -24,11 +24,11 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.docker_registry }}/{{ .Values.image.docker_image_name }}:{{ .Chart.AppVersion }}"
+          image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.service.internalPort }}
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -38,6 +38,9 @@ spec:
             httpGet:
               path: /healthz
               port: http
+          env:
+          - name: PORT
+            value: "{{ .Values.service.internalPort }}" 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

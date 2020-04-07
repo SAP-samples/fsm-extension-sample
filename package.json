@@ -1,8 +1,0 @@
-{
-   "name" : "fsm-extension-sample",
-   "version" : "0.1.0",
-   "main": "server.js",
-   "dependencies": {
-     "express": "^4.17.0"
-   }
-}

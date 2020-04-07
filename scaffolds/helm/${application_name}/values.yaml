@@ -4,8 +4,8 @@
 replicaCount: 1
 
 image:
-  docker_registry: ${docker_registry}
-  docker_image_name: ${application_name}
+  registry: ${registry}
+  name: ${image_name}
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -34,7 +34,10 @@ securityContext: {}
 
 service:
   type: ClusterIP
+  # service external port
   port: 80
+  # service internal port matched with containerPort
+  internalPort: 80
 
 ingress:
   enabled: false
