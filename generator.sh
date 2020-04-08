@@ -23,12 +23,16 @@ while true; do
   fi 
 done
 
+read -p "Application description? " application_description
+
 while true; do
   read -p "Application version? " application_version
   if [[ ! -z "$application_version" ]]; then
     break
   fi 
 done
+
+read -p "Application icon (a URL to an SVG or PNG image to be used as an icon)? " application_icon
 
 SEMVER_REGEX="^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(\\-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
 while true; do
@@ -50,11 +54,20 @@ cp -r ./scaffolds/* ./$application_name
 mv ./$application_name/helm/\${application_name} ./$application_name/helm/${application_name}
 
 sed "s/\${application_name}/${application_name}/g" ./$application_name/helm/$application_name/Chart.yaml
+sed "s|\${application_icon}|${application_icon}|g" ./$application_name/helm/$application_name/Chart.yaml
+sed "s|\${application_description}|${application_description}|g" ./$application_name/helm/$application_name/Chart.yaml
 sed "s/\${helm_chart_version}/${helm_chart_version}/g" ./$application_name/helm/$application_name/Chart.yaml
 sed "s/\${application_version}/${application_version}/g" ./$application_name/helm/$application_name/Chart.yaml
 sed "s|\${registry}|${docker_registry}|g" ./$application_name/helm/$application_name/values.yaml
 sed "s/\${image_name}/${application_name}/g" ./$application_name/helm/$application_name/values.yaml
 
-echo -e "application_name=${application_name}\napplication_version=${application_version}\nhelm_chart_version=${helm_chart_version}\ndocker_registry=${docker_registry}" > ./$application_name/appconfig
+cat >./$application_name/appconfig <<EOL
+application_name=${application_name}
+application_version=${application_version}
+application_description=${application_description}
+application_icon=${application_icon}
+helm_chart_version=${helm_chart_version}
+docker_registry=${docker_registry}
+EOL
 
 echo "Project $application_name is created successfully!"
