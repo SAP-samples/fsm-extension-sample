@@ -17,7 +17,7 @@ https://git-scm.com/downloads
 ```
 https://www.docker.com/get-started
 ```
-* [Optional] If you want to deploy the extension application to Kyma, then you shall install helm CLI locally and configure it
+* [Optional] If you want to deploy the extension application to Kyma manually, then you shall install helm CLI locally and configure it
 ```
 https://kyma-project.io/docs/#installation-use-helm
 ```
@@ -26,16 +26,16 @@ https://kyma-project.io/docs/#installation-use-helm
 * Execute the script [generator.sh](./generator.sh) to generate the extension application project from scaffolds
 * Change shell's current directory into the generated project, it is now the workspace under your control
 * Modify the source code of the generated project according to the speciifc business requirements
-* View the appconfig file, and change *application_version* or *helm_chart_version* if need
-* Execute the script [build-charts.sh](./build-charts.sh) to generate helm charts
+* Check the appconfig file, and change *application_version* or *helm_chart_version* if you want to publish with new versions
+* Execute the script *build-charts.sh* in the generated project to build helm charts
 * [Optional] Try to deploy the extension application to Kyma, e.g.:
 ```
-helm install ./helm/<application_name> --name <application_name> --namespace <kyma_namespace> --set kyma_apiv1.enabled=true --tls
+helm install ./helm/<application_name> --name <application_name> --namespace <kyma_namespace> --set kyma.apiv1.enabled=true --tls
 ```
 * Upload the generated project to Git repository
 
 # Limitations
-Private docker registry is not supported by the scaffolds.
+Private docker registry is not supported by the scaffolds; *application_icon* and *application_description* can only be written to charts by scripts once time, if they need to be updated after then, you should update them in Chart.yaml manually.
 
 # Known Issues
 There are no known issues at this time.
