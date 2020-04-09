@@ -70,5 +70,6 @@ tolerations: []
 
 affinity: {}
 
-kyma_apiv1:
-  enabled: false
+kyma:
+  apiv1:
+    enabled: false
