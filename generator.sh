@@ -64,7 +64,7 @@ sed "s/\${image_name}/${application_name}/g" ./$application_name/helm/$applicati
 cat >./$application_name/appconfig <<EOL
 application_name=${application_name}
 application_version=${application_version}
-application_description=${application_description}
+application_description=\"${application_description}\"
 application_icon=${application_icon}
 helm_chart_version=${helm_chart_version}
 docker_registry=${docker_registry}
