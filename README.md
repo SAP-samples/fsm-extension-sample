@@ -20,7 +20,7 @@ Follow these steps to set up your extension application project by using this sa
 * Change shell's current directory into the generated project, which is now the workspace under your control.
 * Modify the source code of the generated project according to the speciifc business requirements.
 * Check the **appconfig** file, and change *application_version* or *helm_chart_version* if you want to publish with new versions.
-* Execute the script *build-charts.sh* in the generated project to build helm charts.
+* Execute the script **build-charts.sh** in the generated project to build helm charts.
 * [Optional] Try to deploy the extension application to Kyma. Example:
 ```
 helm install ./helm/<application_name> --name <application_name> --namespace <kyma_namespace> --set kyma.apiv1.enabled=true --tls
