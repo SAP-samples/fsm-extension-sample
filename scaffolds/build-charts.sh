@@ -32,7 +32,7 @@ fi
 
 echo "======update versions in helm charts================"
 sed 's/version:.*/version: '${helm_chart_version}'/g' ./helm/$application_name/Chart.yaml
-sed 's/appVersion:.*/appVersion: '${application_version}'/g' ./helm/$application_name/Chart.yaml
+sed 's/appVersion:.*/appVersion: '\"${application_version}\"'/g' ./helm/$application_name/Chart.yaml
 
 # helm lint and render template are not mandatory
 if which helm >/dev/null; then
