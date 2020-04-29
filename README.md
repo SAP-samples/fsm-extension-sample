@@ -11,17 +11,17 @@ Make sure that the following prerequisites are met before you use this repositor
 * Have an account in Git-based version control system, such as GitHub
 * Install Git CLI locally via https://git-scm.com/downloads
 * Have an account in public docker registry, such as Docker Hub
-* Install Docker Desktop locally via https://www.docker.com/get-started
+* Install Docker Desktop locally via https://www.docker.com/get-started, and sign in the docker registry
 * [Optional] If you want to deploy the extension application to Kyma manually, you need to install helm CLI locally and configure it via https://kyma-project.io/docs/#installation-use-helm
 
 # Workflow
 Follow these steps to set up your extension application project by using this sample repository:
 * Execute the script [generator.sh](./generator.sh) to generate the extension application project from scaffolds.
 * Change shell's current directory into the generated project, which is now the workspace under your control.
-* Modify the source code of the generated project according to the speciifc business requirements.
+* Modify the source code of the generated project according to the specific business requirements.
 * Check the **appconfig** file, and change *application_version* or *helm_chart_version* if you want to publish with new versions.
 * Execute the script **build-charts.sh** in the generated project to build helm charts.
-* [Optional] Try to deploy the extension application to Kyma. Example:
+* [Optional] Try to deploy the extension application to Kyma manually. Example:
 ```
 helm install ./helm/<application_name> --name <application_name> --namespace <kyma_namespace> --set kyma.apiv1.enabled=true --tls
 ```
