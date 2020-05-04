@@ -8,6 +8,10 @@ else
   alias sed='sed -i""'
 fi
 
+function esc_string { 
+  printf '%q' "$@" 
+}
+
 echo "Start to generate the project"
 
 while true; do
@@ -24,6 +28,7 @@ while true; do
 done
 
 read -p "Application description? " application_description
+application_description="`esc_string "$application_description"`"
 
 while true; do
   read -p "Application version? " application_version
@@ -43,7 +48,7 @@ while true; do
 done
 
 while true; do
-  read -p "Docker registry? " docker_registry
+  read -p "Docker registry (such as docker.io/batman)? " docker_registry
   if [[ ! -z "$docker_registry" ]]; then
     break
   fi 
@@ -64,8 +69,8 @@ sed "s/\${image_name}/${application_name}/g" ./$application_name/helm/$applicati
 cat >./$application_name/appconfig <<EOL
 application_name=${application_name}
 application_version=${application_version}
-application_description=\"${application_description}\"
 application_icon=${application_icon}
+application_description=${application_description}
 helm_chart_version=${helm_chart_version}
 docker_registry=${docker_registry}
 EOL
