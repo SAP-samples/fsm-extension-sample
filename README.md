@@ -16,16 +16,27 @@ Make sure that the following prerequisites are met before you use this repositor
 
 # Workflow
 Follow these steps to set up your extension application project by using this sample repository:
-* Execute the script [generator.sh](./generator.sh) to generate the extension application project from scaffolds.
+* Clone the extension sample to local machine.
+* Open a shell command tool and go to root folder of the local extension sample project.
+* Execute the script [generator.sh](./generator.sh) to generate the extension application project from scaffolds, and configure following information:
+    * application name
+    * application version: the docker image tags, it should be incremented each time you make changes to the application.
+    * description
+    * icon
+    * helm chart version: the chart version, which follows semver 2.x specification https://semver.org/, and it should be incremented each time you make changes to the chart and its templates, including the application version.
+    * docker registry: the repository where the generated docker image is stored.
 * Change shell's current directory into the generated project, which is now the workspace under your control.
 * Modify the source code of the generated project according to the specific business requirements.
-* Check the **appconfig** file, and change *application_version* or *helm_chart_version* if you want to publish with new versions.
+* Check the **appconfig** file in the generated project, and change *application_version* or *helm_chart_version* if you want to publish with new versions.
 * Execute the script **build-charts.sh** in the generated project to build helm charts.
-* [Optional] Try to deploy the extension application to Kyma manually. Example:
+* Check if the new version was pushed to docker hub via https://hub.docker.com/u/{your docker ID}/tags
+* Upload the generated project to your Git repository and make sure it is public.
+If you want to deploy the extension application to Kyma manually.
+Example:
 ```
 helm install ./helm/<application_name> --name <application_name> --namespace <kyma_namespace> --set kyma.apiv1.enabled=true --tls
 ```
-* Upload the generated project to Git repository.
+If you want to automatically deploy the extension application to Kyma via our extension installer, please refer to https://github.com/SAP-samples/fsm-extension-installer-kyma and make sure your deployment artifacts are on the master branch.
 
 # Limitations
 Private docker registry is not supported by the scaffolds.
