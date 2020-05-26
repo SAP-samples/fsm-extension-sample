@@ -15,7 +15,7 @@ function esc_string {
 echo "Start to generate the project"
 
 while true; do
-  read -p "What is the application name? " application_name
+  read -p "Application name? " application_name
   if [[ $application_name =~ ^[a-z]([-a-z0-9]*[a-z0-9])?$ ]]; then
     if [ ! -d "./$application_name" ]; then
       break
@@ -41,14 +41,16 @@ read -p "Application icon (a URL to an SVG or PNG image to be used as an icon)? 
 
 SEMVER_REGEX="^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(\\-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
 while true; do
-  read -p "Helm chart version (follows semver 2.x specification)? " helm_chart_version
+  read -p "Helm chart version (ex. 1.0.0)? " helm_chart_version
   if [[ "$helm_chart_version" =~ $SEMVER_REGEX ]]; then
     break
+  else
+    echo "Helm chart version is not valid"  
   fi 
 done
 
 while true; do
-  read -p "Docker registry (such as docker.io/batman)? " docker_registry
+  read -p "Docker registry (ex. docker.io/{your docker ID})? " docker_registry
   if [[ ! -z "$docker_registry" ]]; then
     break
   fi 
