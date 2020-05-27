@@ -3,8 +3,8 @@
 Follow extension development guide https://github.com/SAP-samples/fsm-extension-sample.
 ## How to add an extension app into FSM system via API calls
 ### 1. Prepare Postman collection.
-1. Download FSM-Extension-Catalog.postman_collection.json and import it into your Postman app. 
-2. Import FSM-extension-catalog.postman_environment.json into your Postman app. Update VARIABLE serviceUrl, token, account, company to the right ones according to your account and company.
+1. Download [FSM-Extension-Catalog.postman_collection.json](/postman/FSM-Extension-Catalog.postman_collection.json) and import it into your Postman app. 
+2. Download [FSM-extension-catalog.postman_environment.json](/postman/FSM-extension-catalog.postman_environment.json) and import it into your Postman app. Update VARIABLE serviceUrl, token, account, company to the right ones according to your account and company.
 3. You can fetch token via **get token** API in the postman collection just like below screenshot.  
 ![token](token.png)
 ### 2. Add extension app.
