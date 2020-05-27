@@ -84,7 +84,7 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
     {
     	"version": "0.0.1",
     	"state": "INSTALLED",
-        "accessUrl": "www.yourApp.com"
+        "accessUrl": "https://www.yourApp.com"
     }
 ```
 4. Copy extension deployment id value from response body.
