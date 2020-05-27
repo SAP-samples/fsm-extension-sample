@@ -1,0 +1,936 @@
+{
+	"info": {
+		"_postman_id": "760194ca-c417-4009-9353-0f223253691f",
+		"name": "FSM-Extension-Catalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "extension",
+			"item": [
+				{
+					"name": "extensions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "X-Account-Id",
+								"type": "text",
+								"value": "{{account}}"
+							},
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "{{company}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lang\": \"en\",\n    \"name\": \"kaka-test521\",\n    \"isActive\": true,\n    \"description\": \"kaka Test extension app 514 kyma\",\n    \"version\": \"0.0.1\",\n    \"deploymentType\": \"HELM_CHART\",\n    \"artifactConfig\": {\n        \"chart\": {\n            \"repository\": \"https://github.com/KakaWangSAP/kaka507\"\n        }\n    },\n    \"icon\": \"https://zh.wikipedia.org/wiki/File:User_Circle.png\",\n    \"hostingType\": \"KYMA\"\n}"
+						},
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extensions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extensions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "X-Account-Id",
+								"type": "text",
+								"value": "{{account}}"
+							},
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "{{company}}"
+							}
+						],
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extensions"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "14",
+									"disabled": true
+								},
+								{
+									"key": "language",
+									"value": "de",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "texts.name,asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extension-texts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Account-Id",
+								"value": "{{account}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Company-Id",
+								"value": "{{company}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"lang\": \"de\",\n\t\"name\": \"efff\",\n\t\"description\": \"description\"\n} "
+						},
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/c15a451c-f7f2-467e-b1cb-55baf2df789c/extension-texts",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extensions",
+								"c15a451c-f7f2-467e-b1cb-55baf2df789c",
+								"extension-texts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extensions",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "X-Account-Id",
+								"type": "text",
+								"value": "{{account}}"
+							},
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "{{company}}"
+							}
+						],
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/e278f75c-75b3-487b-8e42-f67104491296",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extensions",
+								"e278f75c-75b3-487b-8e42-f67104491296"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extensions deploy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "X-Account-Id",
+								"type": "text",
+								"value": "{{account}}"
+							},
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "{{company}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deploymentConfig\": {\n        \"namespace\": \"test-space\",\n        \"values\": {\n            \"imagePullPolicy\": \"Always\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/02cd1ddd-2d8a-4f3d-af24-ca43fd1dabb2/deploy",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extensions",
+								"02cd1ddd-2d8a-4f3d-af24-ca43fd1dabb2",
+								"deploy"
+							],
+							"query": [
+								{
+									"key": "mode",
+									"value": "UPGRADE",
+									"disabled": true
+								},
+								{
+									"key": "mode",
+									"value": "INITIAL_DEPLOY",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extensions",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "X-Account-Id",
+								"type": "text",
+								"value": "{{account}}"
+							},
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "{{company}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lang\": \"en\",\n    \"name\": \"kaka-test527-1\",\n    \"isActive\": true,\n    \"description\": \"kaka Test extension app 527-1\",\n    \"version\": \"0.0.2\",\n    \"deploymentType\": \"MANUAL_DEPLOYMENT\",\n    \"icon\": \"https://zh.wikipedia.org/wiki/File:User_Circle.png\",\n    \"hostingType\": \"CUSTOM_HOSTING\"\n}"
+						},
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/8123c4ef-539d-4232-b751-68f7f95dfae5",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extensions",
+								"8123c4ef-539d-4232-b751-68f7f95dfae5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "assignment",
+			"item": [
+				{
+					"name": "extension-assignments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Account-Id",
+								"value": "{{account}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Company-Id",
+								"value": "{{company}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-assignments?language=en&targetType=OUTLET_POSITION",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extension-assignments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "language",
+									"value": "en"
+								},
+								{
+									"key": "extensionDeploymentId",
+									"value": "fc3502be-8dc8-44d1-a21e-882b4ad948c0",
+									"disabled": true
+								},
+								{
+									"key": "expand",
+									"value": "extensionDeployment",
+									"disabled": true
+								},
+								{
+									"key": "targetType",
+									"value": "OUTLET_POSITION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extension-assignments",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Account-Id",
+								"value": "{{account}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Company-Id",
+								"value": "{{company}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"targetType\": \"OUTLET_POSITION\",\n    \"target\": \"planning\",\n    \"extensionDeploymentId\": \"\"\n     \n}"
+						},
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-assignments",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extension-assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extension-assignments",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Account-Id",
+								"value": "{{account}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Company-Id",
+								"value": "{{company}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-assignments/df096cf3-35b0-4225-b524-34e18a0aebf7",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extension-assignments",
+								"df096cf3-35b0-4225-b524-34e18a0aebf7"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "deployment",
+			"item": [
+				{
+					"name": "result",
+					"item": [
+						{
+							"name": "deployment-results",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{token}}"
+									},
+									{
+										"key": "X-Account-Id",
+										"type": "text",
+										"value": "{{account}}"
+									},
+									{
+										"key": "X-Company-Id",
+										"type": "text",
+										"value": "{{company}}"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"log\": \"Deploy X-plugin extension to dev stage\",\n\t\"shortMessage\": \"Deployed\",\n    \"content\": {\n       \"namespace\": \"playground\",\n       \"helmRelease\": \"X-plugin\"\n    }\n} "
+								},
+								"url": {
+									"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/87f0e410-d29e-4345-87f2-89dbdbbc1c61/deployment-results",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"api",
+										"extension-catalog",
+										"v1",
+										"extension-deployments",
+										"87f0e410-d29e-4345-87f2-89dbdbbc1c61",
+										"deployment-results"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "extension-deployments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Account-Id",
+								"value": "{{account}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Company-Id",
+								"value": "{{company}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extension-deployments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "language",
+									"value": "en",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "extension.texts.name,desc",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "addd,asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extension-deployments",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Account-Id",
+								"value": "{{account}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Company-Id",
+								"value": "{{company}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/5926dff2-9dec-4a94-a55d-89cf9c14a5cc",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extension-deployments",
+								"5926dff2-9dec-4a94-a55d-89cf9c14a5cc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extension-deployment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "X-Account-Id",
+								"type": "text",
+								"value": "{{account}}"
+							},
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "{{company}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/87f0e410-d29e-4345-87f2-89dbdbbc1c61",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extension-deployments",
+								"87f0e410-d29e-4345-87f2-89dbdbbc1c61"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "de",
+									"disabled": true
+								},
+								{
+									"key": "expand",
+									"value": "latestDeployResult",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extension-deployments",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Account-Id",
+								"value": "{{account}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Company-Id",
+								"value": "{{company}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"version\": \"0.0.1\",\n\t\"state\": \"INSTALLED\",\n    \"accessUrl\": \"https://my-app.kyma-flows.cluster.extend.cx.cloud.sap\"\n}"
+						},
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/8123c4ef-539d-4232-b751-68f7f95dfae5/extension-deployments",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extensions",
+								"8123c4ef-539d-4232-b751-68f7f95dfae5",
+								"extension-deployments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extension-deployments",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Account-Id",
+								"value": "{{account}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Company-Id",
+								"value": "{{company}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"version\": \"0.0.3\",\n\t\"state\": \"INSTALLED\",\n    \"accessUrl\": \"https://my-app.kyma-flows.cluster.extend.cx.cloud.sap\",\n        \"deploymentConfig\":{\n       \"namespace\": \"playground\",\n       \"values\": {\n           \"successfactorUrl\": \"https://performancemanager5.successfactors.eu/\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/cdfa301b-51f1-4bd3-9730-d495c33af8b3",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extension-deployments",
+								"cdfa301b-51f1-4bd3-9730-d495c33af8b3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "undeploy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "X-Account-Id",
+								"type": "text",
+								"value": "{{account}}"
+							},
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "{{company}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/071cab14-0a59-4946-bfa1-3c06cf327f8c/undeploy",
+							"host": [
+								"{{serviceUrl}}"
+							],
+							"path": [
+								"api",
+								"extension-catalog",
+								"v1",
+								"extension-deployments",
+								"071cab14-0a59-4946-bfa1-3c06cf327f8c",
+								"undeploy"
+							],
+							"query": [
+								{
+									"key": "mode",
+									"value": "UPGRADE",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "get token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca72d8a0-6a77-4877-baa1-f565b6102fc4",
+						"exec": [
+							"var jsonData;",
+							"",
+							"try {",
+							"    jsonData = JSON.parse(responseBody);",
+							"    pm.environment.set(\"token\", jsonData.token_type + \" \" + jsonData.access_token);",
+							"}",
+							"catch (err) {",
+							"    console.log(err);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "e80c4160-8d70-41b7-80b9-a1b591e430ee",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "knowledge-base",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "username2",
+							"value": "ET-EU-eric-auto2/engineer",
+							"type": "text",
+							"disabled": true
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://et.dev.coresuite.com/api/oauth2/v1/token",
+					"protocol": "https",
+					"host": [
+						"et",
+						"dev",
+						"coresuite",
+						"com"
+					],
+					"path": [
+						"api",
+						"oauth2",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
