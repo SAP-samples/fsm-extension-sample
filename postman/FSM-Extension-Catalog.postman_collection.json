@@ -36,7 +36,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"lang\": \"en\",\n    \"name\": \"kaka-test521\",\n    \"isActive\": true,\n    \"description\": \"kaka Test extension app 514 kyma\",\n    \"version\": \"0.0.1\",\n    \"deploymentType\": \"HELM_CHART\",\n    \"artifactConfig\": {\n        \"chart\": {\n            \"repository\": \"https://github.com/KakaWangSAP/kaka507\"\n        }\n    },\n    \"icon\": \"https://zh.wikipedia.org/wiki/File:User_Circle.png\",\n    \"hostingType\": \"KYMA\"\n}"
+							"raw": "{\n    \"lang\": \"en\",\n    \"name\": \"demo-extension-app\",\n    \"isActive\": true,\n    \"description\": \"Demo Extension Application\",\n    \"version\": \"0.0.1\",\n    \"deploymentType\": \"HELM_CHART\",\n    \"artifactConfig\": {\n        \"chart\": {\n            \"repository\": \"https://github.com/KakaWangSAP/kaka507\"\n        }\n    },\n    \"icon\": \"https://zh.wikipedia.org/wiki/File:User_Circle.png\",\n    \"hostingType\": \"KYMA\"\n}"
 						},
 						"url": {
 							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions",
@@ -142,7 +142,7 @@
 							"raw": "{\n\t\"lang\": \"de\",\n\t\"name\": \"efff\",\n\t\"description\": \"description\"\n} "
 						},
 						"url": {
-							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/c15a451c-f7f2-467e-b1cb-55baf2df789c/extension-texts",
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/{id}/extension-texts",
 							"host": [
 								"{{serviceUrl}}"
 							],
@@ -151,7 +151,7 @@
 								"extension-catalog",
 								"v1",
 								"extensions",
-								"c15a451c-f7f2-467e-b1cb-55baf2df789c",
+								"{id}",
 								"extension-texts"
 							]
 						}
@@ -180,7 +180,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/e278f75c-75b3-487b-8e42-f67104491296",
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/{id}",
 							"host": [
 								"{{serviceUrl}}"
 							],
@@ -189,7 +189,7 @@
 								"extension-catalog",
 								"v1",
 								"extensions",
-								"e278f75c-75b3-487b-8e42-f67104491296"
+								"{id}"
 							]
 						}
 					},
@@ -221,12 +221,8 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"deploymentConfig\": {\n        \"namespace\": \"test-space\",\n        \"values\": {\n            \"imagePullPolicy\": \"Always\"\n        }\n    }\n}"
-						},
 						"url": {
-							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/02cd1ddd-2d8a-4f3d-af24-ca43fd1dabb2/deploy",
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/{id}/deploy",
 							"host": [
 								"{{serviceUrl}}"
 							],
@@ -235,7 +231,7 @@
 								"extension-catalog",
 								"v1",
 								"extensions",
-								"02cd1ddd-2d8a-4f3d-af24-ca43fd1dabb2",
+								"{id}",
 								"deploy"
 							],
 							"query": [
@@ -282,10 +278,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"lang\": \"en\",\n    \"name\": \"kaka-test527-1\",\n    \"isActive\": true,\n    \"description\": \"kaka Test extension app 527-1\",\n    \"version\": \"0.0.2\",\n    \"deploymentType\": \"MANUAL_DEPLOYMENT\",\n    \"icon\": \"https://zh.wikipedia.org/wiki/File:User_Circle.png\",\n    \"hostingType\": \"CUSTOM_HOSTING\"\n}"
+							"raw": "    {\n        \"lang\": \"en\",\n        \"name\": \"demo-extension-app\",\n        \"isActive\": true,\n        \"description\": \"Demo Extension Application\",\n        \"version\": \"0.0.1\",\n        \"deploymentType\": \"HELM_CHART\",\n        \"artifactConfig\": {\n            \"chart\": {\n                \"repository\": \"https://github.com/KakaWangSAP/kaka507\"\n            }\n        },\n        \"icon\": \"https://zh.wikipedia.org/wiki/File:User_Circle.png\",\n        \"hostingType\": \"KYMA\"\n    }"
 						},
 						"url": {
-							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/8123c4ef-539d-4232-b751-68f7f95dfae5",
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/{id}",
 							"host": [
 								"{{serviceUrl}}"
 							],
@@ -294,7 +290,7 @@
 								"extension-catalog",
 								"v1",
 								"extensions",
-								"8123c4ef-539d-4232-b751-68f7f95dfae5"
+								"{id}"
 							]
 						}
 					},
@@ -445,7 +441,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-assignments/df096cf3-35b0-4225-b524-34e18a0aebf7",
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-assignments/{id}",
 							"host": [
 								"{{serviceUrl}}"
 							],
@@ -454,7 +450,7 @@
 								"extension-catalog",
 								"v1",
 								"extension-assignments",
-								"df096cf3-35b0-4225-b524-34e18a0aebf7"
+								"{id}"
 							]
 						}
 					},
@@ -500,7 +496,7 @@
 									"raw": "{\n\t\"log\": \"Deploy X-plugin extension to dev stage\",\n\t\"shortMessage\": \"Deployed\",\n    \"content\": {\n       \"namespace\": \"playground\",\n       \"helmRelease\": \"X-plugin\"\n    }\n} "
 								},
 								"url": {
-									"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/87f0e410-d29e-4345-87f2-89dbdbbc1c61/deployment-results",
+									"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/{id}/deployment-results",
 									"host": [
 										"{{serviceUrl}}"
 									],
@@ -509,7 +505,7 @@
 										"extension-catalog",
 										"v1",
 										"extension-deployments",
-										"87f0e410-d29e-4345-87f2-89dbdbbc1c61",
+										"{id}",
 										"deployment-results"
 									]
 								}
@@ -610,7 +606,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/5926dff2-9dec-4a94-a55d-89cf9c14a5cc",
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/{id}",
 							"host": [
 								"{{serviceUrl}}"
 							],
@@ -619,7 +615,7 @@
 								"extension-catalog",
 								"v1",
 								"extension-deployments",
-								"5926dff2-9dec-4a94-a55d-89cf9c14a5cc"
+								"{id}"
 							]
 						}
 					},
@@ -652,7 +648,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/87f0e410-d29e-4345-87f2-89dbdbbc1c61",
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/{id}",
 							"host": [
 								"{{serviceUrl}}"
 							],
@@ -661,7 +657,7 @@
 								"extension-catalog",
 								"v1",
 								"extension-deployments",
-								"87f0e410-d29e-4345-87f2-89dbdbbc1c61"
+								"{id}"
 							],
 							"query": [
 								{
@@ -707,10 +703,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"version\": \"0.0.1\",\n\t\"state\": \"INSTALLED\",\n    \"accessUrl\": \"https://my-app.kyma-flows.cluster.extend.cx.cloud.sap\"\n}"
+							"raw": "{\n    \"version\": \"0.0.1\",\n    \"state\": \"INSTALLED\",\n    \"accessUrl\": \"www.yourApp.com\"\n}"
 						},
 						"url": {
-							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/8123c4ef-539d-4232-b751-68f7f95dfae5/extension-deployments",
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extensions/{id}/extension-deployments",
 							"host": [
 								"{{serviceUrl}}"
 							],
@@ -719,7 +715,7 @@
 								"extension-catalog",
 								"v1",
 								"extensions",
-								"8123c4ef-539d-4232-b751-68f7f95dfae5",
+								"{id}",
 								"extension-deployments"
 							]
 						}
@@ -749,7 +745,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"version\": \"0.0.3\",\n\t\"state\": \"INSTALLED\",\n    \"accessUrl\": \"https://my-app.kyma-flows.cluster.extend.cx.cloud.sap\",\n        \"deploymentConfig\":{\n       \"namespace\": \"playground\",\n       \"values\": {\n           \"successfactorUrl\": \"https://performancemanager5.successfactors.eu/\"\n        }\n    }\n}",
+							"raw": "{\n\t\"version\": \"0.0.2\",\n\t\"state\": \"INSTALLED\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -757,7 +753,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/cdfa301b-51f1-4bd3-9730-d495c33af8b3",
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/{id}",
 							"host": [
 								"{{serviceUrl}}"
 							],
@@ -766,7 +762,7 @@
 								"extension-catalog",
 								"v1",
 								"extension-deployments",
-								"cdfa301b-51f1-4bd3-9730-d495c33af8b3"
+								"{id}"
 							]
 						}
 					},
@@ -803,7 +799,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/071cab14-0a59-4946-bfa1-3c06cf327f8c/undeploy",
+							"raw": "{{serviceUrl}}/api/extension-catalog/v1/extension-deployments/{id}/undeploy",
 							"host": [
 								"{{serviceUrl}}"
 							],
@@ -812,7 +808,7 @@
 								"extension-catalog",
 								"v1",
 								"extension-deployments",
-								"071cab14-0a59-4946-bfa1-3c06cf327f8c",
+								"{id}",
 								"undeploy"
 							],
 							"query": [
@@ -857,12 +853,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "e80c4160-8d70-41b7-80b9-a1b591e430ee",
+							"value": "33292099-1e77-4fca-828a-163b8f1ee1a4",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "knowledge-base",
+							"value": "extension-catalog",
 							"type": "string"
 						}
 					]
