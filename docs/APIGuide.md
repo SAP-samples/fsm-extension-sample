@@ -8,7 +8,7 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
 3. You can fetch token via **get token** API in the postman collection just like below screenshot.  
 ![token](token.png)
 ### 2. Add extension app.
-#### If you want to deploy it to Kyma via our extension installer automatically
+#### Option 1 Automatic Deployment: Host your extension app in Kyma and Deploy your extension app via our extension installer.  
 1. Provision Kyma via following options:
     - Option 1: Install Kubernetes cluster and Kyma via [gardener](https://gardener.cloud/050-tutorials/content/howto/gardener_gcp/).  (Verified)
     - Option 2: Install via [SAP Cloud Platform Extension Factory, Kyma Runtime](https://jam4.sapjam.com/groups/mYaTDaPrTFfwSbtvLnKjox/content?folder_id=vQPDbF2tshMpsFQWBhLeGZ).  (To be verified)
@@ -55,8 +55,11 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
     }
 ```
 8. Copy extension deployment id value from response body.
-#### If you want to add your extension which is deployed by yourself
-1. Open the Post **extensions** API request. Change the name, description, version as you want in the request body. Set deployType to "MANUAL_DEPLOYMENT". Set hostingType to "CUSTOM_HOSTING". Execute the request.  
+#### Option 2 Manual Deployment: Host your extension app in any place by yourself and make sure it is accessible publicly.  
+1. Open the Post **extensions** API request. Change the following information in the request body and then execute the request:  
+    1. name, description, version as you want.  
+    2. set deployType to "MANUAL_DEPLOYMENT".  
+    3. set hostingType to "CUSTOM_HOSTING".  
     **Request body example**
 ```
     {
