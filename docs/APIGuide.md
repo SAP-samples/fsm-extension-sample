@@ -14,7 +14,7 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
 ### 2. Add extension app.
 #### Option 1 Automatic Deployment: Host your extension app in Kyma and Deploy your extension app via our extension installer.  
 1. Provision Kyma via following options:
-    - Option 1: Install Kubernetes cluster and Kyma via [gardener](https://gardener.cloud/050-tutorials/content/howto/gardener_gcp/).  (Verified)
+    - Option 1: Install Kubernetes cluster and Kyma via [gardener](https://gardener.cloud/documentation/050-tutorials/content/howto/gardener_gcp/).  (Verified)
     - Option 2: Install via [SAP Cloud Platform Extension Factory, Kyma Runtime](https://jam4.sapjam.com/groups/mYaTDaPrTFfwSbtvLnKjox/content?folder_id=vQPDbF2tshMpsFQWBhLeGZ).  (To be verified)
 2. Setup connection between FSM and Kyma.
     1. Configuration in Kyma  
