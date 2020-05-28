@@ -23,7 +23,7 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
         You could refer to Configuration in SAP Field Service section of [SAP Cloud Platform Extension Factory Integration](https://docs.coresystems.net/extensions-ui-plugins/cloud-platform-extension-factory-integration.html) guide.  
         **Noted**: Replace the key in step 4 of [Configuration in SAP Field Service](https://docs.coresystems.net/extensions-ui-plugins/cloud-platform-extension-factory-integration.html) section with the value you copied in step 1.
 
-3. Setup extension-installer for kyma, please refer to https://github.com/SAP-samples/fsm-extension-installer-kyma. 
+3. Setup extension-installer for kyma, please refer to [https://github.com/SAP-samples/fsm-extension-installer-kyma](https://github.com/SAP-samples/fsm-extension-installer-kyma). 
 4. Open the POST **extensions** API request. Change the following information in the request body:
     1. name, description, version as you want.
     2. repository under artifactConfig/chart. The repository should be the root url of your repository which stored your deployment artifacts of your extension (make sure it is public and git based and your deployment artifacts are on the master branch). 
