@@ -1,0 +1,22 @@
+{{- if gt .Values.kyma.version "1.12" -}}
+{{- if .Values.kyma.api.enabled -}}
+{{- $name := include "chart.name" . -}}
+{{- $svcPort := .Values.service.port -}}
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  {{- include "default_metadata" . | indent 2 }}
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  service:
+    name: {{ $name }}
+    port: {{ $svcPort }}
+    host: {{ $name }}-{{ .Release.Namespace }}
+  rules:
+    - path: /.*
+      methods: ["GET", "POST", "PUT", "DELETE"]
+      accessStrategies:
+        - handler: noop
+          config: {}
+{{- end }}
+{{- end }}
