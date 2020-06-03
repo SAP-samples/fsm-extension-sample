@@ -5,11 +5,11 @@ RUN mkdir -p /app/backend
 RUN mkdir -p /app/frontend
 
 WORKDIR /app/backend
-COPY ./backend .
+COPY ./src/backend .
 RUN npm install
 
 WORKDIR /app/frontend
-COPY ./frontend .
+COPY ./src/frontend .
 #RUN npm install
 
 WORKDIR /app

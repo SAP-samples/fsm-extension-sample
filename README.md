@@ -1,5 +1,5 @@
 # SAP Field Service Management Extension Sample Repository
-This sample provides a template that helps generate skeleton of the fsm extension application project.
+This sample provides a template that helps generate skeleton of the FSM extension application project.
 
 # Description
 In SAP Field Service Management, customers can deploy an extension application to Kyma or any Kubernetes-based cluster, which can then be integrated into the SAP Field Service Management.
@@ -18,29 +18,85 @@ Make sure that the following prerequisites are met before you use this repositor
 Follow these steps to set up your extension application project by using this sample repository:
 * Clone the extension sample to local machine.
 * Open a shell command tool and go to root folder of the local extension sample project.
-* Execute the script [generator.sh](./generator.sh) to generate the extension application project from scaffolds, and configure following information:
-    * application name
-    * application version: the docker image tags, it should be incremented each time you make changes to the application.
-    * description
-    * icon
-    * helm chart version: the chart version, which follows semver 2.x specification https://semver.org/, and it should be incremented each time you make changes to the chart and its templates, including the application version.
-    * docker registry: the repository where the generated docker image is stored.
+* Execute the script [generator.sh](./generator.sh) to generate the extension application project from scaffolds.
 * Change shell's current directory into the generated project, which is now the workspace under your control.
 * Modify the source code of the generated project according to the specific business requirements.
-* Check the **appconfig** file in the generated project, and change *application_version* or *helm_chart_version* if you want to publish with new versions.
-* Execute the script **build-charts.sh** in the generated project to build helm charts.
-* Check if the new version was pushed to docker hub via `https://hub.docker.com/u/{your docker ID}/tags`.
-* Upload the generated project to your Git repository and make sure it is public.
+* Check the **appconfig.json** file in the generated project, if you ship the extension application with helm chart, you can configure extension details and define additional parameters needed from customer during installation. See [appconfig.json file](#appconfig.json-file) for more details.
+* Execute the script **build-artifacts.sh** in the generated project to build docker image and helm charts.
+* Check if the new version was pushed to docker hub via `https://hub.docker.com/repository/docker/{your docker ID}/{application name}/tags`.
 * [Optional] If you want to deploy the extension application to Kyma manually.
 Example:
 ```
-helm install ./helm/<application_name> --name <application_name> --namespace <kyma_namespace> --set kyma.apiv1.enabled=true --tls
+helm install ./artifacts/helm/{application name} --name {application name} --namespace {kyma namespace} --set kyma.api.enabled=true --set kyma.version={kyma version} --tls
+```
+
+- Upload the generated project to your Git repository and make sure it is public.
+
+```
+>**NOTE:** If you don't want to upload the source code for any reason, you can upload only the "artifacts" folder of the generated project.
+```
+
+# Folder Structure
+
+The generated extension application project must follow folder structure as below:
+
+```
+generated-project/
+   ├── src/                                  # A directory which contains all business logic source code
+   │    └── frontend/                        # A directory for UI soure code
+   │    └── backend/                         # A directory for backend (nodejs, java) source code
+   ├── test/                                 # A directory which contains all test cases
+   ├── artifacts/                            # [REQUIRED] A directory which contains deployment artifacts
+   │    ├── appconfig.json                   # [REQUIRED] A file which contains metadata for this extension
+   │    ├── helm/{chart-name}/               # A Helm chart directory
+   │    └── ....
+   └── docs/                                 # A directory which contains documentation for this extension
+```
+
+## appconfig.json file
+
+The appconfig.json file contains metadata about the extension application. The structure of the appconfig.json file must follow the definition as below:
+
+| Field Name                         | Required | Description                                                  |
+| :--------------------------------- | -------- | :----------------------------------------------------------- |
+| name                               | Yes      | The name of the extension.                                   |
+| provider                           | No       | The name of the upstream entity providing the extension.     |
+| description                        | No       | The description of the extension.                            |
+| version                            | Yes      | The version of the extension, it should be incremented each time you make changes to the extension application. |
+| icon                               | No       | The URL to an icon. You must provide the image in the `SVG` or `PNG` format. |
+| dockerRegistry                     | No       | The registry where the generated docker image is hosted. (Only for shipping with Helm Chart) |
+| helmChartVersion                   | No       | The chart version of the extension, which follows semver 2.x specification https://semver.org/, and it should be incremented each time you make changes to the chart and its templates, including the application version. (Only for shipping with Helm Chart) |
+| deploymentParameters[].name        | No       | Defines an unique name of a given deployment parameter.      |
+| deploymentParameters[].description | No       | Defines the description of a given deployment parameter.     |
+| deploymentParameters[].required    | No       | Defines if a given deployment parameter must be provided during extension installation. |
+
+This is an example of appconfig.json:
+
+```
+{
+  "name": "My Extension App",
+  "provider": "Partner A",
+  "description": "This is My Extension App",   
+  "version": "1.0.0", 
+  "icon": "https://zh.wikipedia.org/wiki/File:User_Circle.png",  
+  "deploymentParameters": [
+    {
+      "name": "token",      
+      "description":"",      
+      "required":"false"    
+    },    
+    {     
+      "name": "targetsystemurl",     
+      "description":"",     
+      "required":"true"    
+    }  
+  ]
+}
 ```
 
 # Limitations
-Private docker registry is not supported by the scaffolds.
 
-*application_icon* and *application_description* can only be written to charts by scripts one time. If update is needed after then, you should update them in **Chart.yaml** manually.
+Private docker registry is not supported by the scaffolds.
 
 # Known Issues
 There are no known issues for the moment.
