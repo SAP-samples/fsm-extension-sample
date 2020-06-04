@@ -40,7 +40,12 @@ spec:
               port: http
           env:
           - name: PORT
-            value: "{{ .Values.service.internalPort }}" 
+            value: "{{ .Values.service.internalPort }}"
+
+          {{- with .Values.deploymentParameters }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

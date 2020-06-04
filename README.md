@@ -12,6 +12,7 @@ Make sure that the following prerequisites are met before you use this repositor
 * Install Git CLI locally via https://git-scm.com/downloads
 * Have an account in public docker registry, such as Docker Hub
 * Install Docker Desktop locally via https://www.docker.com/get-started, and sign in the docker registry from Docker Desktop GUI or Docker Desktop CLI
+* Install jq locally via https://stedolan.github.io/jq/download/
 * [Optional] If you want to deploy the extension application to Kyma manually, you need to install helm CLI locally and configure it via https://kyma-project.io/docs/#installation-use-helm
 
 # Workflow
