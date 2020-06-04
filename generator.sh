@@ -10,10 +10,6 @@ else
   alias sed='sed -i""'
 fi
 
-function esc_string() {
-  printf '%q' "$@"
-}
-
 function promptyn() {
   while true; do
     read -p "$1 " yn
@@ -40,7 +36,6 @@ while true; do
   fi
 done
 read -p "Application description? " application_description
-application_description=$(esc_string "$application_description")
 read -p "Application icon (a URL to an SVG or PNG image to be used as an icon)? " application_icon
 read -p "Application provider? " application_provider
 while true; do
@@ -84,30 +79,24 @@ if promptyn "Do you want to ship the application with Helm Chart?(y/n) "; then
   sed "s|\${registry}|${docker_registry}|g" ./$application_name/artifacts/helm/$application_name/values.yaml
   sed "s/\${image_name}/${application_name}/g" ./$application_name/artifacts/helm/$application_name/values.yaml
   # Write appconfig.json
-  cat >./$application_name/artifacts/appconfig.json <<EOL
-{
-  "name": "${application_name}",
-  "provider":"${application_provider}",
-  "description": "${application_description}", 
-  "version": "${application_version}",
-  "icon": "${application_icon}",
-  "dockerRegistry": "${docker_registry}",
-  "helmChartVersion": "${helm_chart_version}"
-}
-EOL
+  jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, dockerRegistry:$docker_registry, helmChartVersion:$helm_chart_version, deploymentParameters:[]}' \
+    --arg application_name "$application_name" \
+    --arg application_provider "$application_provider" \
+    --arg application_description "$application_description" \
+    --arg application_version "$application_version" \
+    --arg application_icon "$application_icon" \
+    --arg docker_registry "$docker_registry" \
+    --arg helm_chart_version "$helm_chart_version" > ./$application_name/artifacts/appconfig.json
 else
   # Create project folder structure
   rsync -r -p --exclude 'helm' --exclude 'build-charts.sh' ./scaffolds/* ./$application_name
   # Write appconfig.json
-  cat >./$application_name/artifacts/appconfig.json <<EOL
-{
-  "name": "${application_name}",
-  "provider":"${application_provider}",
-  "description": "${application_description}", 
-  "version": "${application_version}",
-  "icon": "${application_icon}"
-}
-EOL
+  jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, deploymentParameters:[]}' \
+    --arg application_name "$application_name" \
+    --arg application_provider "$application_provider" \
+    --arg application_description "$application_description" \
+    --arg application_version "$application_version" \
+    --arg application_icon "$application_icon" > ./$application_name/artifacts/appconfig.json
 fi
 
 echo "Project $application_name is created successfully!"

@@ -1,19 +1,20 @@
 #!/bin/bash
 set -e
 
-# see https://askubuntu.com/questions/1167287/parse-json-with-default-bash-only
-function jsonValue() {
-  KEY=$1
-  num=$2
-  awk -F"[,:}]" '{for(i=1;i<=NF;i++){if($i~/'$KEY'\042/){print $(i+1)}}}' | tr -d '"' | sed -n ${num}p
-}
+shopt -s expand_aliases
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias sed='sed -i ""'
+else
+  alias sed='sed -i""'
+fi
 
-application_name=$(cat ./artifacts/appconfig.json | jsonValue name 1 | tr -d "[:blank:]")
-application_version=$(cat ./artifacts/appconfig.json | jsonValue version 1 | tr -d "[:blank:]")
-application_icon=$(cat ./artifacts/appconfig.json | jsonValue icon 1 | tr -d "[:blank:]")
-application_description=$(cat ./artifacts/appconfig.json | jsonValue description 1 | tr -d "[:blank:]")
-helm_chart_version=$(cat ./artifacts/appconfig.json | jsonValue helmChartVersion 1 | tr -d "[:blank:]")
-docker_registry=$(cat ./artifacts/appconfig.json | jsonValue dockerRegistry 1 | tr -d "[:blank:]")
+application_name=$(cat ./artifacts/appconfig.json | jq ".name" | tr -d '"')
+application_version=$(cat ./artifacts/appconfig.json | jq ".version" | tr -d '"')
+application_icon=$(cat ./artifacts/appconfig.json | jq ".icon" | tr -d '"')
+application_description=$(cat ./artifacts/appconfig.json | jq ".description" | tr -d '"')
+helm_chart_version=$(cat ./artifacts/appconfig.json | jq ".helmChartVersion" | tr -d '"')
+docker_registry=$(cat ./artifacts/appconfig.json | jq ".dockerRegistry" | tr -d '"')
+deployment_parameters=$(cat ./artifacts/appconfig.json | jq ".deploymentParameters | .[].name" | awk '{ print $1 }' | tr -d '"')
 
 echo "Start to prepare deployments artifacts"
 
@@ -23,17 +24,23 @@ docker build -t $docker_registry/$application_name:$application_version .
 echo "==> docker push"
 docker push $docker_registry/$application_name:$application_version
 
-echo "==> update versions in helm charts"
-shopt -s expand_aliases
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias sed='sed -i ""'
-else
-  alias sed='sed -i""'
-fi
+echo "==> update versions in helm charts - Chart.yaml"
 sed 's/version:.*/version: '${helm_chart_version}'/g' ./artifacts/helm/$application_name/Chart.yaml
 sed 's/appVersion:.*/appVersion: '\"${application_version}\"'/g' ./artifacts/helm/$application_name/Chart.yaml
-sed 's/icon:.*/icon: '${application_icon}'/g' ./artifacts/helm/$application_name/Chart.yaml
-sed 's/description:.*/description: '${application_description}'/g' ./artifacts/helm/$application_name/Chart.yaml
+sed "s|icon:.*|icon: ${application_icon}|g" ./artifacts/helm/$application_name/Chart.yaml
+sed "s|description:.*|description: ${application_description}|g" ./artifacts/helm/$application_name/Chart.yaml
+
+echo "==> update deployment parameters into helm charts - values.yaml"
+if [[ ! -z "$deployment_parameters" ]]; then
+  deployment_parameters_str=''
+  for element in ${deployment_parameters//\\n/ } ; do
+    deployment_parameters_str="{\"name\":\"$element\",\"value\":\"\"},$deployment_parameters_str"
+  done
+  deployment_parameters_str="[${deployment_parameters_str:0:-1}]"
+  sed 's/deploymentParameters:.*/deploymentParameters: '${deployment_parameters_str}'/g' ./artifacts/helm/$application_name/values.yaml
+else
+  sed 's/deploymentParameters:.*/deploymentParameters: []/g' ./artifacts/helm/$application_name/values.yaml
+fi
 
 # helm lint and render template are not mandatory
 if which helm >/dev/null; then
