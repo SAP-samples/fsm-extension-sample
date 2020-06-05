@@ -1,4 +1,4 @@
-apiVersion: v2
+apiVersion: v1
 name: ${application_name}
 
 # A chart can be either an 'application' or a 'library' chart.

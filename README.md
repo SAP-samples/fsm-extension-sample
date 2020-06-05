@@ -97,7 +97,8 @@ This is an example of appconfig.json:
 
 # Limitations
 
-Private docker registry is not supported by the scaffolds.
+* Private docker registry is not supported by the scaffolds.
+* The field "parameters" of appconfig.json doesn't support nested structure.
 
 # Known Issues
 There are no known issues for the moment.
