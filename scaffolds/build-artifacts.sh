@@ -35,7 +35,7 @@ echo '{{- define "parameters" }}' > ./artifacts/helm/$application_name/templates
 if [[ ! -z "$parameters_arr" ]]; then
   for element in ${parameters_arr//\\n/ } ; do
     echo "- name: $element" >> ./artifacts/helm/$application_name/templates/_parameters.tpl
-    echo "  value: {{ .Values.$element }}" >> ./artifacts/helm/$application_name/templates/_parameters.tpl
+    echo "  value: !!str {{ .Values.$element }}" >> ./artifacts/helm/$application_name/templates/_parameters.tpl
   done
 fi
 echo '{{- end }}' >> ./artifacts/helm/$application_name/templates/_parameters.tpl
