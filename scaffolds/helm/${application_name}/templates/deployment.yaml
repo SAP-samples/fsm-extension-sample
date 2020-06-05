@@ -42,7 +42,7 @@ spec:
           - name: PORT
             value: "{{ .Values.service.internalPort }}"
 
-          {{- with .Values.deploymentParameters }}
+          {{- with .Values.parameters }}
           {{- toYaml . | nindent 10 }}
           {{- end }}
 
