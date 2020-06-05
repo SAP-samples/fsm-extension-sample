@@ -10,6 +10,7 @@ RUN npm install
 
 WORKDIR /app/frontend
 COPY ./src/frontend .
+COPY ./artifacts/appconfig.json .
 #RUN npm install
 
 WORKDIR /app

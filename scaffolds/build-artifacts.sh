@@ -14,7 +14,7 @@ application_icon=$(cat ./artifacts/appconfig.json | jq ".icon" | tr -d '"')
 application_description=$(cat ./artifacts/appconfig.json | jq ".description" | tr -d '"')
 helm_chart_version=$(cat ./artifacts/appconfig.json | jq ".helmChartVersion" | tr -d '"')
 docker_registry=$(cat ./artifacts/appconfig.json | jq ".dockerRegistry" | tr -d '"')
-deployment_parameters=$(cat ./artifacts/appconfig.json | jq ".deploymentParameters | .[].name" | awk '{ print $1 }' | tr -d '"')
+parameters_arr=$(cat ./artifacts/appconfig.json | jq ".parameters | .[].name" | awk '{ print $1 }' | tr -d '"')
 
 echo "Start to prepare deployments artifacts"
 
@@ -31,15 +31,15 @@ sed "s|icon:.*|icon: ${application_icon}|g" ./artifacts/helm/$application_name/C
 sed "s|description:.*|description: ${application_description}|g" ./artifacts/helm/$application_name/Chart.yaml
 
 echo "==> update deployment parameters into helm charts - values.yaml"
-if [[ ! -z "$deployment_parameters" ]]; then
-  deployment_parameters_str=''
-  for element in ${deployment_parameters//\\n/ } ; do
-    deployment_parameters_str="{\"name\":\"$element\",\"value\":\"\"},$deployment_parameters_str"
+if [[ ! -z "$parameters_arr" ]]; then
+  parameters_str=''
+  for element in ${parameters_arr//\\n/ } ; do
+    parameters_str="{\"name\":\"$element\",\"value\":\"\"},$parameters_str"
   done
-  deployment_parameters_str="[${deployment_parameters_str:0:-1}]"
-  sed 's/deploymentParameters:.*/deploymentParameters: '${deployment_parameters_str}'/g' ./artifacts/helm/$application_name/values.yaml
+  parameters_str="[${parameters_str:0:$((${#parameters_str}-1))}]"
+  sed 's/parameters:.*/parameters: '${parameters_str}'/g' ./artifacts/helm/$application_name/values.yaml
 else
-  sed 's/deploymentParameters:.*/deploymentParameters: []/g' ./artifacts/helm/$application_name/values.yaml
+  sed 's/parameters:.*/parameters: []/g' ./artifacts/helm/$application_name/values.yaml
 fi
 
 # helm lint and render template are not mandatory

@@ -79,7 +79,7 @@ if promptyn "Do you want to ship the application with Helm Chart?(y/n) "; then
   sed "s|\${registry}|${docker_registry}|g" ./$application_name/artifacts/helm/$application_name/values.yaml
   sed "s/\${image_name}/${application_name}/g" ./$application_name/artifacts/helm/$application_name/values.yaml
   # Write appconfig.json
-  jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, dockerRegistry:$docker_registry, helmChartVersion:$helm_chart_version, deploymentParameters:[]}' \
+  jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, dockerRegistry:$docker_registry, helmChartVersion:$helm_chart_version, parameters:[]}' \
     --arg application_name "$application_name" \
     --arg application_provider "$application_provider" \
     --arg application_description "$application_description" \
@@ -91,7 +91,7 @@ else
   # Create project folder structure
   rsync -r -p --exclude 'helm' --exclude 'build-charts.sh' ./scaffolds/* ./$application_name
   # Write appconfig.json
-  jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, deploymentParameters:[]}' \
+  jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, parameters:[]}' \
     --arg application_name "$application_name" \
     --arg application_provider "$application_provider" \
     --arg application_description "$application_description" \

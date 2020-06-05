@@ -18,7 +18,7 @@ Make sure that the following prerequisites are met before you use this repositor
 # Workflow
 Follow these steps to set up your extension application project by using this sample repository:
 * Clone the extension sample to local machine.
-* Open a shell command tool and go to root folder of the local extension sample project.
+* Open a shell command tool, like bash, zsh, etc and change shell's current directory to root folder of the local extension sample project.
 * Execute the script [generator.sh](./generator.sh) to generate the extension application project from scaffolds.
 * Change shell's current directory into the generated project, which is now the workspace under your control.
 * Modify the source code of the generated project according to the specific business requirements.
@@ -67,9 +67,9 @@ The appconfig.json file contains metadata about the extension application. The s
 | icon                               | No       | The URL to an icon. You must provide the image in the `SVG` or `PNG` format. |
 | dockerRegistry                     | No       | The registry where the generated docker image is hosted. (Only for shipping with Helm Chart) |
 | helmChartVersion                   | No       | The chart version of the extension, which follows semver 2.x specification https://semver.org/, and it should be incremented each time you make changes to the chart and its templates, including the application version. (Only for shipping with Helm Chart) |
-| deploymentParameters[].name        | No       | Defines an unique name of a given deployment parameter.      |
-| deploymentParameters[].description | No       | Defines the description of a given deployment parameter.     |
-| deploymentParameters[].required    | No       | Defines if a given deployment parameter must be provided during extension installation. |
+| parameters[].name                  | No       | Defines an unique name of a given parameter.      |
+| parameters[].description           | No       | Defines the description of a given parameter.     |
+| parameters[].required              | No       | Defines if a given parameter must be provided during extension installation. |
 
 This is an example of appconfig.json:
 
@@ -80,7 +80,7 @@ This is an example of appconfig.json:
   "description": "This is My Extension App",   
   "version": "1.0.0", 
   "icon": "https://zh.wikipedia.org/wiki/File:User_Circle.png",  
-  "deploymentParameters": [
+  "parameters": [
     {
       "name": "token",      
       "description":"",      
