@@ -41,10 +41,7 @@ spec:
           env:
           - name: PORT
             value: "{{ .Values.service.internalPort }}"
-
-          {{- with .Values.parameters }}
-          {{- toYaml . | nindent 10 }}
-          {{- end }}
+          {{- include "parameters" . | indent 10 }}
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

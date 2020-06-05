@@ -30,17 +30,15 @@ sed 's/appVersion:.*/appVersion: '\"${application_version}\"'/g' ./artifacts/hel
 sed "s|icon:.*|icon: ${application_icon}|g" ./artifacts/helm/$application_name/Chart.yaml
 sed "s|description:.*|description: ${application_description}|g" ./artifacts/helm/$application_name/Chart.yaml
 
-echo "==> update deployment parameters into helm charts - values.yaml"
+echo "==> update deployment parameters into helm charts - _parameters.tpl"
+echo '{{- define "parameters" }}' > ./artifacts/helm/$application_name/templates/_parameters.tpl
 if [[ ! -z "$parameters_arr" ]]; then
-  parameters_str=''
   for element in ${parameters_arr//\\n/ } ; do
-    parameters_str="{\"name\":\"$element\",\"value\":\"\"},$parameters_str"
+    echo "- name: $element" >> ./artifacts/helm/$application_name/templates/_parameters.tpl
+    echo "  value: {{ .Values.$element }}" >> ./artifacts/helm/$application_name/templates/_parameters.tpl
   done
-  parameters_str="[${parameters_str:0:$((${#parameters_str}-1))}]"
-  sed 's/parameters:.*/parameters: '${parameters_str}'/g' ./artifacts/helm/$application_name/values.yaml
-else
-  sed 's/parameters:.*/parameters: []/g' ./artifacts/helm/$application_name/values.yaml
 fi
+echo '{{- end }}' >> ./artifacts/helm/$application_name/templates/_parameters.tpl
 
 # helm lint and render template are not mandatory
 if which helm >/dev/null; then
