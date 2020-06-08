@@ -22,8 +22,8 @@ Follow these steps to set up your extension application project by using this sa
 * Execute the script [generator.sh](./generator.sh) to generate the extension application project from scaffolds.
 * Change shell's current directory into the generated project, which is now the workspace under your control.
 * Modify the source code of the generated project according to the specific business requirements.
-* Check the **appconfig.json** file in the generated project, if you ship the extension application with helm chart, you can configure extension details and define additional parameters needed from customer during installation. See [appconfig.json file](#appconfig.json-file) for more details.
-* Execute the script **build-artifacts.sh** in the generated project to build docker image and helm charts.
+* Check the `appconfig.json` file in the generated project, if you ship the extension application with helm chart, you can configure extension details and define additional parameters needed from customer during installation. See [appconfig.json file](#appconfig.json-file) for more details.
+* Execute the script `build-artifacts.sh` in the generated project to build docker image and helm charts.
 * Check if the new version was pushed to docker hub via `https://hub.docker.com/repository/docker/{your docker ID}/{application name}/tags`.
 * [Optional] If you want to deploy the extension application to Kyma manually.
 Example:
@@ -33,13 +33,11 @@ helm install ./artifacts/helm/{application name} --name {application name} --nam
 
 - Upload the generated project to your Git repository and make sure it is public.
 
-```
 >**NOTE:** If you don't want to upload the source code for any reason, you can upload only the "artifacts" folder of the generated project.
-```
 
 # Folder Structure
 
-The generated extension application project must follow folder structure as below:
+The generated extension application project follows folder structure as below:
 
 ```
 generated-project/
@@ -56,7 +54,9 @@ generated-project/
 
 ## appconfig.json file
 
-The appconfig.json file contains metadata about the extension application. The structure of the appconfig.json file must follow the definition as below:
+If you generate the extension application project via [generator.sh](./generator.sh), the `appconfig.json` is initial created automatically. Else if you create the extension application as a freestyle project and install it manually on arbitrary platform,  there must be an endpoint `/appconfig.json` under the extension application root URL.
+
+The `appconfig.json` file contains metadata about the extension application. The structure of the `appconfig.json` file must follow the definition as below:
 
 | Field Name                         | Required | Description                                                  |
 | :--------------------------------- | -------- | :----------------------------------------------------------- |
@@ -71,7 +71,7 @@ The appconfig.json file contains metadata about the extension application. The s
 | parameters[].description           | No       | Defines the description of a given parameter.     |
 | parameters[].required              | No       | Defines if a given parameter must be provided during extension installation. |
 
-This is an example of appconfig.json:
+This is an example of `appconfig.json`:
 
 ```
 {
@@ -83,13 +83,13 @@ This is an example of appconfig.json:
   "parameters": [
     {
       "name": "token",      
-      "description":"",      
-      "required":"false"    
+      "description": "",      
+      "required": false    
     },    
     {     
       "name": "targetsystemurl",     
-      "description":"",     
-      "required":"true"    
+      "description": "",     
+      "required": true 
     }  
   ]
 }
@@ -98,7 +98,7 @@ This is an example of appconfig.json:
 # Limitations
 
 * Private docker registry is not supported by the scaffolds.
-* The field "parameters" of appconfig.json doesn't support nested structure.
+* The field `parameters` of `appconfig.json` doesn't support nested structure.
 
 # Known Issues
 There are no known issues for the moment.
