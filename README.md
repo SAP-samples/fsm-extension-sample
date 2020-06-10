@@ -60,13 +60,13 @@ The `appconfig.json` file contains metadata about the extension application. The
 
 | Field Name                         | Required | Description                                                  |
 | :--------------------------------- | -------- | :----------------------------------------------------------- |
-| name                               | Yes      | The name of the extension.                                   |
+| name                               | Yes      | The name of the extension, which follows [RFC 1123 specification](https://tools.ietf.org/html/rfc1123), section "Host Names and Numbers". Even more, the uppercase characters are not supported.                                 |
 | provider                           | No       | The name of the upstream entity providing the extension.     |
 | description                        | No       | The description of the extension.                            |
 | version                            | Yes      | The version of the extension, it should be incremented each time you make changes to the extension application. |
 | icon                               | No       | The URL to an icon. You must provide the image in the `SVG` or `PNG` format. |
 | dockerRegistry                     | No       | The registry where the generated docker image is hosted. (Only for shipping with Helm Chart) |
-| helmChartVersion                   | No       | The chart version of the extension, which follows semver 2.x specification https://semver.org/, and it should be incremented each time you make changes to the chart and its templates, including the application version. (Only for shipping with Helm Chart) |
+| helmChartVersion                   | No       | The chart version of the extension, which follows [semver 2.x specification](https://semver.org/), and it should be incremented each time you make changes to the chart and its templates, including the application version. (Only for shipping with Helm Chart) |
 | parameters[].name                  | No       | Defines an unique name of a given parameter.      |
 | parameters[].description           | No       | Defines the description of a given parameter.     |
 | parameters[].required              | No       | Defines if a given parameter must be provided during extension installation. |
@@ -75,7 +75,7 @@ This is an example of `appconfig.json`:
 
 ```
 {
-  "name": "My Extension App",
+  "name": "my-extension-app",
   "provider": "Partner A",
   "description": "This is My Extension App",   
   "version": "1.0.0", 
