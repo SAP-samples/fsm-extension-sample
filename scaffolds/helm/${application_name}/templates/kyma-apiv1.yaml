@@ -1,4 +1,4 @@
-{{- if lt .Values.kyma.version "1.12" -}}
+{{- if gt (semver .Values.kyma.version | (semver "1.12.0-0").Compare) 0 -}}
 {{- if .Values.kyma.apiv1.enabled -}}
 {{- $name := include "chart.name" . -}}
 {{- $svcPort := .Values.service.port -}}
