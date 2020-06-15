@@ -13,23 +13,14 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
 ![token](./token.png)
 ### 2. Add extension app.
 #### Option 1 Automatic Deployment: Host your extension app in Kyma and Deploy your extension app via our extension installer.  
-1. Provision Kyma via following options:
-    - Option 1: Install Kubernetes cluster and Kyma via [gardener](https://gardener.cloud/documentation/050-tutorials/content/howto/gardener_gcp/).  (Verified)
-    - Option 2: Install via [SAP Cloud Platform Extension Factory, Kyma Runtime](https://jam4.sapjam.com/groups/mYaTDaPrTFfwSbtvLnKjox/content?folder_id=vQPDbF2tshMpsFQWBhLeGZ).  (To be verified)
-2. Setup connection between FSM and Kyma.
-    1. Configuration in Kyma  
-        From Applications page of Kyma console, clicking **+ Create Application** button. Enter the Name for this application and then click **Create** button to create. After the application was created successfully, then navigate to this application and click **Connect Application** to get an URL and copy it.
-    2. Configuration in SAP Field Service  
-        You could refer to Configuration in SAP Field Service section of [SAP Cloud Platform Extension Factory Integration](https://docs.coresystems.net/extensions-ui-plugins/cloud-platform-extension-factory-integration.html) guide.  
-        **Noted**: Replace the key in step 4 of [Configuration in SAP Field Service](https://docs.coresystems.net/extensions-ui-plugins/cloud-platform-extension-factory-integration.html) section with the value you copied in step 1.
-
-3. Setup extension-installer for kyma, please refer to [https://github.com/SAP-samples/fsm-extension-installer-kyma](https://github.com/SAP-samples/fsm-extension-installer-kyma). 
-4. Open the POST **extensions** API request. Change the following information in the request body:
+1. Provision Kyma and Set up connection between FSM and Kyma following [SAP Cloud Platform Extension Factory Integration](https://docs.coresystems.net/extensions-ui-plugins/cloud-platform-extension-factory-integration.html) guide.
+2. Setup extension-installer for kyma, please refer to [https://github.com/SAP-samples/fsm-extension-installer-kyma](https://github.com/SAP-samples/fsm-extension-installer-kyma). 
+3. Open the POST **extensions** API request. Change the following information in the request body:
     1. name, description, version as you want.
     2. repository under artifactConfig/chart. The repository should be the root url of your repository which stored your deployment artifacts of your extension (make sure it is public and git based and your deployment artifacts are on the master branch). 
     3. set deployType to "HELM_CHART". 
     4. set hostingType to "KYMA". 
-5. Execute the request.  
+4. Execute the request.  
     **Request body example**
 ```
     {
@@ -48,8 +39,8 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
         "hostingType": "KYMA"
     }
 ```
-6. Copy the extension id from the response body.
-7. Open POST **extensions deploy** API request. Replace {id} in the url with the copied extension id. Execute the request. Normally you do not need to enter request body, the extension will be installed into default namespace of KYMA. If you want to install into other namespace, enter it in request body like below:  
+5. Copy the extension id from the response body.
+6. Open POST **extensions deploy** API request. Replace {id} in the url with the copied extension id. Execute the request. Normally you do not need to enter request body, the extension will be installed into default namespace of KYMA. If you want to install into other namespace, enter it in request body like below:  
     **Request body example**
 ```
     {
@@ -58,7 +49,7 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
         }
     }
 ```
-8. Copy extension deployment id value from response body.
+7. Copy extension deployment id value from response body.
 #### Option 2 Manual Deployment: Host your extension app in any place by yourself and make sure it is accessible publicly.  
 1. Open the POST **extensions** API request. Change the following information in the request body and then execute the request:  
     1. name, description, version as you want.  
