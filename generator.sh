@@ -72,12 +72,14 @@ if promptyn "Do you want to ship the application with Helm Chart?(y/n) "; then
   mv ./$application_name/artifacts/helm/\${application_name} ./$application_name/artifacts/helm/${application_name}
   # Update Chart.yaml and values.yaml with initial inputs from user
   sed "s/\${application_name}/${application_name}/g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
-  sed "s|\${application_icon}|${application_icon}|g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
-  sed "s|\${application_description}|${application_description}|g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
+  # see https://stackoverflow.com/questions/46104856/replacing-a-url-with-sed-that-contains-ampersands
+  sed "s|\${application_icon}|${application_icon//\&/\\\&}|g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
+  sed "s|\${application_description}|${application_description//\&/\\\&}|g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
   sed "s/\${application_version}/${application_version}/g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
   sed "s/\${helm_chart_version}/${helm_chart_version}/g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
   sed "s|\${registry}|${docker_registry}|g" ./$application_name/artifacts/helm/$application_name/values.yaml
   sed "s/\${image_name}/${application_name}/g" ./$application_name/artifacts/helm/$application_name/values.yaml
+
   # Write appconfig.json
   jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, dockerRegistry:$docker_registry, helmChartVersion:$helm_chart_version, parameters:[]}' \
     --arg application_name "$application_name" \
