@@ -27,7 +27,8 @@ docker push $docker_registry/$application_name:$application_version
 echo "==> update versions in helm charts - Chart.yaml"
 sed 's/version:.*/version: '${helm_chart_version}'/g' ./artifacts/helm/$application_name/Chart.yaml
 sed 's/appVersion:.*/appVersion: '\"${application_version}\"'/g' ./artifacts/helm/$application_name/Chart.yaml
-sed "s|icon:.*|icon: ${application_icon//\&/\\\&}|g" ./artifacts/helm/$application_name/Chart.yaml
+tmp_application_icon=`printf "%q" "$application_icon"`
+sed "s|icon:.*|icon: ${tmp_application_icon}|g" ./artifacts/helm/$application_name/Chart.yaml
 sed "s|description:.*|description: ${application_description//\&/\\\&}|g" ./artifacts/helm/$application_name/Chart.yaml
 
 echo "==> update deployment parameters into helm charts - _parameters.tpl"
