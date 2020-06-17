@@ -73,7 +73,8 @@ if promptyn "Do you want to ship the application with Helm Chart?(y/n) "; then
   # Update Chart.yaml and values.yaml with initial inputs from user
   sed "s/\${application_name}/${application_name}/g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
   # see https://stackoverflow.com/questions/46104856/replacing-a-url-with-sed-that-contains-ampersands
-  sed "s|\${application_icon}|${application_icon//\&/\\\&}|g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
+  tmp_application_icon=`printf "%q" "$application_icon"`
+  sed "s|\${application_icon}|${tmp_application_icon}|g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
   sed "s|\${application_description}|${application_description//\&/\\\&}|g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
   sed "s/\${application_version}/${application_version}/g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
   sed "s/\${helm_chart_version}/${helm_chart_version}/g" ./$application_name/artifacts/helm/$application_name/Chart.yaml
