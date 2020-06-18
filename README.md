@@ -22,7 +22,7 @@ Follow these steps to set up your extension application project by using this sa
 * Execute the script [generator.sh](./generator.sh) to generate the extension application project from scaffolds.
 * Change shell's current directory into the generated project, which is now the workspace under your control.
 * Modify the source code of the generated project according to the specific business requirements.
-* Check the `appconfig.json` file in the generated project, if you ship the extension application with helm chart, you can configure extension details and define additional parameters needed from customer during installation. See [appconfig.json file](#appconfig.json-file) for more details.
+* Check the `appconfig.json` file in the generated project, if you ship the extension application with helm chart, you can configure extension details and define additional parameters needed from customer during installation. See [appconfig.json file](#appconfigjson-file) for more details.
 * Execute the script `build-artifacts.sh` in the generated project to build docker image and helm charts.
 * Check if the new version was pushed to docker hub via `https://hub.docker.com/repository/docker/{your docker ID}/{application name}/tags`.
 * [Optional] If you want to deploy the extension application to Kyma manually.
