@@ -4,34 +4,37 @@ This sample provides a template that helps generate skeleton of the FSM extensio
 # Description
 In SAP Field Service Management, customers can deploy an extension application to Kyma or any Kubernetes-based cluster, which can then be integrated into the SAP Field Service Management.
 
-This extension sample facilitates such scenario by helping the extension developer to generate the skeleton of the extension application project automatically. The extension developer can then modify the generated project according to the specific business requirements, and finally generate helm charts automatically and upload to the Git repository.
+This extension sample facilitates such scenario by helping the extension developer to generate the skeleton of the extension application project automatically. The extension developer can then modify the generated project according to the specific business requirements and finally upload the project to the Git repository.
+
+>**NOTE:** For the sake of demo all sources and artifacts will be publicly available.
 
 # Preliminaries
 Make sure that the following prerequisites are met before you use this repository for your extension application:
-* Have an account in Git-based version control system, such as GitHub
+
+* Have an account in Git-based version control system which is exposed to the public internet, such as GitHub
 * Install Git CLI locally via https://git-scm.com/downloads
 * Have an account in public docker registry, such as Docker Hub
 * Install Docker Desktop locally via https://www.docker.com/get-started, and sign in the docker registry from Docker Desktop GUI or Docker Desktop CLI
 * Install jq locally via https://stedolan.github.io/jq/download/
-* [Optional] If you want to deploy the extension application to Kyma manually, you need to install helm CLI locally and configure it via https://kyma-project.io/docs/#installation-use-helm
+
+>**NOTE:** We recommend using unix based systems to follow this guide. Note that for OSX and Windows tools might be installed differently.
 
 # Workflow
 Follow these steps to set up your extension application project by using this sample repository:
+
 * Clone the extension sample to local machine.
 * Open a shell command tool, like bash, zsh, etc and change shell's current directory to root folder of the local extension sample project.
 * Execute the script [generator.sh](./generator.sh) to generate the extension application project from scaffolds.
+
+>**Note:** If something fails (e.g. due to missing preliminaries) and you want to get back to the original status you can `git reset` to clean up your local repo and start the script again.
+
 * Change shell's current directory into the generated project, which is now the workspace under your control.
 * Modify the source code of the generated project according to the specific business requirements.
 * Check the `appconfig.json` file in the generated project, if you ship the extension application with helm chart, you can configure extension details and define additional parameters needed from customer during installation. See [appconfig.json file](#appconfigjson-file) for more details.
 * Execute the script `build-artifacts.sh` in the generated project to build docker image and helm charts.
 * Check if the new version was pushed to docker hub via `https://hub.docker.com/repository/docker/{your docker ID}/{application name}/tags`.
-* [Optional] If you want to deploy the extension application to Kyma manually.
-Example:
-```
-helm install ./artifacts/helm/{application name} --name {application name} --namespace {kyma namespace} --set kyma.api.enabled=true --set kyma.version={kyma version} --tls
-```
 
-- Upload the generated project to your Git repository and make sure it is public.
+* Upload the generated project to your Git repository and make sure it is public.
 
 >**NOTE:** If you don't want to upload the source code for any reason, you can upload only the "artifacts" folder of the generated project.
 
@@ -42,7 +45,7 @@ The generated extension application project follows folder structure as below:
 ```
 generated-project/
    ├── src/                                  # A directory which contains all business logic source code
-   │    └── frontend/                        # A directory for UI soure code
+   │    └── frontend/                        # A directory for UI source code
    │    └── backend/                         # A directory for backend (nodejs, java) source code
    ├── test/                                 # A directory which contains all test cases
    ├── artifacts/                            # [REQUIRED] A directory which contains deployment artifacts
@@ -54,7 +57,7 @@ generated-project/
 
 ## appconfig.json file
 
-If you generate the extension application project via [generator.sh](./generator.sh), the `appconfig.json` is initial created automatically. Else if you create the extension application as a freestyle project and install it manually on arbitrary platform,  there must be an endpoint `/appconfig.json` under the extension application root URL.
+If you generate the extension application project via [generator.sh](./generator.sh), the `appconfig.json` is initial created automatically. Else if you create the extension application as a freestyle project and install it manually on arbitrary platform, there must be an endpoint `/appconfig.json` under the extension application root URL.
 
 The `appconfig.json` file contains metadata about the extension application. The structure of the `appconfig.json` file must follow the definition as below:
 
@@ -94,6 +97,16 @@ This is an example of `appconfig.json`:
   ]
 }
 ```
+
+# Next Steps
+There are multiple ways to deploy your extension to Kyma:
+
+* Automatic deployment via the "Extension App" UI inside "Foundational Services" in SAP Field Service
+
+>**NOTE:** No public documentation available yet. This method is used, when you are following the run book (!!!ADD LINK!!!!).
+
+* Automatic deployment via FSM API <https://github.com/SAP-samples/fsm-extension-sample/blob/master/docs/APIGuide.md>
+* Manually via helm <https://kyma-project.io/docs/#installation-use-helm>.
 
 # Limitations
 
