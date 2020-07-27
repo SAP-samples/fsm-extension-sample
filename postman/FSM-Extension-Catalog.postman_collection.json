@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "760194ca-c417-4009-9353-0f223253691f",
+		"_postman_id": "93a8110d-0a78-40bc-8149-d641b2a9556d",
 		"name": "FSM-Extension-Catalog",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -831,7 +831,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ca72d8a0-6a77-4877-baa1-f565b6102fc4",
+						"id": "bc3a8073-320f-48a1-bc32-abe4a095c878",
 						"exec": [
 							"var jsonData;",
 							"",
@@ -909,13 +909,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://et.dev.coresuite.com/api/oauth2/v1/token",
-					"protocol": "https",
+					"raw": "{{tokenUrl}}/api/oauth2/v1/token",
 					"host": [
-						"et",
-						"dev",
-						"coresuite",
-						"com"
+						"{{tokenUrl}}"
 					],
 					"path": [
 						"api",
