@@ -97,7 +97,7 @@ Execute the request.
 ```
 2. You extension should now be registered in FSM and can be [added to a Standard UI](https://docs.coresystems.net/shell/how-to-place-extensions.html). 
 
-## How to manage an extension app via API calls
+## Update and Delete app via API calls
 ### Update extension app
 1. Open the PUT **extensions** API request to update the artifact information of an extension. Replace {id} in the url with your extension id, and update other fields in request body. Execute the request.  
     **Request body example**
