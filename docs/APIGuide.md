@@ -1,4 +1,4 @@
-# How to Develop, Add, Use, and Manage Extensions
+# Manage Extensions via API
 ## How to develop an extension app?
 Follow extension development guide https://github.com/SAP-samples/fsm-extension-sample.
 ## How to add an extension app into FSM system via API calls
@@ -43,7 +43,7 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
     }
 ```
 5. Copy the id from the response body.
-6. Open POST **extensions deploy** API request. Replace {id} in the url with the copied extension id. Execute the request. Normally you do not need to enter request body, the extension will be installed into default namespace of KYMA. If you want to install into other namespace, enter it in request body like below:  
+6. Open POST **extensions deploy** API request. Replace {id} in the url with the copied extension id. In the Request body enter the namespace in that your Extension Installer in Kyma is set up.
     **Request body example**
 ```
     {
@@ -95,7 +95,7 @@ Execute the request.
         "extensionDeploymentId": "10bc2af7-27b6-4864-bf8b-282ef30a838b"
     }
 ```
-2. >**NOTE**: MISSING !!!!ADD LINK TO DOCUMENTATION about how to add an extension to an outlet!!!!
+2. You extension should now be registered in FSM and can be [added to a Standard UI](https://docs.coresystems.net/shell/how-to-place-extensions.html). 
 
 ## How to manage an extension app via API calls
 ### Update extension app
