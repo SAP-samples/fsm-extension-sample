@@ -44,7 +44,8 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
 ```
 5. Copy the id from the response body.
 6. Open POST **extensions deploy** API request. Replace {id} in the url with the copied extension id. In the Request body enter the namespace in that your Extension Installer in Kyma is set up.
-    **Request body example**
+
+**Request body example**
 ```
     {
         "deploymentConfig": {
