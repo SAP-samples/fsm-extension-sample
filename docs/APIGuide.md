@@ -23,8 +23,8 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
     2. set deploymentType to "HELM_CHART".
     3. repository under artifactConfig/chart. The repository should be the root url of your repository which stored your deployment artifacts of your extension (make sure it is public and git based and your deployment artifacts are on the master branch).
     4. set hostingType to "KYMA".
-4. Execute the request.  
-    **Request body example**
+4. Execute the request.
+        **Request body example**
 ```
     {
         "lang": "en",
@@ -42,6 +42,8 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
         "hostingType": "KYMA"
     }
 ```
+>**NOTE:** Please make sure to use *https://* for all resources in order have strict security enabled. (Non https-url might fail on installation or usage)**
+
 5. Copy the id from the response body.
 6. Open POST **extensions deploy** API request. Replace {id} in the url with the copied extension id. Normally you do not need to enter request body, the extension will be installed into default namespace of KYMA. If you want to install into other namespace, enter it in request body like below:
 
@@ -72,6 +74,8 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
         "hostingType": "CUSTOM_HOSTING"
     }
 ```
+>**NOTE:** Please make sure to use *https://* for all resources in order have strict security enabled. (Non https-url might fail on installation or usage)**
+
 2. Copy the extension id from the response body.
 3. Open the POST **extension-deployments** API request. Replace {id} in the url with the copied extension id. Change accessUrl to the one which can access your extension app. Execute the request.  
     **Request body example**
@@ -82,6 +86,7 @@ Follow extension development guide https://github.com/SAP-samples/fsm-extension
         "accessUrl": "https://www.yourApp.com"
     }
 ```
+>**NOTE:** Please make sure to use *https://* for all resources in order have strict security enabled. (Non https-url might fail on installation or usage)**
 4. Copy extension deployment id value from response body.
 
 ### 3. Assign and use extension.
