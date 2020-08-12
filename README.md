@@ -14,7 +14,8 @@ Make sure that the following prerequisites are met before you use this repositor
 * Have an account in Git-based version control system which is exposed to the public internet, such as GitHub
 * Install Git CLI locally via https://git-scm.com/downloads
 * Have an account in public docker registry, such as Docker Hub
-* Install Docker Desktop locally via https://www.docker.com/get-started, and sign in the docker registry from Docker Desktop GUI or Docker Desktop CLI
+* Install Docker Desktop locally via https://www.docker.com/get-started
+* Sign in the docker registry from Docker Desktop GUI or Docker Desktop CLI
 * Install jq locally via https://stedolan.github.io/jq/download/
 
 >**NOTE:** We recommend using unix based systems to follow this guide. Note that for OSX and Windows tools might be installed differently.
@@ -30,9 +31,8 @@ Follow these steps to set up your extension application project by using this sa
 
 * Change shell's current directory into the generated project, which is now the workspace under your control.
 * Modify the source code of the generated project according to the specific business requirements.
-* Check the `appconfig.json` file in the generated project, if you ship the extension application with helm chart, you can configure extension details and define additional parameters needed from customer during installation. See [appconfig.json file](#appconfigjson-file) for more details.
-* Execute the script `build-artifacts.sh` in the generated project to build docker image and helm charts.
-* Check if the new version was pushed to docker hub via `https://hub.docker.com/repository/docker/{your docker ID}/{application name}/tags`.
+* Check the `appconfig.json` file in the generated project. If you ship the extension application with helm chart, you can configure extension details and define additional parameters needed from customer during installation. See [appconfig.json file](#appconfigjson-file) for more details.
+* If you ship the extension application with helm chart, firstly execute the script `build-artifacts.sh` in the generated project to build docker image and helm charts, and then check if the new version was pushed to docker hub via `https://hub.docker.com/repository/docker/{your docker ID}/{application name}/tags`.
 
 * Upload the generated project to your Git repository and make sure it is public.
 
@@ -68,7 +68,7 @@ The `appconfig.json` file contains metadata about the extension application. The
 | description                        | No       | The description of the extension.                            |
 | version                            | Yes      | The version of the extension, it should be incremented each time you make changes to the extension application. |
 | icon                               | No       | The URL to an icon. You must provide the image in the `SVG` or `PNG` format. |
-| dockerRegistry                     | No       | The registry where the generated docker image is hosted. (Only for shipping with Helm Chart) |
+| dockerRegistry                     | No (Yes for shipping with Helm Chart)  | The registry where the generated docker image is hosted. |
 | helmChartVersion                   | No       | The chart version of the extension, which follows [semver 2.x specification](https://semver.org/), and it should be incremented each time you make changes to the chart and its templates, including the application version. (Only for shipping with Helm Chart) |
 | parameters[].name                  | No       | Defines an unique name of a given parameter.      |
 | parameters[].description           | No       | Defines the description of a given parameter.     |
@@ -82,7 +82,9 @@ This is an example of `appconfig.json`:
   "provider": "Partner A",
   "description": "This is My Extension App",   
   "version": "1.0.0", 
-  "icon": "https://zh.wikipedia.org/wiki/File:User_Circle.png",  
+  "icon": "https://zh.wikipedia.org/wiki/File:User_Circle.png",
+  "dockerRegistry": "docker.io/ironman",
+  "helmChartVersion": "1.0.0",
   "parameters": [
     {
       "name": "token",      
