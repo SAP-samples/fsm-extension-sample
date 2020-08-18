@@ -48,7 +48,7 @@ done
 mkdir ./$application_name
 mkdir ./$application_name/artifacts
 
-if promptyn "Do you want to ship the application with Helm Chart?(y/n) "; then
+if promptyn "Do you want to ship the application with Helm Chart? [required when using fsm-extension-installer-kyma] (y/n) "; then
   SEMVER_REGEX="^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(\\-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
   while true; do
     read -p "Helm chart version (ex. 1.0.0, follow semver 2.x specification at https://semver.org/)? " helm_chart_version
