@@ -31,12 +31,12 @@ Follow these steps to set up your extension application project by using this sa
 
 * Change shell's current directory into the generated project, which is now the workspace under your control.
 * Modify the source code of the generated project according to the specific business requirements.
-* Check the `appconfig.json` file in the generated project. If you ship the extension application with helm chart, you can configure extension details and define additional parameters needed from customer during installation. See [appconfig.json file](#appconfigjson-file) for more details.
-* If you ship the extension application with helm chart, firstly execute the script `build-artifacts.sh` in the generated project to build docker image and helm charts, and then check if the new version was pushed to docker hub via `https://hub.docker.com/repository/docker/{your docker ID}/{application name}/tags`.
+* Check the `appconfig.json` file in the generated project. You can configure extension details and define additional parameters needed from customer during installation. See [appconfig.json file](#appconfigjson-file) for more details.
+* If you ship the extension application with helm chart, firstly log into your docker-cli and execute the script `build-artifacts.sh` in the generated project to build docker image and helm charts, and then check if the new version was pushed to docker hub via `https://hub.docker.com/repository/docker/{your docker ID}/{application name}/tags`.
 
 * Upload the generated project to your Git repository and make sure it is public.
 
->**NOTE:** If you don't want to upload the source code for any reason, you can upload only the "artifacts" folder of the generated project.
+>**Note:** If you don't want to upload the source code for any reason, you can upload only the "artifacts" folder of the generated project.
 
 # Folder Structure
 
@@ -45,7 +45,7 @@ The generated extension application project follows folder structure as below:
 ```
 generated-project/
    ├── src/                                  # A directory which contains all business logic source code
-   │    └── frontend/                        # A directory for UI source code
+   │    └── frontend/                        # A directory for UI source code using the fsm-shell skd
    │    └── backend/                         # A directory for backend (nodejs, java) source code
    ├── test/                                 # A directory which contains all test cases
    ├── artifacts/                            # [REQUIRED] A directory which contains deployment artifacts
@@ -76,7 +76,7 @@ The `appconfig.json` file contains metadata about the extension application. The
 
 This is an example of `appconfig.json`:
 
-```
+```javascript
 {
   "name": "my-extension-app",
   "provider": "Partner A",
