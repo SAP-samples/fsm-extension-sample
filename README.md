@@ -45,7 +45,7 @@ The generated extension application project follows folder structure as below:
 ```
 generated-project/
    ├── src/                                  # A directory which contains all business logic source code
-   │    └── frontend/                        # A directory for UI source code using the fsm-shell skd
+   │    └── frontend/                        # A directory for UI source code using the fsm-shell sdk
    │    └── backend/                         # A directory for backend (nodejs, java) source code
    ├── test/                                 # A directory which contains all test cases
    ├── artifacts/                            # [REQUIRED] A directory which contains deployment artifacts
