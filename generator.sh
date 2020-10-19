@@ -45,6 +45,12 @@ while true; do
   fi
 done
 
+if promptyn "Do you want to use the Shell SDK for your extension (y/n) "; then
+  useShellSDK=true
+else
+  useShellSDK=false
+fi
+
 mkdir ./$application_name
 mkdir ./$application_name/artifacts
 
@@ -68,6 +74,14 @@ if promptyn "Do you want to ship the application with Helm Chart? [required when
 
   # Create project folder structure
   cp -r ./scaffolds/* ./$application_name
+
+  if [ "$useShellSDK" = true ] ; then
+    rm ./$application_name/src/frontend/indexNoSDK.html
+  else
+    rm ./$application_name/src/frontend/index.html
+    mv ./$application_name/src/frontend/indexNoSDK.html ./$application_name/src/frontend/index.html
+  fi
+
   mv ./$application_name/helm ./$application_name/artifacts/helm
   mv ./$application_name/artifacts/helm/\${application_name} ./$application_name/artifacts/helm/${application_name}
   # Update Chart.yaml and values.yaml with initial inputs from user
@@ -82,24 +96,34 @@ if promptyn "Do you want to ship the application with Helm Chart? [required when
   sed "s/\${image_name}/${application_name}/g" ./$application_name/artifacts/helm/$application_name/values.yaml
 
   # Write appconfig.json
-  jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, dockerRegistry:$docker_registry, helmChartVersion:$helm_chart_version, parameters:[]}' \
+  jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, useShellSDK:$useShellSDK | test("true"), dockerRegistry:$docker_registry, helmChartVersion:$helm_chart_version, parameters:[], outletPositions:[]}' \
     --arg application_name "$application_name" \
     --arg application_provider "$application_provider" \
     --arg application_description "$application_description" \
     --arg application_version "$application_version" \
     --arg application_icon "$application_icon" \
     --arg docker_registry "$docker_registry" \
-    --arg helm_chart_version "$helm_chart_version" > ./$application_name/artifacts/appconfig.json
+    --arg helm_chart_version "$helm_chart_version" > ./$application_name/artifacts/appconfig.json \
+    --arg useShellSDK $useShellSDK
 else
   # Create project folder structure
   rsync -r -p --exclude 'helm' --exclude 'build-charts.sh' ./scaffolds/* ./$application_name
+
+  if [ "$useShellSDK" = true ] ; then
+    rm ./$application_name/src/frontend/indexNoSDK.html
+  else
+    rm ./$application_name/src/frontend/index.html
+    mv ./$application_name/src/frontend/indexNoSDK.html ./$application_name/src/frontend/index.html
+  fi
+
   # Write appconfig.json
-  jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, parameters:[]}' \
+  jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, useShellSDK:$useShellSDK | test("true"), parameters:[], outletPositions:[]}' \
     --arg application_name "$application_name" \
     --arg application_provider "$application_provider" \
     --arg application_description "$application_description" \
     --arg application_version "$application_version" \
-    --arg application_icon "$application_icon" > ./$application_name/artifacts/appconfig.json
+    --arg application_icon "$application_icon" > ./$application_name/artifacts/appconfig.json \
+    --arg useShellSDK $useShellSDK
 fi
 
 echo "Project $application_name is created successfully!"
