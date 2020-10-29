@@ -1,4 +1,7 @@
 # SAP Field Service Management Extension Sample Repository
+
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/fsm-extension-sample)](https://api.reuse.software/info/github.com/SAP-samples/fsm-extension-sample)
+
 This sample provides a template that helps generate skeleton of the FSM extension application project.
 
 # Description
