@@ -80,7 +80,7 @@ app.get('/auth/provider/callback', function(req, res, next) {
           return err ? next(err) : res.json({ token });
         });
       } else {
-        return res.status(401).send({ message: 'Wrong credential' });
+        return res.status(401).send({ message: 'IdP and Shell users do not have matching emails' });
       }
     } catch (e) {
       return res.status(401).send({ message: e.message });
