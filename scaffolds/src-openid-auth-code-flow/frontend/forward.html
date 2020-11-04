@@ -1,0 +1,34 @@
+<script src="https://fsmsapxf.accounts400.ondemand.com/ui/resources/javascripts/jquery.min.js"></script>
+<script>
+  $.ajax
+    ({
+      type: "GET",
+      url: '/auth/provider/callback' + window.location.search,
+      dataType: 'json',
+      headers: {
+        "cloudHost": "et.dev.coresuite.com",
+        "account": 'sap-i533248',
+        "userId": "1344070",
+        "companyId": "1085811"
+      },
+      success: function (data){
+        if (data.token) {
+          if (sessionStorage.getItem('isRunningWithinShell')) {
+            sessionStorage.setItem('token', data.token);
+            window.location.href = '/';
+          } else {
+            window.parent.postMessage({
+              type: 'REFRESH',
+              token: data.token
+            }, '*');
+          }
+        }
+      },
+      error: function (xhr, status, error) {
+        if (xhr.responseJSON && xhr.responseJSON.message) {
+          alert(xhr.responseJSON.message);
+        }
+        window.location.href = '/';
+      }
+    });
+</script>
