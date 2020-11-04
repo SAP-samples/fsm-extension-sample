@@ -86,10 +86,10 @@ if promptyn "Do you want to ship the application with Helm Chart? [required when
 
   if [ "$useSSO" = true ] ; then
     rm -rf ./$application_name/src
-    mv ./$application_name/openid-auth-code-flow ./$application_name/src
+    mv ./$application_name/src-openid-auth-code-flow ./$application_name/src
   else
     cp -r ./scaffolds/* ./$application_name
-    rm -rf ./$application_name/openid-auth-code-flow
+    rm -rf ./$application_name/src-openid-auth-code-flow
     if [ "$useShellSDK" = true ] ; then
       rm ./$application_name/src/frontend/indexNoSDK.html
     else
@@ -97,6 +97,8 @@ if promptyn "Do you want to ship the application with Helm Chart? [required when
       mv ./$application_name/src/frontend/indexNoSDK.html ./$application_name/src/frontend/index.html
     fi
   fi
+
+  mv ./$application_name/src/README.md ./$application_name
 
   mv ./$application_name/helm ./$application_name/artifacts/helm
   mv ./$application_name/artifacts/helm/\${application_name} ./$application_name/artifacts/helm/${application_name}
@@ -127,10 +129,10 @@ else
 
   if promptyn "Do you want to use SSO authentication for your extension (y/n) "; then
     rm -rf ./$application_name/src
-    mv ./$application_name/openid-auth-code-flow ./$application_name/src
+    mv ./$application_name/src-openid-auth-code-flow ./$application_name/src
   else
     cp -r ./scaffolds/* ./$application_name
-    rm -rf ./$application_name/openid-auth-code-flow
+    rm -rf ./$application_name/src-openid-auth-code-flow
     if [ "$useShellSDK" = true ] ; then
       rm ./$application_name/src/frontend/indexNoSDK.html
     else
