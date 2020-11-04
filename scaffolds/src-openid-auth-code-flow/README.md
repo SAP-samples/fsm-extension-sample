@@ -25,35 +25,21 @@ Variables can be defined directly in Dockerfile, or within a `/src/backend/.env`
 
 `FSM_CLIENT_ID` and `FSM_CLIENT_SECRET` will be used related to a cloud hose and account name to allow a specific user to access your extension and then defined per client case. 
 
-
 ### Run using docker
 
-Build local image
+Build your docker container
 
 ```
 docker build -t <MY_CONTAINER_NAME> .
 ```
 
-Run locally
+Run locally with exposed port 80
 
 ```
 docker run -p 80:80 <MY_CONTAINER_NAME>
 ```
 
-### Run locally
-
-Build local image
-
-```
-ln -s 
-```
-
-Run locally
-
-```
-docker run -p 80:80 <MY_CONTAINER_NAME>
-```
-
+It is recommanded for development purpose to use a service like [ngrok.com](https://ngrok.com/) to expose your API to public services like Identity Providers.
 
 ## How to obtain support
 In case you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).

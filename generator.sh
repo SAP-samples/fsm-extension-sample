@@ -127,7 +127,7 @@ else
   # Create project folder structure
   rsync -r -p --exclude 'helm' --exclude 'build-charts.sh' ./scaffolds/* ./$application_name
 
-  if promptyn "Do you want to use SSO authentication for your extension (y/n) "; then
+  if [ "$useSSO" = true ] ; then
     rm -rf ./$application_name/src
     mv ./$application_name/src-openid-auth-code-flow ./$application_name/src
   else
@@ -140,6 +140,8 @@ else
       mv ./$application_name/src/frontend/indexNoSDK.html ./$application_name/src/frontend/index.html
     fi
   fi
+
+  mv ./$application_name/src/README.md ./$application_name
 
   # Write appconfig.json
   jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, useShellSDK:$useShellSDK | test("true"), parameters:[], outletPositions:[]}' \
