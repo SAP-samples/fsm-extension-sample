@@ -16,8 +16,6 @@ const tokens = {};
  **/
 const fetchToken = async (cloudhost, account) => {
   const { client_credentials } = Credentials;
-  // if client_credentials does not exist, it could be identify as the user not
-  // having a licence to use the extension.
   if (client_credentials[cloudhost] && client_credentials[cloudhost][account]) {
 
     const key = `${cloudhost}:${account}`;
