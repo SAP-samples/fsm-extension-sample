@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>fsm-extension-sample</title>
-  <script src="https://fsmsapxf.accounts400.ondemand.com/ui/resources/javascripts/jquery.min.js"></script>
   <script src="https://unpkg.com/fsm-shell"></script>
 </head>
 <body>
@@ -27,14 +26,14 @@
     sessionStorage.removeItem('isRunningWithinShell');
     var receivedAnswerFromShell = false;
     if (!ShellSdk.isInsideShell()) {
-      $('#noShell').css('display', 'block');
+      document.getElementById('noShell').style.display = 'block';
     } else {
 
       shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
         clientIdentifier: 'example-plugin',
       });
 
-      shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
+      shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, async (event) => {
         receivedAnswerFromShell = true;
         const {
           cloudHost,
@@ -47,32 +46,28 @@
         var token = sessionStorage.getItem('token');
         // If user is not logged, we 
         if (!token) {
-          $('#login').css('display', 'block');
+          document.getElementById('login').style.display = 'block';
         } else {
-          $.ajax
-          ({
-            type: "GET",
-            url: "/api/me",
-            dataType: 'json',
+          fetch('/api/me', {
+            method: 'GET',
             headers: {
-              "Authorization": "Bearer " + token,
-              "cloudHost": cloudHost,
-              "account": account,
-              "companyId": companyId,
-              "userId": userId
-            },
-            success: function (data){
-              $('#logout p').html('Hello ' + data.firstName + ' ' + data.lastName);
-              $('#logout').css('display', 'block');
-            },
-            error: function (xhr, status, error) {
-              if (xhr.responseJSON && xhr.responseJSON.message) {
-                alert(xhr.responseJSON.message);
-              } else {
-                alert('An unknown error occured');
-              }
-              logout();
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token,
+              'cloudHost': cloudHost,
+              'account': account,
+              'companyId': companyId,
+              'userId': userId
             }
+          })
+          .then(response => response.json())
+          .then(function(data) {
+            document.getElementById('logout').children[0].innerHTML = `Hello ${data.firstName} ${data.lastName}`;
+            document.getElementById('logout').style.display = 'block';
+          })
+          .catch(function(exception) {
+            console.log(exception);
+            alert(exception.message || 'An unknown error occured');
+            logout();
           });
         }
       });
