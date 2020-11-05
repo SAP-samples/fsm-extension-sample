@@ -45,11 +45,20 @@ while true; do
   fi
 done
 
-if promptyn "Do you want to use the Shell SDK for your extension (y/n) "; then
+
+if promptyn "Do you want to use SSO authentication for your extension (y/n) "; then
+  useSSO=true
   useShellSDK=true
 else
-  useShellSDK=false
+  useSSO=false
+
+  if promptyn "Do you want to use the Shell SDK for your extension (y/n) "; then
+    useShellSDK=true
+  else
+    useShellSDK=false
+  fi
 fi
+
 
 mkdir ./$application_name
 mkdir ./$application_name/artifacts
@@ -75,12 +84,21 @@ if promptyn "Do you want to ship the application with Helm Chart? [required when
   # Create project folder structure
   cp -r ./scaffolds/* ./$application_name
 
-  if [ "$useShellSDK" = true ] ; then
-    rm ./$application_name/src/frontend/indexNoSDK.html
+  if [ "$useSSO" = true ] ; then
+    rm -rf ./$application_name/src
+    mv ./$application_name/src-openid-auth-code-flow ./$application_name/src
   else
-    rm ./$application_name/src/frontend/index.html
-    mv ./$application_name/src/frontend/indexNoSDK.html ./$application_name/src/frontend/index.html
+    cp -r ./scaffolds/* ./$application_name
+    rm -rf ./$application_name/src-openid-auth-code-flow
+    if [ "$useShellSDK" = true ] ; then
+      rm ./$application_name/src/frontend/indexNoSDK.html
+    else
+      rm ./$application_name/src/frontend/index.html
+      mv ./$application_name/src/frontend/indexNoSDK.html ./$application_name/src/frontend/index.html
+    fi
   fi
+
+  mv ./$application_name/src/README.md ./$application_name
 
   mv ./$application_name/helm ./$application_name/artifacts/helm
   mv ./$application_name/artifacts/helm/\${application_name} ./$application_name/artifacts/helm/${application_name}
@@ -109,12 +127,21 @@ else
   # Create project folder structure
   rsync -r -p --exclude 'helm' --exclude 'build-charts.sh' ./scaffolds/* ./$application_name
 
-  if [ "$useShellSDK" = true ] ; then
-    rm ./$application_name/src/frontend/indexNoSDK.html
+  if [ "$useSSO" = true ] ; then
+    rm -rf ./$application_name/src
+    mv ./$application_name/src-openid-auth-code-flow ./$application_name/src
   else
-    rm ./$application_name/src/frontend/index.html
-    mv ./$application_name/src/frontend/indexNoSDK.html ./$application_name/src/frontend/index.html
+    cp -r ./scaffolds/* ./$application_name
+    rm -rf ./$application_name/src-openid-auth-code-flow
+    if [ "$useShellSDK" = true ] ; then
+      rm ./$application_name/src/frontend/indexNoSDK.html
+    else
+      rm ./$application_name/src/frontend/index.html
+      mv ./$application_name/src/frontend/indexNoSDK.html ./$application_name/src/frontend/index.html
+    fi
   fi
+
+  mv ./$application_name/src/README.md ./$application_name
 
   # Write appconfig.json
   jq -n '{name:$application_name, provider:$application_provider, description:$application_description, version:$application_version, icon:$application_icon, useShellSDK:$useShellSDK | test("true"), parameters:[], outletPositions:[]}' \
