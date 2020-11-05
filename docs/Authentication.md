@@ -15,7 +15,7 @@ The **OpenID Connect OAuth code flow** require an extension to run a backend ser
 
 Backend need to securly store client credentials to identify itself withn FSM as descibe in the [SAP FSM OAuth API documentation](https://docs.coresystems.net/api/oauth.html). 
 
-Such credentials can be created by a SUPERUSER role at **Admin > Account > Clients**. It can also define APIs authorization to limit access with specific permissions.
+Such credentials can be created by a SUPERUSER role at **Admin > Account > Clients**. It can also define APIs authorization to limit access with specific permissions. See [FSM Help portal - Generating Client ID & Secret](https://docs.coresystems.net/admin/generating-client-id.html) for more details how to.
 
 ```
 FSM_CLIENT_ID=<CLIENT_ID_PROVIDED_BY_ADMINISTRATOR>
@@ -44,7 +44,7 @@ To maange an Identity Provide, an extension need to store an **authorize url**, 
 ```
 IDP_URL_AUTHORIZE=https://accounts.sap.com/oauth2/authorize
 IDP_URL_TOKEN=https://accounts.sap.com/oauth2/token
-IDP_URL_CALLBACK=https://<MY_DOMAIN>/forward.html
+IDP_URL_CALLBACK=https://<DOMAIN_OF_APP>/forward.html
 ```
 
 Multiple libaries offer high level implementation of the OAuth OpenID protocol. Code sample use the [passportjs openid](http://www.passportjs.org/) library.
