@@ -7,6 +7,15 @@ const {
   IDP_URL_CALLBACK,
   SESSION_SECRET
 } = process.env;
+
+if (!IDP_CLIENT_ID ||
+    !IDP_CLIENT_SECRET ||
+    !IDP_URL_AUTHORIZE ||
+    !IDP_URL_TOKEN ||
+    !IDP_URL_CALLBACK) {
+  throw new Error('Missing IdP configuration (IDP_CLIENT_ID, IDP_CLIENT_SECRET, IDP_URL_AUTHORIZE, IDP_URL_TOKEN, or IDP_URL_CALLBACK)');
+}
+
 const PORT = process.env.PORT || 80;
 var express = require('express')
   , fetch = require('node-fetch')

@@ -15,9 +15,8 @@ const authenticate = (req, res, next) => {
 
       if (req.user.cluster_url != req.cluster_url ||
           req.user.account != req.account ||
-          req.user.id != req.userId ||
-          req.user.companyId != req.companyId) {
-        return res.status(401).send({ message: 'Wrong credential' });
+          req.user.id != req.userId) {
+        return res.status(401).send({ message: 'Shell user do not match the token user' });
       } else {
         try {
           req.access_token = await oauth.fetch(req.headers['cloudhost'], req.headers['account']);
@@ -26,7 +25,7 @@ const authenticate = (req, res, next) => {
         }
       }
     } else {
-     return res.status(401).send({ message: 'Unknown token' });
+     return res.status(401).send({ message: 'Bearer token unknown from the extension' });
     }
     next();
   });
