@@ -7,7 +7,7 @@ const queryUserObject = async (cloudhost, account, userid) => {
   const response = await fetch(`https://${cloudhost}/api/user/v1/users/${userid}?account=${account}`, {
     headers: {
       'accept': 'application/json',
-      'X-Client-ID': 'sebastien',
+      'X-Client-ID': 'fsm-extension-sample',
       'X-Client-Version': '1.0.0',
       'Authorization': `bearer ${access_token}`
     }
