@@ -108,7 +108,7 @@ This is an example of `appconfig.json`:
 # Next Steps
 There are multiple ways to deploy your extension to Kyma:
 
-* Automatic deployment via the "Extension App" UI inside "Foundational Services" in SAP Field Service <https://docs.coresystems.net/shell/extension-apps-management.html>
+* Automatic deployment via the "Extension App" UI inside "Foundational Services" in SAP Field Service <https://help.sap.com/viewer/fsm_extensions/Cloud/en-US/extension-apps-management.html>
 * Automatic deployment via FSM API <https://github.com/SAP-samples/fsm-extension-sample/blob/master/docs/APIGuide.md>
 
 # Limitations
