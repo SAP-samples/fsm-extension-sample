@@ -1,0 +1,53 @@
+<script src="https://unpkg.com/fsm-shell"></script>
+<script>
+
+  const { ShellSdk, SHELL_EVENTS } = FSMShell;
+  // Init ShellSDk
+  const shellSdk = ShellSdk.init(window.parent, '*');
+
+  if (!ShellSdk.isInsideShell()) {
+    document.getElementById('noShell').style.display = 'block';
+  } else {
+    shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
+      
+      const {
+        cloudHost,
+        account,
+        companyId,
+        userId
+      } = JSON.parse(event);
+
+      fetch('/auth/provider/callback' + window.location.search, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'cloudHost': cloudHost,
+          'account': account,
+          'companyId': companyId,
+          'userId': userId
+        }
+      })
+      .then(response => response.json())
+      .then(function(data) {
+        if (data.token) {
+          sessionStorage.setItem('token', data.token);
+          window.location.href = '/';
+        }
+      })
+      .catch(function(exception) {
+        if (exception.message) {
+          alert(exception.message);
+        }
+        window.location.href = '/';
+      });
+    });
+    
+    shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
+      clientIdentifier: 'example-plugin',
+    });
+  }
+
+</script>
+<div id="noShell" style="display: none;">
+  <p>Extension need to run inside Shell</p>
+</div>
