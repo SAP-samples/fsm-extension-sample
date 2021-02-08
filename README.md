@@ -14,7 +14,13 @@ All details regarding how to get such access are available within our [Help Port
 
 ## Using the samples
 
-TO WRITE DOWN
+The easiest way to use these samples without using Git is to download the zip file containing the current version (using the following link or by clicking the "Download ZIP" button on the repo page). You can then unzip the entire archive and use the samples locally on your machine.
+
+[Download the samples ZIP](../../archive/master.zip)
+
+Each sample provide a README file with instruction regarding how to setup and run locally. For testing purpose, a tunelling solution like ngro will provide a publicly accessible url that will proxy all requests to your locally running webserver. It might also include recommanded deployment strategy based on technical specificity.
+
+This repository also include a [kyma-generator](./kyma-generator) script to generate ready to use bundled extension on a kyma cluster.
 
 ## Contributions
 
