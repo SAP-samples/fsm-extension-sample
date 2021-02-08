@@ -28,7 +28,7 @@ These samples are direct from the feature teams and we welcome your input on iss
 
 ## Samples by architecture
 
-### Front-end only
+### Front-end
 
 <table>
  <tr>
