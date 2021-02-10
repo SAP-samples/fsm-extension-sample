@@ -9,4 +9,6 @@ kyma-generator/*/
 !docs
 !postman
 
+.DS_Store
+
 .env

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Service contract available</title>
+    <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div>
+      <h2 class="fd-title fd-title--h2" id="info">No selected activities</h2>
+    </div>
+    <script src="https://unpkg.com/fsm-shell"></script>
+    <script src="helpers.js"></script>
+    <script>
+      // Import ShellSDK and events list from FSMShell global variable
+      // see https://github.com/SAP/fsm-shell for more details.
+      const { ShellSdk, SHELL_EVENTS } = FSMShell;
+
+      // Display an error message if extension does not run within shell
+      if (!ShellSdk.isInsideShell()) {
+        updateUI('Unable to reach shell eventAPI');
+      } else {
+        // Initialise ShellSDK to connect with parent shell library
+        const shellSdk = ShellSdk.init(parent, '*');
+
+        // Initialise the extension by requesting the fsm context
+        shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
+          clientIdentifier: 'service-contract',
+          auth: {
+            response_type: 'token'  // request a user token within the context
+          }
+        });
+
+        // Callback on fsm context response
+        shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
+
+          const {
+            // extract required context from event content
+            cloudHost,
+            account,
+            company,
+            user,
+            // extract authentication data from event content
+            auth
+          } = JSON.parse(event);
+
+          // Access_token has a short life stpan and needs to be refreshed before expiring
+          // Each extension need to implement its own strategy to fresh it.
+          initializeRefreshTokenStrategy(shellSdk, auth);
+
+          // Add a listenner expecting activityID
+          shellSdk.onViewState('activityID', async activityID => {
+
+            updateUI(`Loading ...`);
+
+            let serviceContract = await getServiceContract(cloudHost, account, company, activityID);
+
+            updateUI(serviceContract ? `${serviceContract.contractType}` : `NO CONTRACT`);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

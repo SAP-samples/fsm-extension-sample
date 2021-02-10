@@ -32,7 +32,7 @@ These samples are direct from the feature teams and we welcome your input on iss
 
 <table>
  <tr>
-  <td>No sample yet</td>
+  <td><a href="samples/service-contract-available/">Service contract available</a></td>
  </tr>
 </table>
 
