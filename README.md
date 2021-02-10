@@ -9,7 +9,6 @@ This repo contains the samples that demonstrate the API usage patterns for exten
 ## SAP FSM Extension development
 
 These samples require access to the SAP FSM application to run. 
-
 All details regarding how to get such access are available within our [Help Portal](https://help.sap.com/viewer/product/SAP_FIELD_SERVICE_MANAGEMENT/Cloud/en-US).
 
 ## Using the samples
