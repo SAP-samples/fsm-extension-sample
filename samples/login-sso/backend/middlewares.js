@@ -1,6 +1,7 @@
 const oauth = require('./oauth');
+const passport = require('passport');
 
-const authenticate = (req, res, next, passport) => {
+const authenticate = (req, res, next) => {
   passport.authenticate('bearer', { session: false })(req, res, async () => {
     if (req.user) {
       if (!req.headers['cloudhost']) return res.status(401).send({ message: 'Missing cloudHost header' });
