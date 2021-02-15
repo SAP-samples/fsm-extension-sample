@@ -6,7 +6,7 @@
   const shellSdk = ShellSdk.init(window.parent, '*');
 
   if (!ShellSdk.isInsideShell()) {
-    document.getElementById('noShell').style.display = 'block';
+    window.location.href = '/shell-required.html';
   } else {
     shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
       
@@ -31,7 +31,8 @@
       .then(function(data) {
         if (data.token) {
           sessionStorage.setItem('token', data.token);
-          window.location.href = '/';
+          sessionStorage.setItem('userId', userId);
+          window.location.href = '/me.html';
         }
       })
       .catch(function(exception) {
@@ -48,6 +49,4 @@
   }
 
 </script>
-<div id="noShell" style="display: none;">
-  <p>Extension need to run inside Shell</p>
-</div>
+<p>Forward ...</p>

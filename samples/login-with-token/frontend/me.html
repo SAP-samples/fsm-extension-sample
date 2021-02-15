@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>login sso</title>
+  <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+</head>
+<body>
+  <div id="me" style="display: none;">
+    <p></p>
+    <a href="/logout.html">Logout</a>
+  </div>
+  <script src="https://unpkg.com/fsm-shell"></script>
+  <script>
+    const { ShellSdk, SHELL_EVENTS } = FSMShell;
+    // Init ShellSDk
+    const shellSdk = ShellSdk.init(window.parent, '*');
+    
+    if (!ShellSdk.isInsideShell()) {
+      window.location.href = '/shell-required.html';
+    } else {
+      shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
+        clientIdentifier: 'example-plugin',
+      });
+
+      shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, async (event) => {
+        const {
+          cloudHost,
+          account,
+          companyId,
+          userId
+        } = JSON.parse(event);
+
+        // If user is not logged, we 
+        fetch('/api/me', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+            'cloudHost': cloudHost,
+            'account': account,
+            'companyId': companyId,
+            'userId': userId
+          }
+        })
+        .then(response => response.json())
+        .then(function(data) {
+          document.getElementById('me').children[0].innerHTML = `Hello ${data.user_name}`;
+          document.getElementById('me').style.display = 'block';
+        })
+        .catch(function(exception) {
+          alert(exception.message || 'An unknown error occured');
+        });
+      });
+    }
+  </script>
+</body>
+</html>

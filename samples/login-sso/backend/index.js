@@ -1,20 +1,3 @@
-const {
-  IDP_CLIENT_ID, 
-  IDP_CLIENT_SECRET, 
-  IDP_URL_AUTHORIZE, 
-  IDP_URL_TOKEN, 
-  IDP_URL_CALLBACK,
-  SESSION_SECRET
-} = process.env;
-
-if (!IDP_CLIENT_ID ||
-    !IDP_CLIENT_SECRET ||
-    !IDP_URL_AUTHORIZE ||
-    !IDP_URL_TOKEN ||
-    !IDP_URL_CALLBACK) {
-  throw new Error('Missing IdP configuration (IDP_CLIENT_ID, IDP_CLIENT_SECRET, IDP_URL_AUTHORIZE, IDP_URL_TOKEN, or IDP_URL_CALLBACK)');
-}
-
 var express = require('express')
   , fetch = require('node-fetch')
   , path = require('path')
@@ -27,7 +10,9 @@ var express = require('express')
   // For demo purpose, provide a mocked db to handle user
   , User = require('./users')
   , cloud = require('./cloud')
-  , middlewares = require('./middlewares');
+  , middlewares = require('./middlewares')
+  , credentials = require('./credentials');
+;
 
 // Demo is based on express node server
 const app = express();
@@ -38,35 +23,47 @@ const app = express();
 // 
 //////////////////////////////////////////////////////////////////////
 
-// Configure passportjs with oauth2 configuration values 
-// and a return function how to handle the jwt token
-passport.use('provider', new OAuth2Strategy({
-    clientID: IDP_CLIENT_ID,
-    clientSecret: IDP_CLIENT_SECRET,
-    authorizationURL: IDP_URL_AUTHORIZE,
-    tokenURL: IDP_URL_TOKEN,
-    callbackURL: IDP_URL_CALLBACK,
-    customHeaders: {
-      'Authorization': 'Basic ' + Buffer.from(`${IDP_CLIENT_ID}:${IDP_CLIENT_SECRET}`, 'utf-8').toString('base64')
-    }
-  },
-  function(jwtToken, refreshToken, profile, done) {
-    // jwtToken is retuned by the IDP with the user mail, as configured within the openid profile
-    done(null, jwtToken ? jwt.decode(jwtToken).mail : false);
-  }
-));
-
 // oauth2 api : /auth/provider redirect to the idp login page, 
 // then back to IDP_URL_CALLBACK with authorization code value  
-app.get('/auth/provider',
-  passport.authenticate('provider', { scope: 'openid' })
-);
+app.get('/auth/provider/:cloudHost/:account/:companyId/', function(req, res, next) {
+
+  if (!credentials.client_credentials[req.params.cloudHost] || 
+      !credentials.client_credentials[req.params.cloudHost][req.params.account]) {
+    res.redirect("/configure.html");
+  } else {
+    const provider = `provider-${req.params.cloudHost}-${req.params.account}`;
+
+    const credential = credentials.client_credentials[req.params.cloudHost][req.params.account];
+    // Configure passportjs with oauth2 configuration values 
+    // and a return function how to handle the jwt token
+    passport.use(provider, new OAuth2Strategy({
+        clientID: credential.idp.clientID,
+        clientSecret: credential.idp.clientSecret,
+        authorizationURL: credential.idp.authorizationURL,
+        tokenURL: credential.idp.tokenURL,
+        callbackURL: credential.idp.callbackURL,
+        customHeaders: {
+          'Authorization': 'Basic ' + Buffer.from(`${credential.idp.clientID}:${credential.idp.clientSecret}`, 'utf-8').toString('base64')
+        }
+      },
+      function(jwtToken, refreshToken, profile, done) {
+        // jwtToken is retuned by the IDP with the user mail, as configured within the openid profile
+        done(null, jwtToken ? jwt.decode(jwtToken).mail : false);
+      }
+    ));
+
+    passport.authenticate(provider, { scope: 'openid' })(req, res, next)
+  }
+});
 
 // oauth2 api : /auth/provider/callback receive the authorization code with context header.
 // then ask IDP for the profile, compare with header userID email to IDP, if same return
 // bearer token.
 app.get('/auth/provider/callback', function(req, res, next) {
-  passport.authenticate('provider', async function(err, mail, info) {
+
+  const provider = `provider-${req.headers['cloudhost']}-${req.headers['account']}`;
+
+  passport.authenticate(provider, async function(err, mail, info) {
     if (err) { return next(err); }
     if (!mail) { return res.status(401).send({ message: 'Login failed on IDP' }); }
 
@@ -143,7 +140,7 @@ app.get('/api/me',
 // STEP 4. Initialise express node server to listen http request.
 //
 //////////////////////////////////////////////////////////////////////
-app.use(session({ secret: SESSION_SECRET, resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'SECRET_KEY', resave: true, saveUninitialized: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());

@@ -6,31 +6,18 @@
   <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
 </head>
 <body>
-  <h1>login sso</h1>
-  <div id="login" style="display: none;">    
-    <a href="/auth/provider">Log in</a>
-  </div>
-  <div id="logout" style="display: none;">
-    <p></p>
-    <a href="/logout.html">Logout</a>
-  </div>
-  <div id="noShell" style="display: none;">
-    <p>Extension need to run inside Shell</p>
-  </div>
   <script src="https://unpkg.com/fsm-shell"></script>
   <script>
     const { ShellSdk, SHELL_EVENTS } = FSMShell;
     // Init ShellSDk
     const shellSdk = ShellSdk.init(window.parent, '*');
 
-    sessionStorage.removeItem('isRunningWithinShell');
-    var receivedAnswerFromShell = false;
     if (!ShellSdk.isInsideShell()) {
-      document.getElementById('noShell').style.display = 'block';
+      window.location.href = '/shell-required.html';
     } else {
 
       shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
-        clientIdentifier: 'example-plugin',
+        clientIdentifier: 'login-sso',
       });
 
       shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, async (event) => {
@@ -41,49 +28,27 @@
           companyId,
           userId
         } = JSON.parse(event);
-        sessionStorage.setItem('isRunningWithinShell', true);
 
-        var token = sessionStorage.getItem('token');
-        // If user is not logged, we 
-        if (!token) {
-          document.getElementById('login').style.display = 'block';
+        if (sessionStorage.getItem('token') && 
+            sessionStorage.getItem('userId') == userId) {
+          window.location.href = '/me.html';
         } else {
-          fetch('/api/me', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + token,
-              'cloudHost': cloudHost,
-              'account': account,
-              'companyId': companyId,
-              'userId': userId
-            }
-          })
-          .then(response => response.json())
-          .then(function(data) {
-            document.getElementById('logout').children[0].innerHTML = `Hello ${data.firstName} ${data.lastName}`;
-            document.getElementById('logout').style.display = 'block';
-          })
-          .catch(function(exception) {
-            console.log(exception);
-            alert(exception.message || 'An unknown error occured');
-            logout();
-          });
+          window.location.href = `/auth/provider/${cloudHost}/${account}/${companyId}`;
         }
       });
 
       // Reload current page if login succeed within the iFrame view
-      function handleMessage(event) {
-        if (event.data.type === 'REFRESH') {
-          sessionStorage.setItem('token', event.data.token);
-          location.reload();
-        }
-      }
-      if ( window.addEventListener ) {
-          window.addEventListener('message', handleMessage, false);
-      } else if ( window.attachEvent ) { // ie8
-          window.attachEvent('onmessage', handleMessage);
-      }
+      // function handleMessage(event) {
+      //   if (event.data.type === 'REFRESH') {
+      //     sessionStorage.setItem('token', event.data.token);
+      //     location.reload();
+      //   }
+      // }
+      // if ( window.addEventListener ) {
+      //     window.addEventListener('message', handleMessage, false);
+      // } else if ( window.attachEvent ) { // ie8
+      //     window.attachEvent('onmessage', handleMessage);
+      // }
     }
   </script>
 </body>
