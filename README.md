@@ -19,8 +19,6 @@ The easiest way to use these samples without using Git is to download the zip fi
 
 Each sample provide a README file with instruction regarding how to setup and run locally. It might also include recommanded deployment strategy based on technical specificity. For testing purpose, an external solution like [ngrok](https://ngrok.com/) or [localtunnel](https://github.com/localtunnel/localtunnel) can provide a publicly accessible url that will proxy all requests to your locally running webserver.
 
-This repository also include a [kyma-generator](./kyma-generator) script to generate ready to use bundled extension on a kyma cluster.
-
 ## Contributions
 
 These samples are direct from the feature teams and we welcome your input on issues and suggestions for new samples. At this time we are not accepting new samples from the public, but check back here as we evolve our contribution model.
