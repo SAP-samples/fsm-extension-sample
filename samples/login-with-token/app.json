@@ -1,0 +1,7 @@
+{
+  "name": "Login with token",
+  "description": "Sample extension to demo login with token",
+  "repository": "https://github.com/SAP-samples/fsm-extension-sample/",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "fsm", "sap"]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Login with token",
+  "provider": "SAP FSM",
+  "description": "Sample extension to demo login with token",   
+  "version": "1.0.0", 
+  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/refactor/samples/login-with-token/frontend/icon.png"
+}

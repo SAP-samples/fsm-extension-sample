@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>fsm-extension-sample</title>
+  <script src="https://unpkg.com/fsm-shell"></script>
+</head>
+<body>
+  <h1>fsm-extension-sample</h1>
+  <h2>OpenID Connect OAuth 2.0 code flow</h2>
+  <div id="login" style="display: none;">    
+    <a href="/auth/provider">Log in</a>
+  </div>
+  <div id="logout" style="display: none;">
+    <p></p>
+    <a onClick="logout()" href="/">Logout</a>
+  </div>
+  <div id="noShell" style="display: none;">
+    <p>Extension need to run inside Shell</p>
+  </div>
+  <script>
+    const { ShellSdk, SHELL_EVENTS } = FSMShell;
+    // Init ShellSDk
+    const shellSdk = ShellSdk.init(window.parent, '*');
+
+    sessionStorage.removeItem('isRunningWithinShell');
+    var receivedAnswerFromShell = false;
+    if (!ShellSdk.isInsideShell()) {
+      document.getElementById('noShell').style.display = 'block';
+    } else {
+
+      shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
+        clientIdentifier: 'example-plugin',
+      });
+
+      shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, async (event) => {
+        receivedAnswerFromShell = true;
+        const {
+          cloudHost,
+          account,
+          companyId,
+          userId
+        } = JSON.parse(event);
+        sessionStorage.setItem('isRunningWithinShell', true);
+
+        var token = sessionStorage.getItem('token');
+        // If user is not logged, we 
+        if (!token) {
+          document.getElementById('login').style.display = 'block';
+        } else {
+          fetch('/api/me', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token,
+              'cloudHost': cloudHost,
+              'account': account,
+              'companyId': companyId,
+              'userId': userId
+            }
+          })
+          .then(response => response.json())
+          .then(function(data) {
+            document.getElementById('logout').children[0].innerHTML = `Hello ${data.firstName} ${data.lastName}`;
+            document.getElementById('logout').style.display = 'block';
+          })
+          .catch(function(exception) {
+            console.log(exception);
+            alert(exception.message || 'An unknown error occured');
+            logout();
+          });
+        }
+      });
+      
+      function logout() {
+        sessionStorage.removeItem('token');
+      }
+
+      // Reload current page if login succeed within the iFrame view
+      function handleMessage(event) {
+        if (event.data.type === 'REFRESH') {
+          sessionStorage.setItem('token', event.data.token);
+          location.reload();
+        }
+      }
+      if ( window.addEventListener ) {
+          window.addEventListener('message', handleMessage, false);
+      } else if ( window.attachEvent ) { // ie8
+          window.attachEvent('onmessage', handleMessage);
+      }
+    }
+  </script>
+</body>
+</html>

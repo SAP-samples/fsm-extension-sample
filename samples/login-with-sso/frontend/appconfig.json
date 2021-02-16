@@ -1,0 +1,7 @@
+{
+  "name": "Login SSO",
+  "provider": "SAP FSM",
+  "description": "Sample extension to demo sso login within an extension",   
+  "version": "1.0.0", 
+  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/refactor/samples/login-with-sso/frontend/icon.png"
+}
