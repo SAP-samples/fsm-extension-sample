@@ -14,7 +14,7 @@ For testing purpose, an external solution like [ngrok](https://ngrok.com/) or [l
 
 ## Deployment
 
-...
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## How to obtain support
 In case you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).
