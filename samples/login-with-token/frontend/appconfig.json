@@ -3,5 +3,5 @@
   "provider": "SAP FSM",
   "description": "Sample extension to demo login with token",   
   "version": "1.0.0", 
-  "icon": "https://ef68d617b41d.ngrok.io/icon.png"
+  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/refactor/samples/login-with-token/icon.png"
 }
