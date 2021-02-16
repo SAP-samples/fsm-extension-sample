@@ -52,6 +52,7 @@ These samples are direct from the feature teams and we welcome your input on iss
 </table>
 
 ## How to obtain support
+
 In case you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).
 
 ## License
