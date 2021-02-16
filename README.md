@@ -39,7 +39,7 @@ These samples are direct from the feature teams and we welcome your input on iss
 
 <table>
  <tr>
-  <td>No sample yet</td>
+  <td><a href="samples/login-with-token/">Login with token</a></td>
  </tr>
 </table>
 
@@ -47,7 +47,7 @@ These samples are direct from the feature teams and we welcome your input on iss
 
 <table>
  <tr>
-  <td>No sample yet</td>
+  <td><a href="samples/login-with-sso/">Login with SSO</a></td>
  </tr>
 </table>
 
