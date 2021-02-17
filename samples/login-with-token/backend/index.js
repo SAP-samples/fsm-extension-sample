@@ -31,7 +31,7 @@ app.get('/auth/', function(req, res, next) {
 
   if (!credentials.client_credentials[cloudhost] || 
       !credentials.client_credentials[cloudhost][account]) {
-    res.redirect("/configure.html");
+    return res.status(404).send({});
   } else {
     const credential = credentials.client_credentials[cloudhost][account];
     const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');

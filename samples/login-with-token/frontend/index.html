@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>login sso</title>
+  <title>login with token</title>
   <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
 </head>
 <body>
@@ -52,7 +52,7 @@
               sessionStorage.setItem('token', data.token);
               window.location.href = '/me.html';
             } else {
-              return Promise.reject({ message: 'Missing token within auth/provider api' })
+              window.location.href = '/configure.html';
             }
         })
         .catch(function(exception) {

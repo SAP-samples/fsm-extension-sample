@@ -7,8 +7,7 @@
 </head>
 <body>
   <div id="me" style="display: none;">
-    <p></p>
-    <a href="/logout.html">Logout</a>
+    <p class="fd-text"></p>
   </div>
   <script src="https://unpkg.com/fsm-shell"></script>
   <script>
@@ -45,7 +44,7 @@
         })
         .then(response => response.json())
         .then(function(data) {
-          document.getElementById('me').children[0].innerHTML = `Hello ${data.user_name}`;
+          document.getElementById('me').children[0].innerHTML = `Hey ${data.user_name} 👋, login-with-sample seams to be working great.`;
           document.getElementById('me').style.display = 'block';
         })
         .catch(function(exception) {
