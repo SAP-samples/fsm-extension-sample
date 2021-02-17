@@ -1,6 +1,6 @@
 # Appconfig.json file
 
-If you generate the extension application project via [generator.sh](./generator.sh), the `appconfig.json` is initial created automatically. Else if you create the extension application as a freestyle project and install it manually on arbitrary platform, there must be an endpoint `/appconfig.json` under the extension application root URL.
+When creating the extension application and installing it manually on arbitrary platform, there must be an endpoint `/appconfig.json` under the extension application root URL.
 
 The `appconfig.json` file contains metadata about the extension application. The structure of the `appconfig.json` file must follow the definition as below:
 
