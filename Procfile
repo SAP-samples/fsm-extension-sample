@@ -1,1 +1,0 @@
-web: cd samples/$SAMPLE && npm run start
