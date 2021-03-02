@@ -12,6 +12,12 @@ Install dependency `npm install` then run server with `npm start`.
 
 For testing purpose, an external solution like [ngrok](https://ngrok.com/) or [localtunnel](https://github.com/localtunnel/localtunnel) can provide a publicly accessible url that will proxy all requests to your locally running webserver.
 
+## Deploy
+
+<a href="https://heroku.com/deploy?env[sample]=login-with-token">
+  <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
+</a>
+
 ## How to obtain support
 In case you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).
 

@@ -1,0 +1,7 @@
+{
+  "name": "FSM-extension-sample",
+  "description": "Demonstrate the API usage patterns for extensions within the SAP Field Service Management application.",
+  "repository": "https://github.com/SAP-samples/fsm-extension-sample",
+  "logo": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/master/samples/service-contract/icon.png",
+  "keywords": ["sap", "fsm", "extension"]
+}
