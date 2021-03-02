@@ -7,8 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "postinstall": "dotenv cross-var npm install ./samples/%SAMPLE%",
-    "start": "dotenv cross-var concurrently 'npm run --prefix samples/%SAMPLE% start'"
+    "postinstall": "npx dotenv cross-var concurrently 'npm install --prefix samples/%SAMPLE%'",
+    "start": "npx dotenv cross-var concurrently 'npm run --prefix samples/%SAMPLE% start'"
   },
   "repository": {
     "type": "git",
@@ -22,9 +22,6 @@
   },
   "homepage": "https://github.com/SAP-samples/fsm-extension-sample#readme",
   "dependencies": {
-    "backend": "file:samples/login-with-token"
-  },
-  "devDependencies": {
     "concurrently": "^6.0.0",
     "cross-var": "^1.1.0",
     "dotenv": "^8.2.0",
