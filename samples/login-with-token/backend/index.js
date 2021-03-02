@@ -14,6 +14,10 @@ var express = require('express')
 // Demo is based on express node server
 const app = express();
 
+const {
+  SECRET_KEY
+} = process.env;
+
 //////////////////////////////////////////////////////////////////////
 //
 // STEP 1. provide passport urls to interface with openid connect
@@ -106,7 +110,7 @@ app.get('/api/me',
 // STEP 4. Initialise express node server to listen http request.
 //
 //////////////////////////////////////////////////////////////////////
-app.use(session({ secret: 'SECRET_KEY', resave: true, saveUninitialized: true }));
+app.use(session({ secret: SECRET_KEY, resave: true, saveUninitialized: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());

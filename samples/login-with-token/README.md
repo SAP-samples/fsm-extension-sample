@@ -14,7 +14,7 @@ For testing purpose, an external solution like [ngrok](https://ngrok.com/) or [l
 
 ## Deploy
 
-<a href="https://heroku.com/deploy?env[sample]=login-with-token">
+<a href="https://heroku.com/deploy?env[SAMPLE]=login-with-token">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 
