@@ -74,6 +74,25 @@ app.get('/auth/', function(req, res, next) {
   }
 });
 
+// Configure
+app.post(
+  '/configure/', 
+  bodyParser.urlencoded({ extended: false }), 
+  function(req, res, next) {
+
+    const cloudhost = req.body['cloudHost'];
+    const account = req.body['account'];
+    const clientId = req.body['clientId'];
+    const clientSecret = req.body['clientSecret'];
+
+    credentials.add_configuration(cloudhost, account, {
+      client_id: clientId,
+      client_secret: clientSecret
+    });
+
+    return res.status(200).send({});
+  });
+
 //////////////////////////////////////////////////////////////////////
 //
 // STEP 2. Create a bearer token to protect extensions' API 
