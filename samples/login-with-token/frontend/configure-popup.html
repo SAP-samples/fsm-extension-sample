@@ -6,20 +6,29 @@
   <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
 </head>
 <body>
-  <form onSubmit="saveForm(); return false;">
-    <div class="fd-form-item">
-      <label class="fd-form-label" for="input-1">Client ID:</label>
-      <input class="fd-input" type="text" id="input-1" placeholder="Field placeholder text">
+  <div class="fd-panel fd-panel--fixed">
+    <div class="fd-panel__header">
+      <h4 class="fd-panel__title">Configure</h4>
     </div>
-    <div class="fd-form-item">
-      <label class="fd-form-label" for="input-1">Client Secret:</label>
-      <input class="fd-input" type="text" id="input-2" placeholder="Field placeholder text">
+    <div role="region" aria-labelledby="jhqDKYrt" class="fd-panel__content">
+      <p>Client credentials need to be define by a SUPERUSER within the administration.</p>
+      <form onSubmit="saveForm(); return false;">
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="input-1">Client ID:</label>
+          <input class="fd-input" type="text" id="input-1" placeholder="">
+        </div>
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="input-1">Client Secret:</label>
+          <input class="fd-input" type="text" id="input-2" placeholder="">
+        </div>
+        <div style="float: right; padding-top: 2rem;">
+          <button class="fd-button fd-button--emphasized" type="submit">Save</button>
+          <button class="fd-button" onClick="closePopup()">Cancel</button>
+        </div>
+      </form>
     </div>
-    <button class="fd-button" type="submit">Save</button>
-    <button class="fd-button" onClick="closePopup()">Cancel</button>
-  </form>
+  </div>
   <script>
-    console.log(window.opener);
     // Read URL params
     var params = {};
     window.location.href.replace(
@@ -29,8 +38,6 @@
       });
     
     const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
-
-    console.log(params);
 
     function saveForm() {
       const clientId = document.getElementById('input-1').value;
@@ -55,8 +62,6 @@
       .catch(function(exception) {
         alert(exception.message || 'An unknown error occured');
       });
-
-      console.log(params['cloudHost'], params['account'], clientId, clientSecret);
     }
 
     function closePopup() {
