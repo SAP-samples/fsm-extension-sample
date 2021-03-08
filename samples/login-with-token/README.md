@@ -6,14 +6,14 @@ Login with token extension is a minimalist sample of a login extension performed
 
 ### Run locally
 
-Install dependency `npm install` then run server with `npm start`.
+- Install dependency `npm install`
+- Set an environment variable `SECRET_KEY` with a random string to randomise your backend key authentication, or add a `.env` file with `SECRET_KEY=<random_key>` next to your package.json.
+- Run your server using `npm start`.
 
 #### Publicly accessible
-
 For testing purpose, an external solution like [ngrok](https://ngrok.com/) or [localtunnel](https://github.com/localtunnel/localtunnel) can provide a publicly accessible url that will proxy all requests to your locally running webserver.
 
 ## Deploy
-
 <a href="https://heroku.com/deploy?env[SAMPLE]=login-with-token">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
