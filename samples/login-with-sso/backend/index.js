@@ -14,6 +14,10 @@ var express = require('express')
   , credentials = require('./credentials');
 ;
 
+const {
+  SECRET_KEY
+} = process.env;
+
 // Demo is based on express node server
 const app = express();
 
@@ -92,6 +96,38 @@ app.get('/auth/provider/callback', function(req, res, next) {
   })(req, res, next);
 });
 
+// Configure
+app.post(
+  '/configure/', 
+  bodyParser.urlencoded({ extended: false }), 
+  function(req, res, next) {
+
+    const cloudhost = req.body['cloudHost'];
+    const account = req.body['account'];
+    const clientId = req.body['clientId'];
+    const clientSecret = req.body['clientSecret'];
+    const idpClientId = req.body['idpClientId'];
+    const idpClientSecret = req.body['idpClientSecret'];
+    const authorizationURL = req.body['authorizationURL'];
+    const tokenURL = req.body['tokenURL'];
+    const callbackURL = req.body['callbackURL'];
+
+    credentials.add_configuration(cloudhost, account, {
+      'client_id': clientId,
+      'client_secret': clientSecret,
+      'idp': {
+        'clientID': idpClientId,
+        'clientSecret': idpClientSecret,
+        'authorizationURL': authorizationURL,
+        'tokenURL': tokenURL,
+        'callbackURL': callbackURL,
+      }
+    });
+
+    return res.status(200).send({});
+  });
+
+
 //////////////////////////////////////////////////////////////////////
 //
 // STEP 2. Create a bearer token to protect extensions' API 
@@ -140,7 +176,7 @@ app.get('/api/me',
 // STEP 4. Initialise express node server to listen http request.
 //
 //////////////////////////////////////////////////////////////////////
-app.use(session({ secret: 'SECRET_KEY', resave: true, saveUninitialized: true }));
+app.use(session({ secret: SECRET_KEY, resave: true, saveUninitialized: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());

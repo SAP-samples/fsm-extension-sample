@@ -5,7 +5,6 @@ Login with token extension is a minimalist sample of a login extension performed
 ## How to run
 
 ### Run locally
-
 - Run `npm install`.
 - Set an environment variable `SECRET_KEY` with a random string to randomize your backend authentication, or add a `.env` file with `SECRET_KEY=<random_key>` next to package.json.
 - Start the server using `npm start`.

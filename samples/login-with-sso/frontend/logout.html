@@ -1,6 +1,20 @@
-<p>Logout ...</p>
-<script>
-  sessionStorage.removeItem('token');
-  sessionStorage.removeItem('userId');
-  window.location.href = '/';
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>login with sso</title>
+  <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+</head>
+<body>
+  <div class="fd-panel">
+    <div role="region" aria-labelledby="jhqDKYrt" class="fd-panel__content" style="padding-top: 0;">
+      <p>Logout ...</p>
+    </div>
+  </div>
+  <script>
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userId');
+    window.location.href = '/';
+  </script>
+</body>
+</html>

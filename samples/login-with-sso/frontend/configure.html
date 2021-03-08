@@ -2,11 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>login sso</title>
+  <title>login with sso</title>
   <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
 </head>
 <body>
-  <p>Thanks for installing login sso !</p>
-  <p>Next step is now to configure it for your account.</p>
+  <div class="fd-panel">
+    <div role="region" aria-labelledby="jhqDKYrt" class="fd-panel__content" style="padding-top: 0;">
+      <h3>Configure your extension</h3>
+      <p>You now need to provide client credentials to your extension so it can access your data.</p>
+      <p><em></em></p>
+      <p>More details about client credentials can be found on the <a href="https://help.sap.com/viewer/product/SAP_FIELD_SERVICE_MANAGEMENT/Cloud/en-US" target="_blank">SAP Field Service Management help portal</a>.</p>
+      <p><button id="configure" disabled="disabled" class="fd-button fd-button--emphasized" onClick="openPopup()">Configure</button></p>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/fsm-shell"></script>
+  <script>
+
+    let openPopup;
+
+    const { ShellSdk, SHELL_EVENTS } = FSMShell;
+    // Init ShellSDk
+    const shellSdk = ShellSdk.init(window.parent, '*');
+
+    shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
+      clientIdentifier: 'login-with-sso',
+      auth: {
+        response_type: 'token'  // request a user token within the context
+      }
+    });
+
+    shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, async (event) => {
+      
+      const {
+        cloudHost,
+        account
+      } = JSON.parse(event);
+
+      document.getElementById('configure').disabled = false;
+
+      openPopup = function () {
+        const popup = window.open(
+          `/configure-popup.html?cloudHost=${cloudHost}&account=${account}`, 
+          'configure-popup', 
+          'height=700,width=450');
+        if (window.focus) {
+          popup.focus();
+        }
+
+        // When popup close, we refresh the extension to check if configuraiton went well
+        popup.onbeforeunload = function(){
+          window.location.href = '/';
+        }
+        return false;
+      }
+    });
+  </script>
 </body>
 </html>

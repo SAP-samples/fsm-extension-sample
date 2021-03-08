@@ -4,22 +4,10 @@ Login SSO extension is a minimalist sample of a login extension performed using 
 
 ## How to run
 
-### Configuration
-
-Define environment variables a following:
-
-```
-IDP_CLIENT_ID=9f62d73e-a750-4a65-9317-0a0bca095fd6
-IDP_CLIENT_SECRET=Q6P]=qdxDN]1wIAR81e?ha8[?QyFvi
-
-IDP_URL_AUTHORIZE=https://fsmsapxf.accounts400.ondemand.com/oauth2/authorize
-IDP_URL_TOKEN=https://fsmsapxf.accounts400.ondemand.com/oauth2/token
-IDP_URL_CALLBACK=https://6ac864f8e47d.ngrok.io/forward.html
-```
-
 ### Run locally
-
-Install dependency `npm install` then run server with `npm start`.
+- Run `npm install`.
+- Set an environment variable `SECRET_KEY` with a random string to randomize your backend authentication, or add a `.env` file with `SECRET_KEY=<random_key>` next to package.json.
+- Start the server using `npm start`.
 
 #### Publicly accessible
 
@@ -27,7 +15,11 @@ For testing purpose, an external solution like [ngrok](https://ngrok.com/) or [l
 
 ## Deployment
 
-...
+You can run this extension on **any node server**, or use the following installation script:
+
+<a href="https://heroku.com/deploy?env[SAMPLE]=login-with-sso">
+  <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
+</a>
 
 ## How to obtain support
 In case you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).
