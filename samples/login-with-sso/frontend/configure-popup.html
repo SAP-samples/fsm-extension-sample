@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>login with token</title>
+  <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+</head>
+<body>
+  <div class="fd-panel fd-panel--fixed">
+    <div class="fd-panel__header">
+      <h4 class="fd-panel__title">Configure</h4>
+    </div>
+    <div role="region" aria-labelledby="jhqDKYrt" class="fd-panel__content">
+      <form onSubmit="saveForm(); return false;">
+        <h3>FSM client credentials</h3>
+        <p>Client credentials need to be define by a SUPERUSER within the administration.</p>
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="input-1">FSM Client ID:</label>
+          <input class="fd-input" type="text" id="input-1" placeholder="">
+        </div>
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="input-2">FM Client Secret:</label>
+          <input class="fd-input" type="text" id="input-2" placeholder="">
+        </div>
+        <h3>Identity provider</h3>
+        <p>IdP configuration needs to be provided by the SSO administrator.</p>
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="input-3">SSO Client ID:</label>
+          <input class="fd-input" type="text" id="input-3" placeholder="">
+        </div>
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="input-4">SSO Client Secret:</label>
+          <input class="fd-input" type="text" id="input-4" placeholder="">
+        </div>
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="input-5">SSO authorizationURL:</label>
+          <input class="fd-input" type="text" id="input-5" placeholder="">
+        </div>
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="input-6">SSO tokenURL:</label>
+          <input class="fd-input" type="text" id="input-6" placeholder="">
+        </div>
+        <div style="float: right; padding-top: 2rem;">
+          <button class="fd-button fd-button--emphasized" type="submit">Save</button>
+          <button class="fd-button" onClick="closePopup()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    // Read URL params
+    var params = {};
+    window.location.href.replace(
+      /[?&]+([^=&]+)=([^&]*)/gi, 
+      function (m,key,value) {
+        params[key] = value;
+      });
+    
+    const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
+
+    function saveForm() {
+      const clientId = document.getElementById('input-1').value;
+      const clientSecret = document.getElementById('input-2').value;
+      const idpClientId = document.getElementById('input-3').value;
+      const idpClientSecret = document.getElementById('input-4').value;
+      const authorizationURL = document.getElementById('input-5').value;
+      const tokenURL = document.getElementById('input-6').value;
+      const callbackURL = `https://${window.location.hostname}/forward.html`;
+
+      fetch(`/configure`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: toUrlEncoded({ 
+          cloudHost: params['cloudHost'],
+          account: params['account'],
+          clientId, 
+          clientSecret,
+          idpClientId,
+          idpClientSecret,
+          authorizationURL,
+          tokenURL,
+          callbackURL
+        })
+      })
+      .then(response => response.json())
+      .then(function(data) {
+        closePopup();
+      })
+      .catch(function(exception) {
+        alert(exception.message || 'An unknown error occured');
+      });
+    }
+
+    function closePopup() {
+      var daddy = window.self;
+      daddy.opener = window.self;
+      daddy.close();
+    }
+  </script>
+</body>
+</html>

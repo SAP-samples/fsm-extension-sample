@@ -14,6 +14,10 @@ var express = require('express')
 // Demo is based on express node server
 const app = express();
 
+const {
+  SECRET_KEY
+} = process.env;
+
 //////////////////////////////////////////////////////////////////////
 //
 // STEP 1. provide passport urls to interface with openid connect
@@ -70,6 +74,25 @@ app.get('/auth/', function(req, res, next) {
   }
 });
 
+// Configure
+app.post(
+  '/configure/', 
+  bodyParser.urlencoded({ extended: false }), 
+  function(req, res, next) {
+
+    const cloudhost = req.body['cloudHost'];
+    const account = req.body['account'];
+    const clientId = req.body['clientId'];
+    const clientSecret = req.body['clientSecret'];
+
+    credentials.add_configuration(cloudhost, account, {
+      client_id: clientId,
+      client_secret: clientSecret
+    });
+
+    return res.status(200).send({});
+  });
+
 //////////////////////////////////////////////////////////////////////
 //
 // STEP 2. Create a bearer token to protect extensions' API 
@@ -106,7 +129,7 @@ app.get('/api/me',
 // STEP 4. Initialise express node server to listen http request.
 //
 //////////////////////////////////////////////////////////////////////
-app.use(session({ secret: 'SECRET_KEY', resave: true, saveUninitialized: true }));
+app.use(session({ secret: SECRET_KEY, resave: true, saveUninitialized: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());

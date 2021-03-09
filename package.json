@@ -1,0 +1,30 @@
+{
+  "name": "fsm-extension-sample",
+  "version": "1.0.0",
+  "description": "[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/fsm-extension-sample)](https://api.reuse.software/info/github.com/SAP-samples/fsm-extension-sample)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "postinstall": "npx dotenv cross-var concurrently 'npm install --prefix samples/%SAMPLE%'",
+    "start": "npx dotenv cross-var concurrently 'npm run --prefix samples/%SAMPLE% start'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SAP-samples/fsm-extension-sample.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SAP-samples/fsm-extension-sample/issues"
+  },
+  "homepage": "https://github.com/SAP-samples/fsm-extension-sample#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0",
+    "cross-var": "^1.1.0",
+    "dotenv": "^8.2.0",
+    "dotenv-cli": "^4.0.0"
+  }
+}

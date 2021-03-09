@@ -2,6 +2,13 @@ require('dotenv').config();
 const path = require('path');
 
 const PORT = process.env.PORT || 80;
+const {
+  SECRET_KEY
+} = process.env;
+
+if (!SECRET_KEY) {
+  throw new Error('Missing env.SECRET_KEY to generate token');
+}
 
 var express = require('express')
   , backend = require('./backend');

@@ -6,7 +6,57 @@
   <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
 </head>
 <body>
-  <p class="fd-text">Thanks for installing login with token</p>
-  <p class="fd-text">Please contact an administrator to configure your account.</p>
+  <div class="fd-panel">
+    <div role="region" aria-labelledby="jhqDKYrt" class="fd-panel__content" style="padding-top: 0;">
+      <h3>Configure your extension</h3>
+      <p>You now need to provide client credentials to your extension so it can access your data.</p>
+      <p><em></em></p>
+      <p>More details about client credentials can be found on the <a href="https://help.sap.com/viewer/product/SAP_FIELD_SERVICE_MANAGEMENT/Cloud/en-US" target="_blank">SAP Field Service Management help portal</a>.</p>
+      <p><button id="configure" disabled="disabled" class="fd-button fd-button--emphasized" onClick="openPopup()">Configure</button></p>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/fsm-shell"></script>
+  <script>
+
+    let openPopup;
+
+    const { ShellSdk, SHELL_EVENTS } = FSMShell;
+    // Init ShellSDk
+    const shellSdk = ShellSdk.init(window.parent, '*');
+
+    shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
+      clientIdentifier: 'login-with-token',
+      auth: {
+        response_type: 'token'  // request a user token within the context
+      }
+    });
+
+    shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, async (event) => {
+      
+      const {
+        cloudHost,
+        account
+      } = JSON.parse(event);
+
+      document.getElementById('configure').disabled = false;
+
+      openPopup = function () {
+        const popup = window.open(
+          `/configure-popup.html?cloudHost=${cloudHost}&account=${account}`, 
+          'configure-popup', 
+          'height=500,width=400');
+        if (window.focus) {
+          popup.focus();
+        }
+
+        // When popup close, we refresh the extension to check if configuraiton went well
+        popup.onbeforeunload = function(){
+          window.location.href = '/';
+        }
+        return false;
+      }
+    });
+  </script>
 </body>
 </html>

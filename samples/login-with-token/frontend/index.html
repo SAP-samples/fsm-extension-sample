@@ -6,6 +6,17 @@
   <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
 </head>
 <body>
+  <div id="show-if-not-inside-shell" style="display: none;">
+    <div class="fd-panel fd-panel--fixed">
+      <div class="fd-panel__header">
+        <h4 class="fd-panel__title">Your extension is running as expected</h4>
+      </div>
+      <div role="region" aria-labelledby="jhqDKYrt" class="fd-panel__content">
+        <p>Thanks for running <strong>login-with-token</strong> sample from our <a href="https://github.com/SAP-samples/fsm-extension-sample">fsm-extension-sample</a> repository.</p>
+        <p>This extension has been designed to run within SAP Field Service Management and now needs to be installed as describe within the <a href="https://help.sap.com/viewer/fsm_extensions/LATEST/en-US/overview.html">FSM Help Portal - Extensions</a>.</p>
+      </div>
+    </div>
+  </div>
   <script src="https://unpkg.com/fsm-shell"></script>
   <script>
     const { ShellSdk, SHELL_EVENTS } = FSMShell;
@@ -13,13 +24,13 @@
     const shellSdk = ShellSdk.init(window.parent, '*');
 
     if (!ShellSdk.isInsideShell()) {
-      window.location.href = '/shell-required.html';
+      document.getElementById('show-if-not-inside-shell').style.display = "block";
     } else if (sessionStorage.getItem('token')) {
       window.location.href = '/me.html';
     } else {
 
       shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
-        clientIdentifier: 'login-token',
+        clientIdentifier: 'login-with-token',
         auth: {
           response_type: 'token'  // request a user token within the context
         }

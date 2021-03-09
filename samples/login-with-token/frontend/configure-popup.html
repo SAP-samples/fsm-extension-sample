@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>login with token</title>
+  <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+</head>
+<body>
+  <div class="fd-panel fd-panel--fixed">
+    <div class="fd-panel__header">
+      <h4 class="fd-panel__title">Configure</h4>
+    </div>
+    <div role="region" aria-labelledby="jhqDKYrt" class="fd-panel__content">
+      <p>Client credentials need to be define by a SUPERUSER within the administration.</p>
+      <form onSubmit="saveForm(); return false;">
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="input-1">Client ID:</label>
+          <input class="fd-input" type="text" id="input-1" placeholder="">
+        </div>
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="input-2">Client Secret:</label>
+          <input class="fd-input" type="text" id="input-2" placeholder="">
+        </div>
+        <div style="float: right; padding-top: 2rem;">
+          <button class="fd-button fd-button--emphasized" type="submit">Save</button>
+          <button class="fd-button" onClick="closePopup()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    // Read URL params
+    var params = {};
+    window.location.href.replace(
+      /[?&]+([^=&]+)=([^&]*)/gi, 
+      function (m,key,value) {
+        params[key] = value;
+      });
+    
+    const toUrlEncoded = obj => Object.keys(obj).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])).join('&');
+
+    function saveForm() {
+      const clientId = document.getElementById('input-1').value;
+      const clientSecret = document.getElementById('input-2').value;
+
+      fetch(`/configure`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: toUrlEncoded({ 
+          cloudHost: params['cloudHost'],
+          account: params['account'],
+          clientId, 
+          clientSecret
+        })
+      })
+      .then(response => response.json())
+      .then(function(data) {
+        closePopup();
+      })
+      .catch(function(exception) {
+        alert(exception.message || 'An unknown error occured');
+      });
+    }
+
+    function closePopup() {
+      var daddy = window.self;
+      daddy.opener = window.self;
+      daddy.close();
+    }
+  </script>
+</body>
+</html>

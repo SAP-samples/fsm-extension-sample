@@ -1,0 +1,18 @@
+{
+  "name": "FSM-extension-sample",
+  "description": "Demonstrate the API usage patterns for extensions within the SAP Field Service Management application.",
+  "website": "https://help.sap.com/viewer/fsm_extensions/Cloud/en-US",
+  "repository": "https://github.com/SAP-samples/fsm-extension-sample",
+  "logo": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/master/samples/service-contract/icon.png",
+  "keywords": ["sap", "fsm", "extension"],
+  "env": {
+    "SAMPLE": {
+      "description": "Sample folder to install",
+      "value": "login-with-token"
+    },
+    "SECRET_KEY": {
+      "description": "This gets generated",
+      "generator": "secret"
+    }
+  }
+}

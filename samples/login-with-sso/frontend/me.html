@@ -6,9 +6,12 @@
   <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
 </head>
 <body>
-  <div id="me" style="display: none;">
-    <p></p>
-    <a href="/logout.html">Logout</a>
+  <div id="me" style="display: none;" class="fd-panel">
+    <div role="region" aria-labelledby="jhqDKYrt" class="fd-panel__content" style="padding-top: 0;">
+      <h3>You are now authenticated !</h3>
+      <p>User <strong id="username"></strong> is now authenticated to the extension's backend.</p>
+      <p style="font-style: italic;">Please be aware this extension has only been developed as code sample to show how our sso authentication flow can be implemented.</p>
+    </div>
   </div>
   <script src="https://unpkg.com/fsm-shell"></script>
   <script>
@@ -20,7 +23,7 @@
       window.location.href = '/shell-required.html';
     } else {
       shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
-        clientIdentifier: 'example-plugin',
+        clientIdentifier: 'login-with-sso',
       });
 
       shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, async (event) => {
@@ -45,8 +48,12 @@
         })
         .then(response => response.json())
         .then(function(data) {
-          document.getElementById('me').children[0].innerHTML = `Hello ${data.firstName} ${data.lastName}`;
-          document.getElementById('me').style.display = 'block';
+          if (data.firstName) {
+            document.getElementById('username').innerHTML = `${data.firstName} ${data.lastName}`;
+            document.getElementById('me').style.display = 'block';
+          } else {
+            window.location.href = '/logout.html';
+          }
         })
         .catch(function(exception) {
           alert(exception.message || 'An unknown error occured');
