@@ -21,6 +21,9 @@ You can run this extension on **any node server**, or use the following installa
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 
+## Known issues
+Some identity providers do not support login within an iFrame and require a new tab or popup. This sample does not handle this use case.
+
 ## How to obtain support
 In case you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).
 
