@@ -5,6 +5,13 @@
   "version": "1.0.0", 
   "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/refactor/samples/with-shell-navigation/icon.png",
   "lang": "en",
+  "translations": [
+    {
+      "lang": "de",
+      "name": "Erweiterung mit Shell Navigation",
+      "description": "Beispielerweiterung innerhalb der Shell mit Shell Navigation"
+    }
+  ],
   "outletPositions": [
 		"SHELL_HOME_SCREEN"
 	],
@@ -23,7 +30,7 @@
             "value": "Startseite"
           }
         ],
-        "viewUrl": "/",
+        "viewUrl": "/#/",
         "icon": "home",
         "isDefault": true,
         "children": []
@@ -56,7 +63,7 @@
                 "value": "Editieren"
               }
             ],
-            "viewUrl": "/activities/actions/edit",
+            "viewUrl": "/#/actions/edit",
             "icon": null,
             "isDefault": false,
             "children": []

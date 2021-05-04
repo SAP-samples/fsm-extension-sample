@@ -49,6 +49,14 @@ These samples are direct from the feature teams and we welcome your input on iss
  </tr>
 </table>
 
+### Front-end inside Shell with Shell navigation
+
+<table>
+ <tr>
+  <td><a href="samples/with-shell-navigation/">Inside Shell with Shell navigation</a></td>
+ </tr>
+</table>
+
 ## How to obtain support
 
 In case you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).

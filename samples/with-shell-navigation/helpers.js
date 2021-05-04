@@ -91,6 +91,8 @@ function getTranslation(lang) {
       'EXTENSION_TITLE': 'Extension with Shell navigation',
       'HOME_TITLE': 'Home',
       'HOME_TEXT': 'This is the starting page.',
+      'LINK_TO_EDIT_TEXT': 'Internal link to page "Actions - Edit"',
+      'LINK_TO_HOME_TEXT': 'Internal link to page "Home"',
       'NOT_FOUND_TITLE': 'Not Found',
       'NOT_FOUND_TEXT': 'Page has not been found.',
       'SIDE_HOME_TITLE': 'Home',
@@ -103,6 +105,8 @@ function getTranslation(lang) {
       'EXTENSION_TITLE': 'Erweiterung mit Shell Navigation',
       'HOME_TITLE': 'Startseite',
       'HOME_TEXT': 'Das ist die Startseite.',
+      'LINK_TO_EDIT_TEXT': 'Interner Link zur Seite "Aktionen - Editieren"',
+      'LINK_TO_HOME_TEXT': 'Interner Link zur "Startseite"',
       'NOT_FOUND_TITLE': 'Nicht gefunden',
       'NOT_FOUND_TEXT': 'Die Seite konnte nicht gefunden werden.',
       'SIDE_HOME_TITLE': 'Startseite',
@@ -126,6 +130,8 @@ function translate(lang) {
   document.getElementById('extension-title').innerHTML = I18N.EXTENSION_TITLE;
   document.getElementById('home-title').innerHTML = I18N.HOME_TITLE;
   document.getElementById('home-text').innerHTML = I18N.HOME_TEXT;
+  document.getElementById('link-to-edit-text').innerHTML = I18N.LINK_TO_EDIT_TEXT;
+  document.getElementById('link-to-home-text').innerHTML = I18N.LINK_TO_HOME_TEXT;
   document.getElementById('not-found-title').innerHTML = I18N.NOT_FOUND_TITLE;
   document.getElementById('not-found-text').innerHTML = I18N.NOT_FOUND_TEXT;
   document.getElementById('side-home-title').innerHTML = I18N.SIDE_HOME_TITLE;
@@ -178,4 +184,11 @@ function getLanguageByLocale(currentLocale) {
 
   // In case the current Shell language is not supported by the extension, return default language.
   return DEFAULT_LOCALE;
+}
+
+// In case extension runs inside Shell and there is an internal navigation, update Luigi inside Shell
+function syncWithLuigi(path) {
+  if (ShellSdk.isInsideShell()) {
+    LuigiClient.linkManager().withoutSync().fromClosestContext().navigate(path);
+  }
 }
