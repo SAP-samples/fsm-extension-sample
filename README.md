@@ -30,6 +30,9 @@ These samples are direct from the feature teams and we welcome your input on iss
 <table>
  <tr>
   <td><a href="samples/service-contract/">Service contract</a></td>
+ </tr> 
+ <tr>
+  <td><a href="samples/with-shell-navigation/">Inside Shell with Shell navigation</a></td>
  </tr>
 </table>
 
@@ -46,14 +49,6 @@ These samples are direct from the feature teams and we welcome your input on iss
 <table>
  <tr>
   <td><a href="samples/login-with-sso/">Login with SSO</a></td>
- </tr>
-</table>
-
-### Front-end inside Shell with Shell navigation
-
-<table>
- <tr>
-  <td><a href="samples/with-shell-navigation/">Inside Shell with Shell navigation</a></td>
  </tr>
 </table>
 
