@@ -4,6 +4,8 @@ const ROUTES = [
   { path: '/actions/edit', id: 'section-actions-edit' }
 ];
 
+// Convert relative path stored inside location to a relative path stored inside ROUTES
+// Convert "" to "/" and convert "#/actions/edit" to "/actions/edit"
 const parseLocation = () => location.hash.slice(1).toLowerCase() || '/';
 
 // Determine ID of the section, which should be visible
@@ -18,6 +20,8 @@ function determineSectionID(path, routes) {
   return 'section-not-found';
 }   
 
+// Router function, which makes sure that based on the new route the respective section is shown and the old section is hidden
+// Router function also takes care of selecting the new respective side navigation entry and deselecting the old side navigation entry  
 const router = () => {
   const PATH = parseLocation();
   const SECTION_ID = determineSectionID(PATH, ROUTES); // Determine ID of the section, which belongs to the new route
@@ -140,6 +144,7 @@ function translate(lang) {
 }
 
 
+// Update translations in case a different language has been selected from the language drop-down list
 function newLanguageSelected() {
   const NEW_SELECTED_LANG = document.getElementById('language-select').value;
   translate(NEW_SELECTED_LANG);
