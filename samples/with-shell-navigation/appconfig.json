@@ -3,7 +3,7 @@
   "provider": "SAP FSM",
   "description": "Sample extension inside Shell with Shell navigation",   
   "version": "1.0.0", 
-  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/refactor/samples/with-shell-navigation/icon.png",
+  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/master/samples/with-shell-navigation/icon.png",
   "lang": "en",
   "translations": [
     {
