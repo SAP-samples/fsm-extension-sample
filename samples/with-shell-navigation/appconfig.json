@@ -1,0 +1,75 @@
+{
+  "name": "Extension with Shell navigation",
+  "provider": "SAP FSM",
+  "description": "Sample extension inside Shell with Shell navigation",   
+  "version": "1.0.0", 
+  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/refactor/samples/with-shell-navigation/icon.png",
+  "lang": "en",
+  "translations": [
+    {
+      "lang": "de",
+      "name": "Erweiterung mit Shell Navigation",
+      "description": "Beispielerweiterung innerhalb der Shell mit Shell Navigation"
+    }
+  ],
+  "outletPositions": [
+		"SHELL_HOME_SCREEN"
+	],
+  "shellNavigation": {
+    "icon": "activities",
+    "sideNavigation": [
+      {
+        "pathSegment": "home",
+        "labelTranslations": [
+          {
+            "lang": "en",
+            "value": "Home"
+          },
+          {
+            "lang": "de",
+            "value": "Startseite"
+          }
+        ],
+        "viewUrl": "/#/",
+        "icon": "home",
+        "isDefault": true,
+        "children": []
+      },
+      {
+        "pathSegment": "actions",
+        "labelTranslations": [
+          {
+            "lang": "en",
+            "value": "Actions"
+          },
+          {
+            "lang": "de",
+            "value": "Aktionen"
+          }
+        ],
+        "viewUrl": null,
+        "icon": "activity-2",
+        "isDefault": false,
+        "children": [
+          {
+            "pathSegment": "edit",
+            "labelTranslations": [
+              {
+                "lang": "en",
+                "value": "Edit"
+              },
+              {
+                "lang": "de",
+                "value": "Editieren"
+              }
+            ],
+            "viewUrl": "/#/actions/edit",
+            "icon": null,
+            "isDefault": false,
+            "children": []
+          }
+        ]
+      }
+    ]
+  }  
+}
