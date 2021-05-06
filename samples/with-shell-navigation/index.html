@@ -91,12 +91,15 @@
         // Hide the top bar and the side navigation from the extension as the top bar and the side navigation from the Shell are used
         hideSideNavAndTopBar();
 
+        // Listen to route change events triggered by Luigi through interacting with the Shell side navigation
+        window.addEventListener('popstate', router);
+
         // Initialize ShellSDK to connect with parent shell library
         const SHELL_SDK = ShellSdk.init(parent, '*');
         
         // Request current Shell language
         const PAYLOAD = 'Cockpit_SelectedLocale';
-        SHELL_SDK.emit(SHELL_EVENTS.Version1.GET_STORAGE_ITEM, payload);
+        SHELL_SDK.emit(SHELL_EVENTS.Version1.GET_STORAGE_ITEM, PAYLOAD);
 
         // Register listener for Shell language response
         SHELL_SDK.on(SHELL_EVENTS.Version1.GET_STORAGE_ITEM, (locale) => {
