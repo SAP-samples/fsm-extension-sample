@@ -1,0 +1,82 @@
+.extension-body {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.extension-main {
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 2;
+}
+
+.extension-nav {
+  background-color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 250px;
+  height: 100vh;
+}
+
+.section-hidden {
+  display: none;
+}
+
+.section-shown {
+  display: block;
+}
+
+.fd-nested-list__title:first-child {
+  padding-left: 2.75rem !important;
+}
+
+@font-face {
+  font-family: "72";
+  src: url("https://unpkg.com/@sap-theming/theming-base-content/content/Base/baseLib/sap_base_fiori/fonts/72-Regular-full.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "72";
+  src: url("https://unpkg.com/@sap-theming/theming-base-content/content/Base/baseLib/sap_base_fiori/fonts/72-Bold-full.woff")
+      format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "72";
+  src: url("https://unpkg.com/@sap-theming/theming-base-content/content/Base/baseLib/sap_base_fiori/fonts/72-Light-full.woff")
+      format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SAP-icons";
+  src: url("https://unpkg.com/@sap-theming/theming-base-content/content/Base/baseLib/sap_fiori_3/fonts/SAP-icons.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BusinessSuiteInAppSymbols';
+  src: url('https://unpkg.com/@sap-theming/theming-base-content/content/Base/baseLib/sap_fiori_3/fonts/BusinessSuiteInAppSymbols.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SAP-icons-TNT';
+  src: url('https://unpkg.com/@sap-theming/theming-base-content/content/Base/baseLib/sap_fiori_3/fonts/SAP-icons-TNT.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  font-size: 16px;
+}
