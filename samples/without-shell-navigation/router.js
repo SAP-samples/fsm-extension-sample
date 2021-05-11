@@ -28,7 +28,7 @@ const router = () => {
 
   if (PATH === '/') {
     // Rerouting in case of "/" to /#/first-level-1
-    window.location.href = window.location.origin + '/#/first-level-1';
+    window.location.href = window.location.origin + window.location.pathname + '#/first-level-1';
   } else {
     const SECTION_ID = determineSectionID(PATH, ROUTES); // Determine ID of the section, which belongs to the new route
     const MAIN_SECTION = document.getElementById('extension-main');
