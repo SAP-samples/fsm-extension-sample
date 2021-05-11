@@ -1,0 +1,22 @@
+{
+  "name": "Extension without Shell navigation",
+  "provider": "SAP FSM",
+  "description": "Sample extension inside Shell without Shell navigation",   
+  "version": "1.0.0", 
+  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/master/samples/without-shell-navigation/icon.png",
+  "lang": "en",
+  "translations": [
+    {
+      "lang": "de",
+      "name": "Erweiterung ohne Shell Navigation",
+      "description": "Beispielerweiterung innerhalb der Shell ohne Shell Navigation"
+    }
+  ],
+  "outletPositions": [
+		"SHELL_HOME_SCREEN"
+	],
+  "shellNavigation": {
+    "icon": "building",
+    "insideShell": true
+  }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Extension with Shell navigation</title>
+    <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+  </head>
+  <body style="margin: 0;">
+    <div id="top-bar" class="fd-shellbar">
+      <div class="fd-shellbar__group fd-shellbar__group--product">
+        <span class="fd-shellbar__logo"><img src="//unpkg.com/fundamental-styles/dist/images/sap-logo.png" srcset="//unpkg.com/fundamental-styles/dist/images/sap-logo@2x.png 1x, //unpkg.com/fundamental-styles/dist/images/sap-logo@3x.png 2x, //unpkg.com/fundamental-styles/dist/images/sap-logo@4x.png 3x" width="48" height="24" alt="SAP"></span>
+        <span id="extension-title" class="fd-shellbar__title"></span>
+      </div>
+      <div class="fd-shellbar__group fd-shellbar__group--actions">
+        <div class="fd-shellbar__action">
+          <select id="language-select" onchange="newLanguageSelected(event)">
+            <option value="en">English</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="extension-body">
+      <div id="side-nav" class="extension-nav">    
+        <div class="fd-side-nav">
+          <a class="fd-side-nav__skip-link" href="#content">Skip navigation</a>
+          <nav class="fd-side-nav__main-navigation" aria-label="Main Menu">
+            <ul class="fd-nested-list fd-nested-list--text-only" aria-label="Main Menu">
+              <li class="fd-nested-list__item">
+                <a id="side-first-level-1" class="fd-nested-list__link" href="#/first-level-1">
+                  <i role="presentation" class="fd-nested-list__icon sap-icon--building"></i>
+                  <span id="side-first-level-1-title" class="fd-nested-list__title"></span>
+                </a>
+              </li>
+              <li class="fd-nested-list__item">
+                <div class="fd-nested-list__content has-child">
+                  <a id="side-first-level-2" class="fd-nested-list__link">
+                    <i role="presentation" class="fd-nested-list__icon sap-icon--area-chart"></i>
+                    <span id="side-first-level-2-title" class="fd-nested-list__title"></span>
+                  </a>
+                  <button id="side-first-level-2-button" class="fd-button fd-nested-list__button" aria-controls="SUB1" aria-haspopup="true" aria-expanded="false" aria-label="Expand submenu" onclick="toggleNestedListSubMenu(event)">
+                    <i class="sap-icon--navigation-right-arrow" role="presentation"></i> 
+                  </button>
+                </div>
+                <ul class="fd-nested-list level-2" id="SUB1" aria-hidden="true">
+                  <li class="fd-nested-list__item">
+                    <a id="side-first-level-2-side-second-level-1" class="fd-nested-list__link" href="#/first-level-2/second-level-1">
+                      <i role="presentation" class="fd-nested-list__icon sap-icon--calendar"></i>
+                      <span id="side-first-level-2-side-second-level-1-title" class="fd-nested-list__title"></span>
+                    </a>
+                  </li>
+                  <li class="fd-nested-list__item">
+                    <div class="fd-nested-list__content has-child">
+                      <a id="side-first-level-2-side-second-level-2" class="fd-nested-list__link">
+                        <i role="presentation" class="fd-nested-list__icon sap-icon--cargo-train"></i>
+                        <span id="side-first-level-2-side-second-level-2-title" class="fd-nested-list__title"></span>
+                      </a>
+                      <button id="side-first-level-2-side-second-level-2-button" class="fd-button fd-nested-list__button" aria-controls="SUB1-1" aria-haspopup="true" aria-expanded="false" aria-label="Expand submenu" onclick="toggleNestedListSubMenu(event)">
+                        <i class="sap-icon--navigation-right-arrow" role="presentation"></i> 
+                      </button>
+                    </div>
+                    <ul class="fd-nested-list level-3" id="SUB1-1" aria-hidden="true">
+                      <li class="fd-nested-list__item">
+                        <a id="side-first-level-2-side-second-level-2-side-third-level-1" class="fd-nested-list__link" href="#/first-level-2/second-level-2/third-level-1">
+                          <i role="presentation" class="fd-nested-list__icon sap-icon--chart-axis"></i>
+                          <span id="side-first-level-2-side-second-level-2-side-third-level-1-title" class="fd-nested-list__title"></span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div id="extension-main" class="extension-main">
+        <section id="first-level-1" class="section-hidden">
+          <h2 class="fd-title fd-title--h2" id="first-level-1-title"></h2>
+          <p id="first-level-1-text"></p>
+        </section>
+        <section id="first-level-2-second-level-1" class="section-hidden">
+          <h2 class="fd-title fd-title--h2" id="first-level-2-second-level-1-title"></h2>
+          <p id="first-level-2-second-level-1-text"></p>
+        </section>
+        <section id="first-level-2-second-level-2-third-level-1" class="section-hidden">
+          <h2 class="fd-title fd-title--h2" id="first-level-2-second-level-2-third-level-1-title"></h2>
+          <p id="first-level-2-second-level-2-third-level-1-text"></p>
+        </section>
+        <section id="section-not-found" class="section-hidden">
+          <h2 class="fd-title fd-title--h2" id="not-found-title"></h2>
+          <p id="not-found-text"></p>
+        </section>
+      </div>
+    </div>
+    <script src="https://unpkg.com/fsm-shell"></script>
+    <script src="translations.js"></script>
+    <script src="helpers.js"></script>
+    <script src="router.js"></script>
+    <script>
+      // Import ShellSDK and events list from FSMShell global variable
+      // see https://github.com/SAP/fsm-shell for more details.
+      const { ShellSdk, SHELL_EVENTS } = FSMShell;
+
+      // Initialize English as the current language
+      translate('en');
+      
+      if (ShellSdk.isInsideShell()) {
+        // Hide the top bar from the extension as the top bar from the Shell is used
+        hideTopBar();
+
+        // Initialize ShellSDK to connect with parent shell library
+        const SHELL_SDK = ShellSdk.init(parent, '*');
+        
+        // Request current Shell language
+        const PAYLOAD = 'Cockpit_SelectedLocale';
+        SHELL_SDK.emit(SHELL_EVENTS.Version1.GET_STORAGE_ITEM, PAYLOAD);
+
+        // Register listener for Shell language response
+        SHELL_SDK.on(SHELL_EVENTS.Version1.GET_STORAGE_ITEM, (locale) => {
+          if (locale !== undefined) {
+            const LOCALE_CONFIG = getLanguageByLocale(locale);
+            const LANG_CODE = LOCALE_CONFIG.language ? LOCALE_CONFIG.language : LOCALE_CONFIG.code;
+            translate(LANG_CODE);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
