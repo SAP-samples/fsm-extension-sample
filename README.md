@@ -37,6 +37,9 @@ These samples are direct from the feature teams and we welcome your input on iss
  <tr>
   <td><a href="samples/without-shell-navigation/">Inside Shell without Shell navigation</a></td>
  </tr>
+ <tr>
+  <td><a href="samples/outside-shell/">Outside Shell in a new tab</a></td>
+ </tr>
 </table>
 
 ### Front-end and Backend
