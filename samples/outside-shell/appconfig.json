@@ -1,0 +1,21 @@
+{
+  "name": "Extension outside Shell",
+  "provider": "SAP FSM",
+  "description": "Sample extension oustide Shell in a new tab",   
+  "version": "1.0.0", 
+  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/master/samples/outside-shell/icon.png",
+  "translations": [
+    {
+      "lang": "de",
+      "name": "Erweiterung außerhalb der Shell",
+      "description": "Beispielerweiterung außerhalb der Shell in einem neuen Tab"
+    }
+  ],
+  "outletPositions": [
+		"SHELL_HOME_SCREEN"
+	],
+  "shellNavigation": {
+    "icon": "business-card",
+    "insideShell": false
+  }
+}

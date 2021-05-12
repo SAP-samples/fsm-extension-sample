@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Extension outside Shell</title>
+    <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+  </head>
+  <body style="margin: 0;">
+    <div id="top-bar" class="fd-shellbar">
+      <div class="fd-shellbar__group fd-shellbar__group--product">
+        <span class="fd-shellbar__logo"><img src="//unpkg.com/fundamental-styles/dist/images/sap-logo.png" srcset="//unpkg.com/fundamental-styles/dist/images/sap-logo@2x.png 1x, //unpkg.com/fundamental-styles/dist/images/sap-logo@3x.png 2x, //unpkg.com/fundamental-styles/dist/images/sap-logo@4x.png 3x" width="48" height="24" alt="SAP"></span>
+        <span id="header-title" class="fd-shellbar__title"></span>
+      </div>
+      <div class="fd-shellbar__group fd-shellbar__group--actions">
+        <div class="fd-shellbar__action">
+          <select id="language-select" onchange="newLanguageSelected(event)">
+            <option value="en">English</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="extension-main">
+        <h2 class="fd-title fd-title--h2" id="content-title"></h2>
+        <p id="content-text"></p>
+    </div>
+    <script src="translations.js"></script>
+    <script>
+      // Initialize English as the current language
+      translate('en');
+    </script>
+  </body>
+</html>
