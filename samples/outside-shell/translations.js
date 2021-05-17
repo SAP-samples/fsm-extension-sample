@@ -3,8 +3,8 @@ function getTranslation(lang) {
   const TRANSLATIONS = {
     en: {
       'header-title': 'Extension outside Shell',
-      'content-text': 'This the extension\'s content.',
-      'content-title': 'Sample extension outside Shell in a new tab.',
+      'content-text': 'This is the extension\'s content.',
+      'content-title': 'Sample extension outside Shell in a new tab',
     },
     de: {
       'header-title': 'Erweiterung außerhalb der Shell',
