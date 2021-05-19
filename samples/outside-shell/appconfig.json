@@ -11,6 +11,7 @@
       "description": "Beispielerweiterung außerhalb der Shell in einem neuen Tab"
     }
   ],
+  "useShellSDK": false,
   "outletPositions": [
 		"SHELL_HOME_SCREEN"
 	],

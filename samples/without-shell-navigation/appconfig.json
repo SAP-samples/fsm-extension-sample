@@ -11,6 +11,7 @@
       "description": "Beispielerweiterung innerhalb der Shell ohne Shell Navigation"
     }
   ],
+  "useShellSDK": true,
   "outletPositions": [
 		"SHELL_HOME_SCREEN"
 	],
