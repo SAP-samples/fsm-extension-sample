@@ -1,0 +1,8 @@
+/node_modules
+
+# generated files
+/public/*.js
+/public/*.map
+
+# Mac OS X staff
+.DS_Store
