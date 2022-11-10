@@ -1,0 +1,16 @@
+{
+  "name": "Mobile web container extension",
+  "provider": "SAP FSM",
+  "description": "Sample extension for the usage inside the mobile web container",   
+  "version": "1.0.0", 
+  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/master/samples/mobile-web-container/frontend/icon.png",
+  "translations": [
+    {
+      "lang": "de",
+      "name": "Mobile Web Container Erweiterung",
+      "description": "Beispielerweiterung für den Einsatz im mobilen Web Container"
+    }
+  ],
+  "useShellSDK": false,
+  "outletPositions": [] 
+}

@@ -29,16 +29,16 @@ These samples are direct from the feature teams and we welcome your input on iss
 
 <table>
  <tr>
-  <td><a href="samples/service-contract/">Service contract</a></td>
+  <td><a href="samples/service-contract/">Service Contract</a></td>
  </tr>
  <tr>
-  <td><a href="samples/with-shell-navigation/">Inside Shell with Shell navigation</a></td>
+  <td><a href="samples/with-shell-navigation/">Inside Shell with Shell Navigation</a></td>
  </tr>
  <tr>
-  <td><a href="samples/without-shell-navigation/">Inside Shell without Shell navigation</a></td>
+  <td><a href="samples/without-shell-navigation/">Inside Shell without Shell Navigation</a></td>
  </tr>
  <tr>
-  <td><a href="samples/outside-shell/">Outside Shell in a new tab</a></td>
+  <td><a href="samples/outside-shell/">Outside Shell in a new Tab</a></td>
  </tr>
 </table>
 
@@ -46,7 +46,10 @@ These samples are direct from the feature teams and we welcome your input on iss
 
 <table>
  <tr>
-  <td><a href="samples/login-with-token/">Login with token</a></td>
+  <td><a href="samples/login-with-token/">Login with Token</a></td>
+ </tr>
+ <tr>
+  <td><a href="samples/mobile-web-container/">Extension inside Mobile Web Container </a></td>
  </tr>
 </table>
 
@@ -63,4 +66,4 @@ These samples are direct from the feature teams and we welcome your input on iss
 In case you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).
 
 ## License
-Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](./LICENSES/Apache-2.0.txt) file.
+Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](./LICENSES/Apache-2.0.txt) file.
