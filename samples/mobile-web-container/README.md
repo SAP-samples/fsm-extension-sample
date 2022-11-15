@@ -19,9 +19,17 @@ For testing purpose, an external solution like [ngrok](https://ngrok.com/) or [l
 - Choose the desired company and afterwards select "Web containers" from the side navigation
 - Create a new web container with the following data:
   - Name: Provide any name (e. g. Web Container Extension Demo)
+  - Title: Provide any title (e. g. Web Container Extension Demo, the title is shown inside the mobile app)
   - Object Types: Select any object type, who supports web containers (e. g. Equipement - see [Supported Object Types](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_mobile/web-containers.html))
   - URL: <publicly_accessible_url>/web-container-access-point (in case of ngrok the URL will e. g. look like this: https://87df-ed1a-6118-11e-d9b-6a02-42ac-1200-02bc.ngrok.io/web-container-access-point)
 
+### How to locate the created Web Container
+- Open Field Service App in your Smartphone and proceed with the login
+- Access the side navigation via the burger menu and select the object type, which you have chosen during the web container creation (e. g. Equipment)
+- Now, you should see a list of the respective object type and you need to pick one of those entries
+- The detail page of this entry should become visible and a three dots menu in the header should appear
+- Click on the three dots menu and you should see the title of the web container at the bottom
+- Press the web container title to access the web container
 
 ### Deployment
 
