@@ -1,42 +1,49 @@
 # Mobile Web Container Extension
 
-This extension is a minimalist extension sample, which runs inside a mobile web container. The necessary steps to run this extension inside a mobile web container are described in the “How to run” section. In case you are not familiar with the mobile web container concept, please read the respective [documenation](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_mobile/web-containers.html) in advanced.
+This extension is a minimalist extension sample, which runs inside a mobile web container. The necessary steps to run this extension inside a mobile web container are described in the “Running the Extension” section. If you are not familiar with the mobile web container concept, please read the respective [documentation](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_mobile/web-containers.html) in advance.
 
+**Note:** This extension is only targeted to run inside a web container, and not in a browser window. 
 
-## How to run
+## Running the Extension
 
-### Run locally
+To run the extension, perform the following steps: 
+1. Run the extension locally. 
+2. Get the public URL to allow the extension running inside the web container. 
+3. Create the web container.
+4. Access the web container with the extension.
+
+**Tip:** As an alternative to step 1 and step 2, you can also run the extension on any node server. 
+
+### Running Locally
 - Run `npm install`.
-- Set an environment variable `SECRET_KEY` with a random string to randomize your backend authentication, or add a `.env` file with `SECRET_KEY=<random_key>` next to package.json.
+- Set an environment variable `SECRET_KEY` with a random string to randomize your backend authentication, or add a `.env` file with `SECRET_KEY=<random_key>`. Note that when you add this file, the file needs to be on the same level as the package.json so not in a subfolder or similar.
 - Start the server using `npm start`.
 
-### Publicly accessible URL
+### Get the Publicly Accessible URL
 
-For testing purpose, an external solution like [ngrok](https://ngrok.com/) or [localtunnel](https://github.com/localtunnel/localtunnel) can provide a publicly accessible url that will proxy all requests to your locally running webserver.
+To receive the access URL for the extension, you can use an external solution like [ngrok](https://ngrok.com/) or [localtunnel](https://github.com/localtunnel/localtunnel). These solutions provide a publicly accessible URL that will proxy all requests to your locally running web server.
 
-### Create a new Web Container
-- Go the admin app and login with your account
-- Choose the desired company and afterwards select "Web containers" from the side navigation
-- Create a new web container with the following data:
-  - Name: Provide any name (e. g. Web Container Extension Demo)
-  - Title: Provide any title (e. g. Web Container Extension Demo, the title is shown inside the mobile app)
-  - Object Types: Select any object type, who supports web containers (e. g. Equipement - see [Supported Object Types](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_mobile/web-containers.html))
-  - URL: <publicly_accessible_url>/web-container-access-point (in case of ngrok the URL will e. g. look like this: https://87df-ed1a-6118-11e-d9b-6a02-42ac-1200-02bc.ngrok.io/web-container-access-point)
+### Creating a Web Container
+1. Open the Admin application and login with your account.
+2. From the side menu, choose **Companies** and select the desired company. 
+3. From the side menu, choose **Web Containers**.
+4. On the screen, create a new web container with the following data:
+    1. **Name:** Enter any name (for example, `Web Container Extension Demo`)
+    2. **Title:** Enter any title. This title is then displayed in the mobile application. (for example, `Web Container Extension Demo`)
+    3. **Object Types:** Select any object type that supports web containers (for example, `Equipement`. For more information, see  [Supported Object Types](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_mobile/web-containers.html))
+    4. **URL:** <Publicly_accessible_URL>/web-container-access-point (for ngrok the URL will, for example, look like this: https://87df-ed1a-6118-11e-d9b-6a02-42ac-1200-02bc.ngrok.io/web-container-access-point)
 
-### How to locate the created Web Container
-- Open Field Service App in your Smartphone and proceed with the login
-- Access the side navigation via the burger menu and select the object type, which you have chosen during the web container creation (e. g. Equipment)
-- Now, you should see a list of the respective object type and you need to pick one of those entries
-- The detail page of this entry should become visible and a three dots menu in the header should appear
-- Click on the three dots menu and you should see the title of the web container at the bottom
-- Press the web container title to access the web container
+### Accessing the Web Container with the Extension
+1. On your mobile phone, open the SAP Field Service Management mobile application proceed with the login.
+2. From the burger menu, access the side menu. 
+3. From the side menu, select the object type that you have chosen during the web container creation, for example, Equipment. A list of the respective object type is displayed. 
+4. From the list, select an entry. 
+The details of the entry are displayed. 
+5. Choose the three dots menu. The title of the web container is displayed at the bottom.
+6. Click on the web container title to access the web container with the extension.
 
-### Deployment
-
-You can run this extension on **any node server**.
-
-## How to obtain support
-In case you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).
+## How to Get Support
+If you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).
 
 ## License
 Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](./LICENSE) file.
