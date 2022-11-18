@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Extension inside mobile web container</title>
+  </head>
+  <body style="margin: 0;">
+    <pre id="context"></pre>
+    <script>
+      fetch(`/web-container-context`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(checkStatus)
+      .then(res => res.json())
+      .then(function(data) {
+
+        const secureData = {
+          ...data,
+          authToken: 'some_token',
+          userPassword: 'some_password'
+        };
+
+        document.getElementById('context').innerHTML = JSON.stringify(secureData, null, 2);
+      })
+      .catch(function(error) {
+        document.getElementById('context').innerHTML = error + '<br><br>Context from mobile web container is not available. Please make sure to run extension inside mobile web container';
+      });
+
+      function checkStatus(res) {
+        if(res.ok){
+            return res;
+        } else {
+          throw new Error(`HTTP Error Response: ${res.status} ${res.statusText}`);
+        }
+      }
+    </script>
+  </body>
+</html>
