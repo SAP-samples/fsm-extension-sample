@@ -1,0 +1,12 @@
+{
+  "name": "Download test extension",
+  "provider": "SAP FSM",
+  "description": "For testing allow-downloads extension policy",
+  "version": "1.0.0",
+  "useShellSDK": true,
+  "shellNavigation": {
+    "icon": "building",
+    "insideShell": true
+  },
+  "extensionPolicies": ["allow-downloads"]
+}
