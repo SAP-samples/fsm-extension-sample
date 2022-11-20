@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Parameter Showcase Extension</title>
+    <link href="https://unpkg.com/fundamental-styles@latest/dist/fundamental-styles.css" rel="stylesheet">
+    <link href='https://unpkg.com/@sap-theming/theming-base-content/content/Base/baseLib/sap_fiori_3/css_variables.css' rel='stylesheet'>
+    <link href='https://unpkg.com/fundamental-styles@{versionNumber}/dist/theming/sap_fiori_3.css' rel='stylesheet'>
+    <link href="styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div>
+      <h2 class="fd-title fd-title--h2">Parameter Showcase</h2>
+    </div>
+    <div>
+      <h4 class="fd- fd-title--h4" id="info">NOT LOADING</h2>
+    </div>
+    <table class="fd-table">
+      <thead class="fd-table__header">
+        <tr class="fd-table__row">
+          <th class="fd-table__cell" scope="col">Parameter</th>
+          <th class="fd-table__cell" scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody" class="fd-table__body">
+        <tr class="fd-table__row">
+          <td class="fd-table__cell">${param.name}</td>
+          <td class="fd-table__cell">${param.value}</td>
+        </tr>
+      </tbody>
+    </table>
+    <script src="https://unpkg.com/fsm-shell"></script>
+    <script src="helpers.js"></script>
+    <script>
+      // Import ShellSDK and events list from FSMShell global variable
+      // see https://github.com/SAP/fsm-shell for more details.
+      const { ShellSdk, SHELL_EVENTS } = FSMShell;
+
+      // Display an error message if extension does not run within shell
+      if (!ShellSdk.isInsideShell()) {
+        showInfoText('Unable to reach shell eventAPI');
+      } else {
+        showInfoText('Loading parameters...');
+
+        // Initialise ShellSDK to connect with parent shell library
+        const shellSdk = ShellSdk.init(parent, '*');
+
+        // Initialise the extension by requesting the fsm context
+        shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
+          clientIdentifier: 'parameter-showcase',
+          auth: {
+            response_type: 'token'  // request a user token within the context
+          }
+        });
+
+        // Callback on fsm context response
+        shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, async (event) => {
+          const {
+            // extract required context from event content
+            cloudHost,
+            account,
+            accountId,
+            company,
+            companyId,
+            user,
+            extension,
+            // extract authentication data from event content
+            auth
+          } = JSON.parse(event);
+
+          // Access_token has a short life stpan and needs to be refreshed before expiring
+          // Each extension need to implement its own strategy to refresh it.
+          initializeRefreshTokenStrategy(shellSdk, auth);
+
+          console.log(JSON.parse(JSON.stringify(event)));
+
+          // Fetch all parameters for the extension
+          let parameters;
+          try {
+            parameters = await fetchParameters(cloudHost, accountId, companyId, extension.deploymentId);
+            console.log('PARAMETERS:');
+            console.log(parameters);
+          } catch (err) {
+            console.error(`Error: ${err.message}`, err);
+          }
+
+          if (parameters && parameters.length > 0) {
+            showInfoText('The following Parameters have been provided:');
+            showLoadedParameters(parameters);
+          } else {
+            showInfoText('No parameters found.')
+          }
+
+        });
+      }
+    </script>
+  </body>
+</html>

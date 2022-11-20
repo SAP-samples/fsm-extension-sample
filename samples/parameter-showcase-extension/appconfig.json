@@ -1,0 +1,78 @@
+{
+  "name": "Parameter Showcase",
+  "description": "Sample extension to showcase the parameter support for SAP FSM extensions.",
+  "version": "0.1.0",
+  "icon": "https://raw.githubusercontent.com/scamastral/sample-fsm-extensions/master/parameter-showcase-extension/parameter-icon.png",
+  "useShellSDK": true,
+  "outletPositions": ["WFM_ACTIVITY_SIDEBAR"],
+  "provider": "SAP",
+  "parametersInformation": "License key is required.",
+  "translations": [
+    {
+      "lang": "en",
+      "parametersInformation": "A license key is required in order to use this extension."
+    },
+    {
+      "lang": "de",
+      "parametersInformation": "Ein Lizenzschlüssel wird für die Benutzung dieser Extension benötigt."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "licenseKey",
+      "required": true,
+      "type": "TEXT",
+      "regexValidation": "^[a-zA-Z-]+$",
+      "labelTranslations": [
+        {
+          "lang": "en",
+          "value": "License Key"
+        },
+        {
+          "lang": "de",
+          "value": "Lizenzschlüssel"
+        }
+      ],
+      "placeholderTranslations": [
+        {
+          "lang": "en",
+          "value": "Enter your personal license key"
+        },
+        {
+          "lang": "de",
+          "value": "Geben Sie ihren persönlichen Lizenzschlüssel ein"
+        }
+      ]
+    },
+    {
+      "name": "customSystemUrl",
+      "required": false,
+      "type": "TEXT",
+      "regexValidation": null,
+      "labelTranslations": [
+        {
+          "lang": "en",
+          "value": "Custom system URL"
+        },
+        {
+          "lang": "de",
+          "value": "Benutzerdefinierte System URL"
+        }
+      ]
+    },
+    {
+      "name": "enableBetaMode",
+      "type": "BOOLEAN",
+      "labelTranslations": [
+        {
+          "lang": "en",
+          "value": "Enable Beta mode"
+        },
+        {
+          "lang": "de",
+          "value": "Beta Modus aktivieren"
+        }
+      ]
+    }
+  ]
+}

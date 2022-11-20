@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>Download test extension</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="index.css" rel="stylesheet">
+    <script src="./bundle.js"></script>
+</head>
+
+<body>
+
+    <input type="file" id="fileElem" multiple accept="image/*" style="display:none">
+    <a href="#" id="fileSelect">Select some files</a>
+    <div id="fileList">
+      <p>No files selected!</p>
+    </div>
+
+    <div>
+        <div>
+            <a href="sap-logo.png" download="sap-logo.png">Download SAP logo</a>
+        </div>
+    </div>
+
+    <h4>REQUIRE_CONTEXT RESPONSE</h4>
+    <div id="info">No Value</div>
+
+</body>
+
+</html>

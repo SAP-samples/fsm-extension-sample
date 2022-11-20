@@ -1,0 +1,29 @@
+{
+  "name": "fsm-extension-download-test-01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx webpack --mode=production",
+    "build:watch": "npm run build -- --watch",
+    "start": "npx browser-sync public --no-open --serveStatic --port 3003",
+    "start:watch": "npm run start -- --watch",
+    "start:dev": "npx npm-run-all --parallel build:watch start:watch",
+    "start:tunnel": "npx npm-run-all --parallel start tunnel",
+    "tunnel": "npx ngrok http 3003"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fsm-shell": "^1.11.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.27.5",
+    "ngrok": "^4.1.0",
+    "npm-run-all": "^4.1.5",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.3.5",
+    "webpack": "^5.49.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
