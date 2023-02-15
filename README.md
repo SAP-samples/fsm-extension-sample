@@ -42,7 +42,7 @@ Here is an overview of the extension samples sorted by architecture:
 
 <table>
  <tr>
-  <td><a href="samples/download-test-extension/">Download Test</a></td>
+  <td><a href="samples/download-test-extension/">Download Test (extension attributes example)</a></td>
  </tr>
  <tr>
   <td><a href="samples/extenstion-starter-kit/">Extension Starter Kit</a></td>
