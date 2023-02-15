@@ -42,6 +42,15 @@ Here is an overview of the extension samples sorted by architecture:
 
 <table>
  <tr>
+  <td><a href="samples/download-test-extension/">Download Test</a></td>
+ </tr>
+ <tr>
+  <td><a href="samples/extenstion-starter-kit/">Extension Starter Kit</a></td>
+ </tr>
+ <tr>
+  <td><a href="samples/parameter-showcase-extension/">Parameter Showcase</a></td>
+ </tr>
+ <tr>
   <td><a href="samples/service-contract/">Service Contract</a></td>
  </tr>
  <tr>
