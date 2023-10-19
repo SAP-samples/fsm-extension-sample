@@ -1,114 +1,54 @@
-# How to develop an extension on SAP Cloud Platform UI5
+# How to develop an FSM extension with SAP UI5 in SAP BTP Cloud Foundry
 
 ## Prerequisites
 
-- **You have SAP UI5 development expertise:** advanced skills are not required but a basic level would be very helpful. A variety of resources can be found on the **[Official Website](https://sapui5.hana.ondemand.com/)**.
+- **You have experience developing SAP UI5 applications.** Advanced skills are not required but a basic level should be helpful. Many resources can be found on the **[Official Website](https://sapui5.hana.ondemand.com/)**.
 
-- **You have an account on SAP Cloud Platform:** if you don't have an account, follow this **[tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html)** to create one.
+- **You have an account on SAP Cloud Platform.** If you don't have it, follow this **[tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html)** to create one.
 
-- **You should have some knowledge about the new SAP Business Application Studio:** check out the **[official documentation](https://help.sap.com/viewer/9d1db9835307451daa8c930fbd9ab264/Cloud/en-US)** or join the **[community](https://community.sap.com/topics/business-application-studio)**.
+- **You have knowledge about SAP Business Application Studio.** Check out the **[official documentation](https://help.sap.com/viewer/9d1db9835307451daa8c930fbd9ab264/Cloud/en-US)** or join the **[SAP community](https://community.sap.com/topics/business-application-studio)**.
 
-- **You have set up the SAP Business Application Studio for development:** if you have not set it up yet, follow this **[tutorial](https://developers.sap.com/tutorials/appstudio-onboarding.html)**.
+- **You have set up SAP Business Application Studio for development.** If you haven't, follow this **[tutorial](https://developers.sap.com/tutorials/appstudio-onboarding.html)**.
 
-## Create a Dev Space
+- **You have a DEV space up and running.** If you have not created a DEV space yet, follow this **[tutorial](https://developers.sap.com/tutorials/appstudio-devspace-fiori-create.html)** to create one.
 
-- Goto the "SAP Business Application Studio" and click on the button "Create Dev Space".
-
-![create dev space 1](./assets/ExtensionOnSapCP-UI5/create-dev-space-step1.png)
-
-- Enter ```fsmDemo``` in the Dev Space **name**, select **SAP Fiori"** from the list "kind of application" and then click on the button "Create Dev Space".
-
-![create dev space 2](./assets/ExtensionOnSapCP-UI5/create-dev-space-step2.png)
-
-- Wait until the workspace is created and **"Running"**. Click on the name of the workspace to navigate to the development IDE.
-
-![create dev space 3](./assets/ExtensionOnSapCP-UI5/create-dev-space-step3.png)
-
-## Connect to a Cloud Foundry endpoint
-
-- Click on the message "The organization and space in Cloud Foundry have not been set", it is shown on the bottom-left corner.
-
-![connect to CF 1](./assets/ExtensionOnSapCP-UI5/connect-to-cf-step1.png)
-
-- Select the endpoint you want to use. The one assigned to your sub-account will be listed as the main option by default (The url may be different depending on the region you've chosen).
-
-![connect to CF 2](./assets/ExtensionOnSapCP-UI5/connect-to-cf-step2.png)
-
-- Enter your E-mail and password.
-
-![connect to CF 3](./assets/ExtensionOnSapCP-UI5/connect-to-cf-step3.png)
-
-- Select the CF organization and workspace.
-
-![connect to CF 4](./assets/ExtensionOnSapCP-UI5/connect-to-cf-step4.png)
-
-![connect to CF 5](./assets/ExtensionOnSapCP-UI5/connect-to-cf-step5.png)
-
-![connect to CF 6](./assets/ExtensionOnSapCP-UI5/connect-to-cf-step6.png)
-
-## Create a new extension project
+## Create a new SAP Fiori Application
 
 - Click on **"New project from template"**.
 
-![Create new project 1](./assets/ExtensionOnSapCP-UI5/create-new-project-step1.png)
+![Create new project 1](./assets/ExtensionOnSapCP-UI5/create-project-step1.png)
 
-- Select **"SAP Fiori Freestyle - Project Generator""** and click on the button "Next".
+- Select **"SAP Fiori application"** and click on the button **"Next"**.
 
-![Create new project 2](./assets/ExtensionOnSapCP-UI5/create-new-project-step2.png)
+![Create new project 2](./assets/ExtensionOnSapCP-UI5/create-project-step2.png)
 
-- Select "Cloud Foundry" from the list of "Target Running Environment", "SAP UI5 Application" as template and click on the button "Next".
+- Select **"Basic"** from the list of templates and click on the button **"Next"**.
 
-![Create new project 3](./assets/ExtensionOnSapCP-UI5/create-new-project-step3.png)
+![Create new project 3](./assets/ExtensionOnSapCP-UI5/create-project-step3.png)
 
-- Enter ```fsm-demo``` in the name of the project.
-  
-![Create new project 4](./assets/ExtensionOnSapCP-UI5/create-new-project-step4.png)
+- Select **"None"** from the list of **"Data Source"** and click on the button **"Next"**.
 
-- Select "Standard Approuter" from the list of "HTML5 Application Runtime"
+![Create new project 4](./assets/ExtensionOnSapCP-UI5/create-project-step4.png)
 
-![Create new project 5](./assets/ExtensionOnSapCP-UI5/create-new-project-step5.png)
+- Leave the default view name and click on the button **"Next"**.
 
-- Enter ```ui5``` in the name of the "HTML5 module", ```sap.cp``` in the name of the "namespace" and click on the button "Next".
+![Create new project 5](./assets/ExtensionOnSapCP-UI5/create-project-step5.png)
 
-![Create new project 6](./assets/ExtensionOnSapCP-UI5/create-new-project-step6.png)
+- Provide the **"Module name"**, **"Application title"**, **"Description"**, and **"Yes"** in the **"add deployment configuration"** selection. Then click on the button **"Next"**.
 
-- In the next screen, click on the button "Next".
+![Create new project 6](./assets/ExtensionOnSapCP-UI5/create-project-step6.png)
 
-- Click on the button "Open in New Workspace".
+- Select **"Cloud Foundry"** from the list of **"targets"**, and the option **"Add application to managed application router"**. Then click on the button **"Finish"**.
 
-![Create new project 7](./assets/ExtensionOnSapCP-UI5/create-new-project-step7.png)
+![Create new project 7](./assets/ExtensionOnSapCP-UI5/create-project-step7.png)
 
-![Create new project 8](./assets/ExtensionOnSapCP-UI5/create-new-project-step8.png)
+- In the **"Workspace Dialog Box"**, select **"Add project to workspace"**
 
-## Adjust the extension project to be used within the Outlets in FSM
-
-- Create a file ```appconfig.json``` under the folder ```/ui5/webapp```. This file is required to be able to register the extension project in FSM (more information  **[here](https://github.com/SAP-samples/fsm-extension-sample#appconfigjson-file)**). Copy and paste the following code:
-
-```json
-{
-    "name": "fsm-scp-ui5-extension-app",
-    "provider": "Roadrunner Team",
-    "description": "FSM SCP UI5 Extension App",
-    "version": "1.0.0",
-    "icon": "",  
-    "parameters": []
-}
-```
-
-![Adjust extension project 1](./assets/ExtensionOnSapCP-UI5/adjust-extension-app-step1.png)
-
-- The application router generated in the project sends by default **X-Frame-Options** header with the value **SAMEORIGIN**. We need to disable this security mechanism since the FSM Micro-frontend application and the SAPUI5 application are hosted in different domains; otherwise the extension application won't be able to run within the outlet. Following the **[documentation](https://www.npmjs.com/package/@sap/approuter#x-frame-options-configuration)** and having simplicity in mind, we have disabled this security feature by setting the property SEND_XFRAMEOPTIONS to false in the file ```mta.yaml```, as follows:
-  
-![Adjust extension project 2](./assets/ExtensionOnSapCP-UI5/adjust-extension-app-step2.png)
-
-- The SAPUI5 extension app generated in the project also implements a mechanism to prevent security vulnerabilities when running within an iFrame (as described in the **[documentation](https://sapui5.hana.ondemand.com/#/topic/62d9c4d8f5ad49aa914624af9551beb7)**). Once again, we need to disable this since the FSM Micro-frontend application and the SAPUI5 application are hosted in different domains:
-
-![Adjust extension project 3](./assets/ExtensionOnSapCP-UI5/adjust-extension-app-step3.png)
+![Create new project 8](./assets/ExtensionOnSapCP-UI5/create-project-step8.png)
 
 ## Consuming the ShellSDK library
 
-- Based on the **[official documentation](https://sap.github.io/fsm-shell/#/examples)**, to be able to consume the shellSDK library from the SAPUI5 extension app, we need to load it during the start up of the app. Copy and paste the following code in the file ```/ui5/webapp/Component.js```:
- 
+- Based on the **[official documentation](https://sap.github.io/fsm-shell/#/examples)**, to be able to consume the shellSDK library in the SAP UI5 app, we need to load it during the start up process. Copy and paste the following code in the file ```/ui5extension/webapp/Component.js```:
 
 ```javascript
 // Shell SDK library
@@ -128,7 +68,7 @@ sap.ui.loader.config({
 
 ![Consuming shellSDK 1](./assets/ExtensionOnSapCP-UI5/consuming-shellSDK-step1.png)
 
-- In order to establish a communication with the FSM shell host, we need to initialize the client library and send a ```REQUIRE_CONTEXT``` event; as described **[here](https://sap.github.io/fsm-shell/#/usage-sample?id=sending-event-to-the-shell-host-application)**. Copy and paste the following code in the file ```/ui5/webapp/controller/View1.controller.js```:
+- In order to establish a communication with the FSM shell host, we need to initialize the client library and send a ```REQUIRE_CONTEXT``` event; as described **[here](https://sap.github.io/fsm-shell/#/usage-sample?id=sending-event-to-the-shell-host-application)**. Copy and paste the following code in the file ```/ui5extension/webapp/controller/View1.controller.js```:
 
 ```javascript
 sap.ui.define([
@@ -146,45 +86,41 @@ return Controller.extend("sap.cp.ui5.controller.View1", {
         shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
             clientIdentifier: 'fsm-demo-plugin',
         });
-
+    }
 ...
 ```
 
 ![Consuming shellSDK 2](./assets/ExtensionOnSapCP-UI5/consuming-shellSDK-step2.png)
 
-- To display some data pulled from FSM, let's change the template view generated within the project. Replace the content in the file ```/ui5/webapp/view/View1.view.xml``` with the following code:
+- To display data from FSM, let's change the template view generated within the project. Replace the content in the file ```/ui5extension/webapp/view/View1.view.xml``` with the following code:
 
 ```xml
-<mvc:View controllerName="sap.cp.ui5.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"  xmlns="sap.m">
-    <Shell id="shell">
-        <App id="app">
-            <pages>
-                <Page id="page" title="Attributes pulled from FSM shell app">
-                <content>
-                    <sap.ui.layout:Grid xmlns:sap.ui.layout="sap.ui.layout" id="grid0">
-                        <sap.ui.layout:content>
-                            <ObjectListItem title="account" intro="Account" icon="sap-icon://account" id="account"/>
-                            <ObjectListItem title="accountID" intro="Account ID" icon="sap-icon://account" id="accountID"/>
-                            <ObjectListItem title="company" intro="Company" icon="sap-icon://factory" id="company"/>
-                            <ObjectListItem title="companyID" intro="Company ID" icon="sap-icon://factory" id="companyID"/>
-                            <ObjectListItem title="user" intro="User" icon="sap-icon://account" id="user"/>
-                            <ObjectListItem title="userID" intro="User ID" icon="sap-icon://account" id="userID"/>
-                            <ObjectListItem title="locale" intro="Selected Locale" icon="sap-icon://globe" id="selLocale"/>
-                        </sap.ui.layout:content>
-                    </sap.ui.layout:Grid>
-                </content>
-                </Page>
-            </pages>
-        </App>
-    </Shell>
+<mvc:View controllerName="ui5extension.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <sap.ui.layout:Grid xmlns:sap.ui.layout="sap.ui.layout" id="grid0">
+                <sap.ui.layout:content>
+                    <ObjectListItem title="account" intro="Account" icon="sap-icon://account" id="account"/>
+                    <ObjectListItem title="accountID" intro="Account ID" icon="sap-icon://account" id="accountID"/>
+                    <ObjectListItem title="company" intro="Company" icon="sap-icon://factory" id="company"/>
+                    <ObjectListItem title="companyID" intro="Company ID" icon="sap-icon://factory" id="companyID"/>
+                    <ObjectListItem title="user" intro="User" icon="sap-icon://account" id="user"/>
+                    <ObjectListItem title="userID" intro="User ID" icon="sap-icon://account" id="userID"/>
+                    <ObjectListItem title="locale" intro="Selected Locale" icon="sap-icon://globe" id="selLocale"/>
+                </sap.ui.layout:content>
+            </sap.ui.layout:Grid>
+        </content>
+    </Page>
 </mvc:View>
 ```
 
 ![Consuming shellSDK 3](./assets/ExtensionOnSapCP-UI5/consuming-shellSDK-step3.png)
 
-![Consuming shellSDK 3](./assets/ExtensionOnSapCP-UI5/consuming-shellSDK-step4.png)
+![Consuming shellSDK 4](./assets/ExtensionOnSapCP-UI5/consuming-shellSDK-step4.png)
 
-- Now adjust the controller (```/ui5/webapp/controller/View1.controller.js```) adding the following code:
+- Now adjust the controller (```/ui5extension/webapp/controller/View1.controller.js```) adding the following code:
 
 ```javascript
 ...
@@ -219,67 +155,58 @@ return Controller.extend("sap.cp.ui5module.controller.View1", {
 ...
 ```
 
-![Consuming shellSDK 4](./assets/ExtensionOnSapCP-UI5/consuming-shellSDK-step5.png)
+![Consuming shellSDK 5](./assets/ExtensionOnSapCP-UI5/consuming-shellSDK-step5.png)
 
-## Building, deploying and testing the SAPUI5 extension app
+## Building, deploying and testing the SAP UI5 app
 
-- In order to deploy the SAPUI5 extension app, we first need to build the project. Right click over the file ```mta.yaml``` and click on the option **"Build MTA"**:
+- In order to deploy the SAP UI5 app, first we need to build the project. Right click over the file ```./uiextension/mta.yaml``` and click on the option **"Build MTA"**.
 
-![Building, deploying and testing 1](./assets/ExtensionOnSapCP-UI5/building-deploying-testing-step1.png)
+- Wait until the building process is finished. The ```./ui5extension/dist``` and ```./ui5extension/mta_archives/``` folders should be created.
 
-- Wait until the building process is finished. You should see a message as follows:
+- Deploy the application by right clicking on the file ```./ui5extension/mta_archives/fsm-demo_0.0.1.mtar``` and then on the option **"Deploy MTA Archive"**.
 
-![Building, deploying and testing 2](./assets/ExtensionOnSapCP-UI5/building-deploying-testing-step2.png)
+- Wait until the deployment is finished.
 
-- The ```/ui5/dist``` and ```/mta_archives/``` folders should be created once the build is finished successfully:
+- To test the SAP UI5 app in the browser, make sure you have created a subscription to the service **"SAP Build Work Zone, standard edition"** in the SAP BTP Cockpit:
 
-![Building, deploying and testing 3](./assets/ExtensionOnSapCP-UI5/building-deploying-testing-step3.png)
+![Building, deploying, and testing 1](./assets/ExtensionOnSapCP-UI5/build-deploy-and-test-step1.png)
 
-- Deploy the application. Right click on the file ```fsm-demo_0.0.1.mtar``` and click on **"Deploy MTA Archive"**.
+- Click on the application link:
 
-![Building, deploying and testing 4](./assets/ExtensionOnSapCP-UI5/building-deploying-testing-step4.png)
+![Building, deploying, and testing 2](./assets/ExtensionOnSapCP-UI5/build-deploy-and-test-step2.png)
 
-- Wait until the deployment is finished. A message should be then shown:
+![Building, deploying, and testing 3](./assets/ExtensionOnSapCP-UI5/build-deploy-and-test-step3.png)
 
-![Building, deploying and testing 5](./assets/ExtensionOnSapCP-UI5/building-deploying-testing-step5.png)
+## Registering the SAP UI5 app as an FSM extension
 
-- To test the SAPUI5 extension app we need to know the URL we can use to get access. Start a new Terminal and execute the command ```cf apps```:
+- Login to the FSM Shell Application, navigate to **"Foundational Services"**, **"Extensions"**, **"Installed"** and click on the button **"Add Extension"**:
 
-![Building, deploying and testing 6](./assets/ExtensionOnSapCP-UI5/building-deploying-testing-step6.png)
+![Registering, consuming SAP UI5 app 1](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step1.png)
 
-- Copy the url listed for the application ```fsm-demo-approuter```: 
+- Provide the URL of the SAP UI5 app and click on the button **"Next Step"**:
 
-![Building, deploying and testing 7](./assets/ExtensionOnSapCP-UI5/building-deploying-testing-step7.png)
+![Registering, consuming SAP UI5 app 2](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step2.png)
 
-- Concatenate the "namespace" (```sap.cp```) and the name of the "HTML5 module" (```ui5```) entered when creating the extension project without any special character, dots, etc:
-```https://2cd577fbtrial-dev-fsm-demo-approuter.cfapps.us10.hana.ondemand.com/sapcpui5/index.html```:
+- Type in **"Name"**, **"Description"**, **"Provider"**, and a **"Version"** for the extension. Then click on the button **"Next Step"**:
 
-![Building, deploying and testing 8](./assets/ExtensionOnSapCP-UI5/building-deploying-testing-step8.png)
+![Registering, consuming SAP UI5 app 3](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step3.png)
 
-## Registering and consuming the SAPUI5 extension app
+- Agree to the **"Terms & conditions"**. Then click on the button **"Next Step"**:
 
-- Login to the FSM Shell Application, navigate to the "Foundational Services", "Extension Apps" and click on the button "Add Extension App":
+![Registering, consuming SAP UI5 app 4](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step4.png)
 
-![Registering, consuming extension app 1](./assets/ExtensionOnSapCP-UI5/registering-consuming-app-step1.png)
+- Select the **"Automatic assignments"** for the extension, then click on the button **"Next Step"**:
 
-- Register the SAPUI5 extension app by selecting "Manual" from the list of "Deployment Type" and entering the URL of the SAPUI5 extension app (make sure you exclude the ```index.html```). The URL should look like this ```https://2cd577fbtrial-dev-fsm-demo-approuter.cfapps.us10.hana.ondemand.com/sapcpui5/```. Then click on the button "Next":
+![Registering, consuming SAP UI5 app 5](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step5.png)
 
-![Registering, consuming extension app 2](./assets/ExtensionOnSapCP-UI5/registering-consuming-app-step2.png)
+- While in **"Extension Configuration"** mode, navigate to **"Planning and Dispatching"**, **"Dispatching Board"** and click on the **"Add Extension"** button.
 
-- Click on the button "Install" to finish the registration,
+![Registering, consuming SAP UI5 app 6](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step6.png)
 
-![Registering, consuming extension app 3](./assets/ExtensionOnSapCP-UI5/registering-consuming-app-step3.png)
+- Select the SAP UI5 extension and click on the button **"Add"**:
 
-- Enable the "Extension Configuration" option from the "three dots menu":
+![Registering, consuming SAP UI5 app 7](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step7.png)
 
-![Registering, consuming extension app 4](./assets/ExtensionOnSapCP-UI5/registering-consuming-app-step4.png)
+- The SAP UI5 is loaded as an extension and displaying information from FSM:
 
-- Navigate to "Planning and Dispatching", "Dispatching Board", click on the "Add Plug-in" button, select the SAPUI5 extension app amd click on the button "Add":
-
-![Registering, consuming extension app 5](./assets/ExtensionOnSapCP-UI5/registering-consuming-app-step5.png)
-
-- The SAPUI5 extension app is loaded as an extension and displays information pulled from FSM:
-
-![Registering, consuming extension app 6](./assets/ExtensionOnSapCP-UI5/registering-consuming-app-step6.png)
-
-![Registering, consuming extension app 7](./assets/ExtensionOnSapCP-UI5/registering-consuming-app-step7.png)
+![Registering, consuming SAP UI5 app 8](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step8.png)
