@@ -4,7 +4,7 @@
 
 - **You have experience developing SAP UI5 applications.** Advanced skills are not required but a basic level should be helpful. Many resources can be found on the **[Official Website](https://sapui5.hana.ondemand.com/)**.
 
-- **You have an account on SAP Cloud Platform.** If you don't have it, follow this **[tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html)** to create one.
+- **You have an account on SAP BTP.** If you don't have it, follow this **[tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html)** to create one.
 
 - **You have knowledge about SAP Business Application Studio.** Check out the **[official documentation](https://help.sap.com/viewer/9d1db9835307451daa8c930fbd9ab264/Cloud/en-US)** or join the **[SAP community](https://community.sap.com/topics/business-application-studio)**.
 
