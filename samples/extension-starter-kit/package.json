@@ -8,21 +8,21 @@
     "build:watch": "npm run build -- --watch",
     "start": "npx browser-sync public --no-open --serveStatic --port 3003",
     "start:watch": "npm run start -- --watch",
-    "start:dev": "npx npm-run-all --parallel build:watch start:watch",
+    "start:dev": "concurrently \"npm run build:watch\" \"npm run start:watch\"",
     "tunnel": "npx ngrok http 3003"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fsm-shell": "^1.12.1"
+    "fsm-shell": "^1.19.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.27.5",
-    "ngrok": "^4.1.0",
-    "npm-run-all": "^4.1.5",
-    "ts-loader": "^9.2.5",
-    "typescript": "^4.3.5",
-    "webpack": "^5.49.0",
-    "webpack-cli": "^4.7.2"
+    "browser-sync": "^3.0.2",
+    "concurrently": "^8.2.2",
+    "ngrok": "^4.3.3",
+    "ts-loader": "^9.5.1",
+    "typescript": "^4.9.5",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

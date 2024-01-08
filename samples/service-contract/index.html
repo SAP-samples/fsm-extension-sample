@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Service contract available</title>
-    <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+    <link href="https://unpkg.com/fundamental-styles@latest/dist/fundamental-styles.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
   </head>
   <body>
@@ -45,11 +45,19 @@
             auth
           } = JSON.parse(event);
 
-          // Access_token has a short life stpan and needs to be refreshed before expiring
-          // Each extension need to implement its own strategy to fresh it.
+          /**
+           * Access_token has a short life span and needs to be refreshed before expiring. Each
+           * extension needs to implement its own strategy to fresh it.
+           * 
+           * IMPORTANT: You only receive a new token in case the current token's validation period
+           * is less than one minute. If a new token is requested and the validation period is one
+           * minute or more, you receive the current token again with an updated validation period.
+           * A token's validation period is provided via the property expires_in, which contains
+           * the time left in seconds.
+           */
           initializeRefreshTokenStrategy(shellSdk, auth);
 
-          // Add a listenner expecting activityID
+          // Add a listener expecting activityID
           shellSdk.onViewState('activityID', async activityID => {
 
             updateUI(`Loading ...`);
