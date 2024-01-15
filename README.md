@@ -45,7 +45,7 @@ Here is an overview of the extension samples sorted by architecture:
   <td><a href="samples/download-test-extension/">Download Test (extension attributes example)</a></td>
  </tr>
  <tr>
-  <td><a href="samples/extenstion-starter-kit/">Extension Starter Kit</a></td>
+  <td><a href="samples/extension-starter-kit/">Extension Starter Kit</a></td>
  </tr>
  <tr>
   <td><a href="samples/parameter-showcase-extension/">Parameter Showcase</a></td>
