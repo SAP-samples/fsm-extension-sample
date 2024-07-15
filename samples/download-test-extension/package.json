@@ -15,15 +15,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fsm-shell": "^1.11.2"
+    "fsm-shell": "^1.19.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.27.5",
-    "ngrok": "^4.1.0",
+    "browser-sync": "^2.29.3",
+    "ngrok": "^4.3.3",
     "npm-run-all": "^4.1.5",
-    "ts-loader": "^9.2.5",
-    "typescript": "^4.3.5",
-    "webpack": "^5.49.0",
-    "webpack-cli": "^4.7.2"
+    "ts-loader": "^9.5.1",
+    "typescript": "^4.9.5",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^4.10.0"
   }
 }
