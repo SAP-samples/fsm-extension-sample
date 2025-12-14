@@ -47,6 +47,7 @@ Here is an overview of the extension samples sorted by architecture:
 | [Inside Shell with Shell Navigation](samples/with-shell-navigation/) |
 | [Inside Shell Without Shell Navigation](samples/without-shell-navigation/) |
 | [Outside Shell in a New Tab](samples/outside-shell/) |
+| [Refresh Token Sample (TypeScript)](samples/refresh-token-sample-ts/) |
 
 ### Front-end and Backend
 
