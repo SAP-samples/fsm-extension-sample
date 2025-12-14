@@ -34,10 +34,16 @@ window.addEventListener('load', () => {
   }  
   
   // Subscribe to auth stream and display token accumulation
-  extensionController.subscribeToAuth((auth) => {
+  const authTokenStream = extensionController.subscribeToAuth((auth) => {
     if (auth) {
       const tokenInfo = JSON.stringify(auth, null, 2);
       appendTokenToUI(tokenInfo);
+    }
+  });
+
+  window.addEventListener('pagehide', () => {
+    if (authTokenStream) {
+      authTokenStream(); // Unsubscribe from auth stream on page hide
     }
   });
 });
