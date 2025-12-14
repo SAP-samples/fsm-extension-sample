@@ -8,17 +8,15 @@ You can find more information about the SAP Field Service Management API and the
 
 ## Disclaimer
 
-Do not use the samples or parts of them in your productive code. The samples are minimal viable products that do not follow any security, performance, or quality standards. If you develop your own extension, please make sure that your extension follows security, performance, and quality standards. There will be no support if you use code from the samples in your productive environment.
-
+Do not use the samples or parts of them in your productive code. The samples are minimal viable products that do not follow any security, performance, or quality standards. If you develop your own extension, please make sure that it follows those standards. There will be no support if you use code from this repository in your productive environment.
 
 ## Prerequisite for Using the Samples
 
 To run the sample extensions, you need access to SAP Field Service Management. You can find more information about getting access in the [SAP Field Service Management – SAP Help Portal](https://help.sap.com/viewer/product/SAP_FIELD_SERVICE_MANAGEMENT/Cloud/en-US).
-.
 
 ## Using the Samples
 
-### Using the Samples Locally 
+### Using the Samples Locally
 
 The easiest way to use the samples without using Git is to download the ZIP file containing the current version. You can download the ZIP file either by using the link below or by choosing **Download ZIP** on the repository page.
 
@@ -40,52 +38,33 @@ Here is an overview of the extension samples sorted by architecture:
 
 ### Front-end
 
-<table>
- <tr>
-  <td><a href="samples/download-test-extension/">Download Test (extension attributes example)</a></td>
- </tr>
- <tr>
-  <td><a href="samples/extension-starter-kit/">Extension Starter Kit</a></td>
- </tr>
- <tr>
-  <td><a href="samples/parameter-showcase-extension/">Parameter Showcase</a></td>
- </tr>
- <tr>
-  <td><a href="samples/service-contract/">Service Contract</a></td>
- </tr>
- <tr>
-  <td><a href="samples/with-shell-navigation/">Inside Shell with Shell Navigation</a></td>
- </tr>
- <tr>
-  <td><a href="samples/without-shell-navigation/">Inside Shell Without Shell Navigation</a></td>
- </tr>
- <tr>
-  <td><a href="samples/outside-shell/">Outside Shell in a New Tab</a></td>
- </tr>
-</table>
+| Sample |
+|--------|
+| [Download Test (extension attributes example)](samples/download-test-extension/) |
+| [Extension Starter Kit](samples/extension-starter-kit/) |
+| [Parameter Showcase](samples/parameter-showcase-extension/) |
+| [Service Contract](samples/service-contract/) |
+| [Inside Shell with Shell Navigation](samples/with-shell-navigation/) |
+| [Inside Shell Without Shell Navigation](samples/without-shell-navigation/) |
+| [Outside Shell in a New Tab](samples/outside-shell/) |
 
 ### Front-end and Backend
 
-<table>
- <tr>
-  <td><a href="samples/login-with-token/">Login with Token</a></td>
- </tr>
- <tr>
-  <td><a href="samples/mobile-web-container/">Extension Inside Mobile Web Container </a></td>
- </tr>
-</table>
+| Sample |
+|--------|
+| [Login with Token](samples/login-with-token/) |
+| [Extension Inside Mobile Web Container](samples/mobile-web-container/) |
 
 ### Front-end and Backend using SSO
 
-<table>
- <tr>
-  <td><a href="samples/login-with-sso/">Login with SSO</a></td>
- </tr>
-</table>
+| Sample |
+|--------|
+| [Login with SSO](samples/login-with-sso/) |
 
 ## How to Get Support
 
-If you find a bug or need support, please open an issue [here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).
+If you find a bug or need support, please [open an issue](https://github.com/SAP-samples/fsm-extension-sample/issues/new).
 
 ## License
+
 Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](./LICENSES/Apache-2.0.txt) file.
