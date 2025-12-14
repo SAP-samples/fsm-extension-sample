@@ -1,0 +1,8 @@
+---
+applications:
+  - name: fsm-refresh-token-sample-ts
+    memory: 64M
+    buildpack: staticfile_buildpack
+    path: dist
+    env:
+      FORCE_HTTPS: true

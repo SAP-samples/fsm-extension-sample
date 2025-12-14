@@ -1,0 +1,21 @@
+{
+  "name": "fsm-extension-refresh-token-sample",
+  "version": "1.0.0",
+  "description": "FSM Extension - Refresh Token Sample (TypeScript + Vite)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fsm-shell": "^1.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.9.3",
+    "vite": "^5.0.0"
+  }
+}
