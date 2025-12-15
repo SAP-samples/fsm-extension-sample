@@ -1,0 +1,9 @@
+/node_modules
+
+# generated files
+/dist
+/public
+/release
+
+# Mac OS X staff
+.DS_Store

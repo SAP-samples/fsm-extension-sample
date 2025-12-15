@@ -1,0 +1,10 @@
+node_modules/
+src/
+.git/
+.gitignore
+*.md
+tsconfig.json
+vite.config.ts
+package.json
+package-lock.json
+.nvmrc
