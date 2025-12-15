@@ -1,4 +1,4 @@
-# SAP Field Service Management - Refresh Token Sample
+# SAP Field Service Management - Refresh Token Sample (TypeScript)
 
 This is an SAP Field Service Management extension project demonstrating how to handle token refresh.
 
@@ -61,7 +61,7 @@ refresh-token-sample-ts/
 │   ├── util/
 │   │   └── util.ts               # BehaviorSubject implementation
 │   └── styles/
-│       └── style.css             # Application styles
+│       └── styles.css            # Application styles
 │
 ├── dist/                         # Production build (generated)
 │   ├── index.html
@@ -127,7 +127,6 @@ Starts Vite development server at <http://localhost:3003> with:
 - Hot Module Replacement (HMR)
 - Instant TypeScript compilation
 - Automatic browser reload on file changes
-- Source maps for debugging
 
 ### Production Build
 
@@ -141,7 +140,6 @@ Creates optimized production build in `dist/`:
 2. Bundles and minifies code with Vite
 3. Optimizes assets (images, CSS, JS)
 4. Generates hashed filenames for cache busting
-5. Creates source maps
 
 ### Preview Production Build
 
@@ -234,9 +232,13 @@ If you have a SAP BTP CF account, this sample can be deployed to a CF space:
 - Login to the corresponding space and org using `cf login -a <API_ENDPOINT> -o <ORG> -s <SPACE>`
 - Run `cf push` and `cf apps` to get the url where the sample is served.
 
-### Next Steps
+## Next Steps
 
 For more information about installing and placing extensions:
 
 - [Manual Installation of an Extension](https://help.sap.com/viewer/fsm_extensions/Cloud/en-US/install-manually.html)
 - [Placing an Extension App](https://help.sap.com/viewer/fsm_extensions/Cloud/en-US/place-an-extension-app.html)
+
+## License
+
+See LICENSE file in the root of the repository.
