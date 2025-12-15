@@ -1,4 +1,4 @@
-# SAP Field Service Management - Refresh Token Sample (TypeScript)
+# SAP Field Service Management - Refresh Token Sample (JavaScript)
 
 This is an SAP Field Service Management extension project demonstrating how to handle token refresh.
 
@@ -7,7 +7,7 @@ This is an SAP Field Service Management extension project demonstrating how to h
 ## Architecture
 
 - **Build Tool**: Vite 5 (modern fast bundler)
-- **Language**: TypeScript with strict mode
+- **Language**: JavaScript (ES Modules)
 - **Module System**: ES Modules (ESNext)
 - **Development**: Hot Module Replacement (HMR) with instant reload
 - **Production**: Optimized build with code splitting and minification
@@ -34,7 +34,7 @@ This is an SAP Field Service Management extension project demonstrating how to h
    npm run dev
    ```
 
-   The project will be compiled and served at <http://localhost:3003>. Any changes to TypeScript files will automatically trigger recompilation.
+   The project will be compiled and served at <http://localhost:3003>. Any changes to JavaScript files will automatically trigger recompilation.
 
 3. Build for production:
 
@@ -53,13 +53,13 @@ This is an SAP Field Service Management extension project demonstrating how to h
 ## Project Structure
 
 ```bash
-refresh-token-sample-ts/
+refresh-token-sample-js/
 ├── src/                          # Source files
 │   ├── index.html                # HTML entry point
-│   ├── index.ts                  # Main application logic and UI updates
-│   ├── extension.controller.ts   # Extension controller with token refresh logic
+│   ├── index.js                  # Main application logic and UI updates
+│   ├── extension.controller.js   # Extension controller with token refresh logic
 │   ├── util/
-│   │   └── util.ts               # BehaviorSubject implementation
+│   │   └── util.js               # BehaviorSubject implementation
 │   └── styles/
 │       └── styles.css            # Application styles
 │
@@ -76,18 +76,20 @@ refresh-token-sample-ts/
 ├── .cfignore                     # Files to ignore in Cloud Foundry deployment
 ├── manifest.yml                  # Cloud Foundry deployment configuration
 ├── Staticfile                    # Static buildpack configuration for CF
-├── vite.config.ts                # Vite configuration
-├── tsconfig.json                 # TypeScript configuration
+├── vite.config.js                # Vite configuration
 └── package.json                  # Dependencies and scripts
 ```
 
 ## Configuration
 
-### Vite Configuration (`vite.config.ts`)
+### Vite Configuration (`vite.config.js`)
 
-```typescript
+```javascript
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
   root: 'src',                    // Source directory
@@ -100,21 +102,13 @@ export default defineConfig({
     }
   },
   server: {
-    port: 3003,                   // Dev server port
-    open: false                   // Don't auto-open browser
+    port: 3003,                   // Development server port
+    open: false
   }
 });
 ```
 
-### TypeScript Configuration (`tsconfig.json`)
-
-- **Target**: ES2020
-- **Module**: ESNext (for Vite bundler mode)
-- **Strict Mode**: Enabled
-- **Module Resolution**: bundler (optimized for Vite)
-- **Type Checking**: `noEmit: true` (Vite handles compilation)
-
-## Available Scripts
+### Available Scripts
 
 ### Development
 
@@ -125,7 +119,7 @@ npm run dev
 Starts Vite development server at <http://localhost:3003> with:
 
 - Hot Module Replacement (HMR)
-- Instant TypeScript compilation
+- Instant compilation
 - Automatic browser reload on file changes
 
 ### Production Build
@@ -136,10 +130,9 @@ npm run build
 
 Creates optimized production build in `dist/`:
 
-1. Type checks with `tsc`
-2. Bundles and minifies code with Vite
-3. Optimizes assets (images, CSS, JS)
-4. Generates hashed filenames for cache busting
+1. Bundles and minifies code with Vite
+2. Optimizes assets (images, CSS, JS)
+3. Generates hashed filenames for cache busting
 
 ### Preview Production Build
 
@@ -222,7 +215,7 @@ Netlify will prompt for configuration (auto-detected for Vite projects).
 - Go to [app.netlify.com/drop](https://app.netlify.com/drop)
 - Drag the `dist/` folder to deploy
 
-Quick deploy for testing, but ot lacks Git integration.
+Quick deploy for testing, but it lacks Git integration.
 
 ### Deploying to SAP BTP Cloud Foundry
 

@@ -1,0 +1,9 @@
+node_modules/
+src/
+.git/
+.gitignore
+*.md
+vite.config.js
+package.json
+package-lock.json
+.nvmrc
