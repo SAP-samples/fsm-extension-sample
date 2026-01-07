@@ -1,0 +1,22 @@
+# Netlify configuration for UI5 Extension deployment
+
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# CORS headers to allow FSM Shell to load the extension
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+    X-Frame-Options = "ALLOWALL"
+    X-Content-Type-Options = "nosniff"
+
+# Redirect for SPA routing - but exclude static assets
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false

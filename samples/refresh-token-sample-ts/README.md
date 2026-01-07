@@ -1,8 +1,9 @@
 # SAP Field Service Management - Refresh Token Sample (TypeScript)
 
-This is an SAP Field Service Management extension project demonstrating how to handle token refresh.
+This is an SAP Field Service Management extension project demonstrating how to handle token refresh and display authentication tokens in real-time using Typescript.
 
-**Do not use this samples or parts of your productive code**. It is just a reference, since it does not follow any particular security, performance, or quality standards. **There will be no support if you use code from this project in your productive environment**.
+**Do not use this samples or parts in your productive code**. It should be used only as a reference, since it does not follow any particular security, performance, or quality standards.
+**There will be no support if you use code from this project in your productive environment**.
 
 ## Architecture
 
@@ -222,7 +223,7 @@ Netlify will prompt for configuration (auto-detected for Vite projects).
 - Go to [app.netlify.com/drop](https://app.netlify.com/drop)
 - Drag the `dist/` folder to deploy
 
-Quick deploy for testing, but ot lacks Git integration.
+Quick deploy for testing, but lacks Git integration.
 
 ### Deploying to SAP BTP Cloud Foundry
 

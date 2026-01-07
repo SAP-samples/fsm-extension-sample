@@ -1,0 +1,5 @@
+# Local Netlify folder
+.netlify
+.ui5-tooling-modules
+dist
+node_modules

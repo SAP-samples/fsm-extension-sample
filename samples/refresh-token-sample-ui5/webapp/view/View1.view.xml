@@ -1,0 +1,17 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ui5extension.controller.View1">
+    <Page id="page" title="{i18n>title}">
+    <content>
+        <MessageStrip
+            text="{view>/errorMessage}"
+            type="Error"
+            showIcon="true"
+            visible="{= ${view>/errorMessage} !== '' }"
+            class="sapUiSmallMargin"/>
+        <FlexBox width="100%" height="100%" direction="Column" id="box0">
+        <items>
+            <TextArea xmlns="sap.m" value="{view>/tokenHistory}" rows="20" id="area2" width="100%" height="100%" editable="false"/>
+        </items>
+        </FlexBox>
+    </content>
+    </Page>
+</mvc:View>
