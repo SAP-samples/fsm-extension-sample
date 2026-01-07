@@ -39,7 +39,7 @@ Here is an overview of the extension samples sorted by architecture:
 ### Front-end
 
 | Sample |
-|--------|
+| -------- |
 | [Download Test (extension attributes example)](samples/download-test-extension/) |
 | [Extension Starter Kit](samples/extension-starter-kit/) |
 | [Parameter Showcase](samples/parameter-showcase-extension/) |
@@ -54,14 +54,14 @@ Here is an overview of the extension samples sorted by architecture:
 ### Front-end and Backend
 
 | Sample |
-|--------|
+| -------- |
 | [Login with Token](samples/login-with-token/) |
 | [Extension Inside Mobile Web Container](samples/mobile-web-container/) |
 
 ### Front-end and Backend using SSO
 
 | Sample |
-|--------|
+| -------- |
 | [Login with SSO](samples/login-with-sso/) |
 
 ## How to Get Support
