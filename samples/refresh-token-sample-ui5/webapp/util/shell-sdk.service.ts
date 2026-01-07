@@ -1,7 +1,6 @@
 
 import { ShellSdk, SHELL_EVENTS, AuthResponse } from 'fsm-shell';
 import { BehaviorSubject } from './util';
-// import Shell from 'sap/m/Shell';
 
 export interface ShellContext {
   authToken?: string;

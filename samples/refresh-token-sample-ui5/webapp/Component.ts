@@ -14,8 +14,6 @@ export default class Component extends BaseComponent {
         ]
 	};
 
-	// private shellSdk: ShellSdk;
-
 	public init() : void {
         const shellSdk = ShellSdkService.getInstance();
 		// call the base component's init function
