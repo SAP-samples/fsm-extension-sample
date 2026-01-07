@@ -22,9 +22,12 @@
   },
   "homepage": "https://github.com/SAP-samples/fsm-extension-sample#readme",
   "dependencies": {
-    "concurrently": "^6.5.1",
+    "concurrently": "^9.2.1",
     "cross-var": "^1.1.0",
-    "dotenv": "^8.6.0",
-    "dotenv-cli": "^4.1.1"
+    "dotenv": "^17.2.3",
+    "dotenv-cli": "^11.0.0"
+  },
+  "engines": {
+    "node": "22.14.x"
   }
 }

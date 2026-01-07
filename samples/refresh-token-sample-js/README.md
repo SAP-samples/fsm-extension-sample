@@ -230,8 +230,8 @@ If you have a SAP BTP CF account, this sample can be deployed to a CF space:
 
 For more information about installing and placing extensions:
 
-- [Manual Installation of an Extension](https://help.sap.com/viewer/fsm_extensions/Cloud/en-US/install-manually.html)
-- [Placing an Extension App](https://help.sap.com/viewer/fsm_extensions/Cloud/en-US/place-an-extension-app.html)
+- [Manual Installation of an Extension](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/install-manually.html)
+- [Placing an Extension App](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/place-an-extension-app.html)
 
 ## License
 

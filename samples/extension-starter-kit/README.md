@@ -24,5 +24,5 @@ The Ngrok publicly accessible URL should be displayed. This is an example how it
 
 Now you copy the URL, and install it as an extension in the FSM Extension Management app. Anytime you change and save the content in the index.html, it will be automatically reflected in the UI. For more information about the manual installation and the placement of an extension application, please see the following references:
 
-- [Manual Installation of an Extension](https://help.sap.com/viewer/fsm_extensions/Cloud/en-US/install-manually.html)
-- [Placing an Extension App](https://help.sap.com/viewer/fsm_extensions/Cloud/en-US/place-an-extension-app.html)
+- [Manual Installation of an Extension](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/install-manually.html)
+- [Placing an Extension App](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/place-an-extension-app.html)

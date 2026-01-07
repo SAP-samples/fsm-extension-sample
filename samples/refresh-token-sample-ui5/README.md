@@ -203,7 +203,8 @@ If you prefer to deploy from your local machine:
 - Get the application URL: `cf html5-list -di ui5extension-destination-service -u`
 
 The URL will typically follow this pattern:
-```
+
+```bash
 https://<subaccount-subdomain>.launchpad.cfapps.<region>.hana.ondemand.com/<app-id>
 ```
 
@@ -211,8 +212,8 @@ https://<subaccount-subdomain>.launchpad.cfapps.<region>.hana.ondemand.com/<app-
 
 For more information about installing and placing extensions:
 
-- [Manual Installation of an Extension](https://help.sap.com/viewer/fsm_extensions/Cloud/en-US/install-manually.html)
-- [Placing an Extension App](https://help.sap.com/viewer/fsm_extensions/Cloud/en-US/place-an-extension-app.html)
+- [Manual Installation of an Extension](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/install-manually.html)
+- [Placing an Extension App](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/place-an-extension-app.html)
 
 ## License
 
