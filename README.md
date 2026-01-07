@@ -47,7 +47,9 @@ Here is an overview of the extension samples sorted by architecture:
 | [Inside Shell with Shell Navigation](samples/with-shell-navigation/) |
 | [Inside Shell Without Shell Navigation](samples/without-shell-navigation/) |
 | [Outside Shell in a New Tab](samples/outside-shell/) |
+| [Refresh Token Sample (Javascript)](samples/refresh-token-sample-js/) |
 | [Refresh Token Sample (TypeScript)](samples/refresh-token-sample-ts/) |
+| [Refresh Token Sample (SAP UI5)](samples/refresh-token-sample-ui5/) |
 
 ### Front-end and Backend
 
