@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { copyFileSync } from 'fs';
 
 export default defineConfig({
   root: 'src',
@@ -14,5 +15,16 @@ export default defineConfig({
   server: {
     port: 3003,
     open: false
-  }
+  },
+  plugins: [
+    {
+      name: 'copy-appconfig',
+      closeBundle() {
+        copyFileSync(
+          resolve(__dirname, 'src/appconfig.json'),
+          resolve(__dirname, 'dist/appconfig.json')
+        );
+      }
+    }
+  ]
 });

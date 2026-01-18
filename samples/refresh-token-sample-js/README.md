@@ -58,9 +58,9 @@ refresh-token-sample-js/
 ├── src/                          # Source files
 │   ├── index.html                # HTML entry point
 │   ├── index.js                  # Main application logic and UI updates
-│   ├── extension.controller.js   # Extension controller with token refresh logic
 │   ├── util/
-│   │   └── util.js               # BehaviorSubject implementation
+│   │   ├── util.js               # BehaviorSubject implementation
+│   │   └── shell-sdk.service.js  # FSM Shell SDK service wrapper
 │   └── styles/
 │       └── styles.css            # Application styles
 │

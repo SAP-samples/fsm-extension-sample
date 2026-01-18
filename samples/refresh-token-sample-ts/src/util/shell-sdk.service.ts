@@ -24,11 +24,11 @@ export interface ShellContext {
   }
 }
 
-export default class  ShellSdkService {
+export class ShellSdkService {
   private static instance: ShellSdkService;
   private shellSdk: ShellSdk;
-  private authSubject: BehaviorSubject<AuthResponse> = new BehaviorSubject<AuthResponse>(undefined as unknown as AuthResponse);
-  private refreshTimeoutId: number | null = null;
+  private authSubject: BehaviorSubject<AuthResponse> = new BehaviorSubject<AuthResponse>(undefined as unknown as AuthResponse);;
+  private refreshTimeoutId: NodeJS.Timeout | null = null;
   // Never hardcode credentials in production code! This is for demo purposes only.
   // Use secure storage mechanisms in productive applications, such as backend services.
   private clientCredentials = {
@@ -71,7 +71,7 @@ export default class  ShellSdkService {
   public isInsideShell(): boolean {
     return ShellSdk.isInsideShell();
   }
-  
+
   public getContext({clientIdentifier, clientSecret}: {clientIdentifier: string, clientSecret: string}): Promise<ShellContext> {
     return new Promise((resolve, reject) => {
       if (!this.isInsideShell()) {
@@ -126,11 +126,11 @@ export default class  ShellSdkService {
   }
 
   private setupTokenAutoRefresh(auth: AuthResponse): void {
-    this.shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, (response: AuthResponse) => {
-        this.authSubject.next(response); // Emit new token to the stream
+    this.shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, (event: AuthResponse) => {
+      this.authSubject.next(event); // Emit new token to the stream
       
       // Schedule next refresh
-      this.scheduleTokenRefresh(response.expires_in);
+      this.scheduleTokenRefresh(event.expires_in);
     });
 
     this.authSubject.next(auth); // Emit initial token to the stream

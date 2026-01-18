@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
+import { copyFileSync } from 'fs';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
@@ -17,5 +18,16 @@ export default defineConfig({
   server: {
     port: 3003,
     open: false
-  }
+  },
+  plugins: [
+    {
+      name: 'copy-appconfig',
+      closeBundle() {
+        copyFileSync(
+          resolve(__dirname, 'src/appconfig.json'),
+          resolve(__dirname, 'dist/appconfig.json')
+        );
+      }
+    }
+  ]
 });

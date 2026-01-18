@@ -1,4 +1,4 @@
-import { ExtensionController } from './extension.controller';
+import { ShellSdkService } from './util/shell-sdk.service';
 
 const updateUI = (text: string) => {
   const element = document.getElementById("info");
@@ -19,22 +19,22 @@ const appendTokenToUI = (token: string) => {
 };
 
 window.addEventListener('load', () => {
-  const extensionController = ExtensionController.getInstance();
+  const shellSdkService = ShellSdkService.getInstance();
   
   // Display Shell SDK version
   const versionElement = document.getElementById('shell-version');
   if (versionElement) {
-    versionElement.textContent = extensionController.getShellSdkVersion();
+    versionElement.textContent = shellSdkService.getVersion();
   }
 
   // Check if running inside FSM Shell
-  if (!extensionController.isInsideShell()) {
+  if (!shellSdkService.isInsideShell()) {
     updateUI('This extension is supposed to be run inside the FSM Shell.');
     return;
   }  
   
   // Subscribe to auth stream and display token accumulation
-  const authTokenStream = extensionController.subscribeToAuth((auth) => {
+  const authTokenStream = shellSdkService.subscribeToAuth((auth) => {
     if (auth) {
       const tokenInfo = JSON.stringify(auth, null, 2);
       appendTokenToUI(tokenInfo);
