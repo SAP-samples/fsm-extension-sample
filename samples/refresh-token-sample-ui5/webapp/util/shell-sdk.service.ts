@@ -28,7 +28,7 @@ export interface ShellContext {
 export default class  ShellSdkService {
   private static instance: ShellSdkService;
   private shellSdk: ShellSdk;
-  private authSubject: BehaviorSubject<AuthResponse | null> | null = null;
+  private authSubject: BehaviorSubject<AuthResponse> = new BehaviorSubject<AuthResponse>(undefined as unknown as AuthResponse);
   private refreshTimeoutId: number | null = null;
   // Never hardcode credentials in production code! This is for demo purposes only.
   // Use secure storage mechanisms in productive applications, such as backend services.
@@ -49,7 +49,6 @@ export default class  ShellSdkService {
       ShellSdkService.instance = new ShellSdkService(shellSdk);
       ShellSdkService.instance.init();
     }
-
     return ShellSdkService.instance;
   }
 
@@ -58,14 +57,9 @@ export default class  ShellSdkService {
       throw new Error('Extension is not running inside FSM Shell');
     }
 
-    this.getContext(this.clientCredentials).then((context) => {
-      
-      if (context.auth && this.authSubject) {
-        this.authSubject.next(context.auth);
-        
-        // Initialize refresh token strategy with the first token
-        this.setupTokenAutoRefresh(context.auth);
-      }
+    this.getContext(this.clientCredentials).then((context) => {      
+      // Initialize refresh token strategy with the first token
+      this.setupTokenAutoRefresh(context.auth!);
     }).catch((error) => {
       console.error('Error obtaining initial context:', error);
     })
@@ -107,10 +101,7 @@ export default class  ShellSdkService {
     })
   }
 
-  public subscribeToAuth(callback: (auth: AuthResponse | null) => void): (() => void) | null {
-    if (!this.authSubject) {
-      this.authSubject = new BehaviorSubject<AuthResponse | null>(null);
-    }
+  public subscribeToAuth(callback: (auth: AuthResponse) => void): () => void {
     return this.authSubject.subscribe(callback);
   }
 
@@ -136,16 +127,14 @@ export default class  ShellSdkService {
   }
 
   private setupTokenAutoRefresh(auth: AuthResponse): void {
-    this.shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, (event: AuthResponse) => {
-      if (this.authSubject) {
-        this.authSubject.next(event); // Emit new token to the stream
-      }
+    this.shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, (response: AuthResponse) => {
+        this.authSubject.next(response); // Emit new token to the stream
       
       // Schedule next refresh
-      this.scheduleTokenRefresh(event.expires_in);
+      this.scheduleTokenRefresh(response.expires_in);
     });
 
-    // Schedule first refresh based on initial token
-    this.scheduleTokenRefresh(auth.expires_in);
+    this.authSubject.next(auth); // Emit initial token to the stream
+    this.scheduleTokenRefresh(auth.expires_in); // Schedule first refresh based on initial token
   }
 }
