@@ -1,4 +1,3 @@
-
 import { ShellSdk, SHELL_EVENTS, AuthResponse } from 'fsm-shell';
 import { BehaviorSubject } from './util';
 

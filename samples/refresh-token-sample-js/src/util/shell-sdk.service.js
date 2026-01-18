@@ -1,46 +1,22 @@
-import { ShellSdk, SHELL_EVENTS, AuthResponse } from 'fsm-shell';
-import { BehaviorSubject } from './util';
-
-export interface ShellContext {
-  authToken?: string;
-  cloudHost: string;
-  accountId: string;
-  account: string;
-  userId: string;
-  user: string;
-  userAccountFeatureFlagsEnabled: boolean;
-  userAccountFeatureFlagsUserId: string;
-  company: string;
-  companyId: string;
-  isInsideShellModal: boolean;
-  selectedThemeId: string;
-  selectedLocale: string;
-  erpType: string;
-  erpUserId: string;
-  auth?: {
-    access_token: string,
-    token_type: string,
-    expires_in: number
-  }
-}
+import { ShellSdk, SHELL_EVENTS } from 'fsm-shell';
+import { BehaviorSubject } from './util.js';
 
 export class ShellSdkService {
-  private static instance: ShellSdkService;
-  private shellSdk: ShellSdk;
-  private authSubject: BehaviorSubject<AuthResponse> = new BehaviorSubject<AuthResponse>(undefined as unknown as AuthResponse);;
-  private refreshTimeoutId: NodeJS.Timeout | null = null;
-  // Never hardcode credentials in production code! This is for demo purposes only.
-  // Use secure storage mechanisms in productive applications, such as backend services.
-  private clientCredentials = {
-    clientIdentifier: 'refresh-token-sample-ui5-client-identifier',
-    clientSecret: 'refresh-token-sample-ui5-client-secret'
-  };
+  static instance = null;
 
-  private constructor(shellSdk: ShellSdk) {
+  constructor(shellSdk) {
     this.shellSdk = shellSdk;
+    this.authSubject = new BehaviorSubject(undefined);
+    this.refreshTimeoutId = null;
+    // Never hardcode credentials in production code! This is for demo purposes only.
+    // Use secure storage mechanisms in productive applications, such as backend services.
+    this.clientCredentials = {
+      clientIdentifier: 'refresh-token-sample-ui5-client-identifier',
+      clientSecret: 'refresh-token-sample-ui5-client-secret'
+    };
   }
 
-  public static getInstance(): ShellSdkService {
+  static getInstance() {
     if (!ShellSdkService.instance) {
       // For simplicity and testing, * is being used here. In production,
       // the real origin of the FSM Shell should be used, i.e. https://de.fsm.cloud.sap
@@ -51,35 +27,35 @@ export class ShellSdkService {
     return ShellSdkService.instance;
   }
 
-  private init(): void {
+  init() {
     if (!ShellSdk.isInsideShell()) {
       throw new Error('Extension is not running inside FSM Shell');
     }
 
     this.getContext(this.clientCredentials).then((context) => {      
       // Initialize refresh token strategy with the first token
-      this.setupTokenAutoRefresh(context.auth!);
+      this.setupTokenAutoRefresh(context.auth);
     }).catch((error) => {
       console.error('Error obtaining initial context:', error);
-    })
+    });
   }
 
-  public getVersion(): string {
+  getVersion() {
     return ShellSdk.VERSION || 'Unknown';
   }
 
-  public isInsideShell(): boolean {
+  isInsideShell() {
     return ShellSdk.isInsideShell();
   }
 
-  public getContext({clientIdentifier, clientSecret}: {clientIdentifier: string, clientSecret: string}): Promise<ShellContext> {
+  getContext({clientIdentifier, clientSecret}) {
     return new Promise((resolve, reject) => {
       if (!this.isInsideShell()) {
         reject(new Error('Extension is not running inside FSM Shell'));
         return;
       }
 
-      const contextHandler = (event: string) => {
+      const contextHandler = (event) => {
         const context = JSON.parse(event);
         resolve(context);
 
@@ -96,15 +72,15 @@ export class ShellSdkService {
         auth: {
           response_type: 'token'  // request a user token within the context
         }
-      })
-    })
+      });
+    });
   }
 
-  public subscribeToAuth(callback: (auth: AuthResponse) => void): () => void {
+  subscribeToAuth(callback) {
     return this.authSubject.subscribe(callback);
   }
 
-  private scheduleTokenRefresh(expiresIn: number): void {
+  scheduleTokenRefresh(expiresIn) {
     // This is a defensive approach, just in case this method is called multiple times
     if (this.refreshTimeoutId) { // Cancel any existing timeout to prevent multiple timers
       clearTimeout(this.refreshTimeoutId);
@@ -125,8 +101,8 @@ export class ShellSdkService {
     }, delayMs);
   }
 
-  private setupTokenAutoRefresh(auth: AuthResponse): void {
-    this.shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, (event: AuthResponse) => {
+  setupTokenAutoRefresh(auth) {
+    this.shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, (event) => {
       this.authSubject.next(event); // Emit new token to the stream
       
       // Schedule next refresh
