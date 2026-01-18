@@ -1,0 +1,7 @@
+{
+  "name": "Refresh token sample (SAP UI5)",
+  "provider": "SAP FSM",
+  "description": "Sample extension to demo the refresh token functionality in FSM Shell SDK for SAP UI5 extensions.",   
+  "version": "1.0.0", 
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png"
+}
