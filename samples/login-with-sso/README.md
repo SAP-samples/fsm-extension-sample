@@ -20,6 +20,17 @@ You can run this extension on **any node server**, or use the following installa
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/SAP-samples/fsm-extension-sample/tree/main/samples/login-with-sso)
 
+### Deploying to SAP BTP Cloud Foundry
+
+If you have a SAP BTP CF account, this sample can be deployed to a CF space:
+
+- Install the CF CLI if not yet installed <https://github.com/cloudfoundry/cli>.
+- In a terminal session, go to the root folder of this extension.
+- Optional: Run `npm install`.
+- Add a `.env` file with `SECRET_KEY=<random_key>` next to package.json to randomize your backend authentication.
+- Login to the corresponding space and org using `cf login -a <API_ENDPOINT> -o <ORG> -s <SPACE>`. You can find these values in the BTP cockpit under "Subaccount > Overview > Cloud Foundry Environment".
+- Run `cf push` and `cf apps` to get the url where the sample is served.
+
 ## Known issues
 
 Some identity providers do not support login within an iFrame and require a new tab or popup. This sample does not handle this use case.

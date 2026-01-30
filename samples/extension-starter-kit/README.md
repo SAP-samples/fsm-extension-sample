@@ -8,7 +8,7 @@ This is an SAP Field Service Management extension project configured for quick-s
 
 You have an ngrok account and configured ngrok with an "Authtoken". For more information, see the official [ngrok documentation](https://ngrok.com/docs).
 
-### Ste by step
+### Step by Step
 
 1. In the corresponding folder in the command line of your terminal, install the project's dependencies by running `npm install`.
 2. Built and serve the project by running `npm run start:dev`. It will be served at <http://localhost:3003>. Hot reload will trigger automatically after code changes.
@@ -26,3 +26,14 @@ Now you copy the URL, and install it as an extension in the FSM Extension Manage
 
 - [Manual Installation of an Extension](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/install-manually.html)
 - [Placing an Extension App](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/place-an-extension-app.html)
+
+## Deploying to SAP BTP Cloud Foundry
+
+If you have a SAP BTP CF account, this sample can be deployed to a CF space:
+
+- Install the CF CLI if not yet installed <https://github.com/cloudfoundry/cli>
+- In a terminal session, go to the root folder of this extension
+- If not already done in a previous step, install the project's dependencies by running `npm install`.
+- Build the project by running `npm run build`.
+- Login to the corresponding space and org using `cf login -a <API_ENDPOINT> -o <ORG> -s <SPACE>`. You can find these values in the BTP cockpit under "Subaccount > Overview > Cloud Foundry Environment".
+- Run `cf push` and `cf apps` to get the url where the sample is served.
