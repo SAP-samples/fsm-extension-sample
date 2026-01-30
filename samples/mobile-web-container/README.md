@@ -13,7 +13,7 @@ To run the extension, perform the following steps:
 3. Create the web container.
 4. Access the web container with the extension.
 
-**Tip:** As an alternative to step 1 and step 2, you can also run the extension on any node server.
+**Tip:** As an alternative to step 1 and step 2, you can also run the extension on any node server or deploy it to Cloud Foundry Environment in SAP BTP (see below).
 
 ### Running Locally
 
@@ -45,6 +45,17 @@ To receive the access URL for the extension, you can use an external solution li
 The details of the entry are displayed.
 5. Choose the three dots menu. The title of the web container is displayed at the bottom.
 6. Click on the web container title to access the web container with the extension.
+
+### Deploying to SAP BTP Cloud Foundry
+
+If you have a SAP BTP CF account, this sample can be deployed to a CF space:
+
+- Install the CF CLI if not yet installed <https://github.com/cloudfoundry/cli>.
+- In a terminal session, go to the root folder of this extension.
+- Optional: Run `npm install`.
+- Add a `.env` file with `SECRET_KEY=<random_key>` next to package.json to randomize your backend authentication.
+- Login to the corresponding space and org using `cf login -a <API_ENDPOINT> -o <ORG> -s <SPACE>`. You can find these values in the BTP cockpit under "Subaccount > Overview > Cloud Foundry Environment".
+- Run `cf push` and `cf apps` to get the url where the sample is served.
 
 ## How to Get Support
 

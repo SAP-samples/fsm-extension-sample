@@ -1,0 +1,8 @@
+---
+applications:
+  - name: fsm-extension-starter-kit
+    memory: 64M
+    buildpack: staticfile_buildpack
+    path: public
+    env:
+      FORCE_HTTPS: true

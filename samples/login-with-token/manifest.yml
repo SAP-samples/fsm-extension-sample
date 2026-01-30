@@ -1,0 +1,8 @@
+---
+applications:
+  - name: fsm-extension-login-with-token
+    command: node server.js
+    memory: 256M
+    buildpack: nodejs_buildpack
+    env:
+      FORCE_HTTPS: true

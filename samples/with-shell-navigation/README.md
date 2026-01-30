@@ -29,6 +29,15 @@ For testing purpose, an external solution like [ngrok](https://ngrok.com/) or [l
 
 GitHub offers static hosting as part of the [GitHub pages](https://pages.github.com/) functionality. Each GitHub repository can host static files and then be used with some limits to host your front-end application.
 
+### Deploying to SAP BTP Cloud Foundry
+
+If you have a SAP BTP CF account, this sample can be deployed to a CF space:
+
+- Install the CF CLI if not yet installed <https://github.com/cloudfoundry/cli>
+- In a terminal session, go to the root folder of this extension
+- Login to the corresponding space and org using `cf login -a <API_ENDPOINT> -o <ORG> -s <SPACE>`. You can find these values in the BTP cockpit under "Subaccount > Overview > Cloud Foundry Environment".
+- Run `cf push` and `cf apps` to get the url where the sample is served.
+
 ## How to obtain support
 
 In case you find a bug or need support, please open an issue [clicking here](https://github.com/SAP-samples/fsm-extension-sample/issues/new).

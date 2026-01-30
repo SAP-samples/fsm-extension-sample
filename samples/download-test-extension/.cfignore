@@ -1,0 +1,11 @@
+node_modules/
+src/
+.git/
+.gitignore
+*.md
+tsconfig.json
+package.json
+package-lock.json
+.nvmrc
+.npmrc
+webpack.config.js

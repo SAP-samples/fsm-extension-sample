@@ -1,0 +1,7 @@
+---
+applications:
+  - name: fsm-extension-without-shell-navigation
+    memory: 64M
+    buildpack: staticfile_buildpack
+    env:
+      FORCE_HTTPS: true
