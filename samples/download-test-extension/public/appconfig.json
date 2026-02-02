@@ -8,5 +8,5 @@
     "icon": "building",
     "insideShell": true
   },
-  "extensionPolicies": ["allow-downloads"]
+  "extensionAttributes": ["allow-downloads"]
 }
