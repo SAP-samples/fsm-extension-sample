@@ -2,6 +2,8 @@
 
 This is an SAP Field Service Management extension project configured for quick-start development with contemporary tooling. The setup utilizes TypeScript and Node.js, enabling TypeScript-based development with npm package management. Pre-configured npm scripts handle the TypeScript compilation process and serve the resulting application files (HTML, CSS, and JavaScript) through a secure tunnel, making them publicly accessible via HTTPS.
 
+**Use this sample or parts of it in production environments at your own risk**. It should be used only as a reference, since it does not follow any particular security, performance, or quality standards.
+
 ## Working with the Starter Kit
 
 ### Prerequisite
