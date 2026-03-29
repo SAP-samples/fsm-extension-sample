@@ -23,7 +23,7 @@
     "rimraf": "^6.1.2",
     "typescript": "^5.9.3",
     "ui5-task-zipper": "^3.5.1",
-    "ui5-tooling-modules": "^3.34.2",
+    "ui5-tooling-modules": "^3.35.0",
     "ui5-tooling-transpile": "^3.10.1"
   },
   "ui5": {
