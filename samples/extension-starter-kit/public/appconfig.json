@@ -1,6 +1,6 @@
 {
-    "name": "FSM Extension Starter-Kit",
-    "provider": "SAP FSM",
+    "name": "SAP Field Service and Asset Management Extension Starter-Kit",
+    "provider": "SAP SE",
     "description": "Sample extension with a Starter-Kit",
     "version": "1.0.0",
     "icon": ""

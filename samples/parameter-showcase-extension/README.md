@@ -1,6 +1,6 @@
 # Parameter Showcase Extension
 
-The Parameter Showcase Extension is a minimalist sample of a front-end extension that showcases the capability of FSM Extensions to ask the user for parameter when installing.
+The Parameter Showcase Extension is a minimalist sample of a front-end extension that showcases the capability of SAP Field Service and Asset Management Extensions to ask the user for parameter when installing.
 The data provided by the user during the installation is encrypted and stored within SAP FSM. The extension can access those values during runtime.
 
 It is designed to run within the [dispatching board](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/dispatching-board.html).

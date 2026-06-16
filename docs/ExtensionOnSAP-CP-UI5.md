@@ -68,7 +68,7 @@ sap.ui.loader.config({
 
 ![Consuming shellSDK 1](./assets/ExtensionOnSapCP-UI5/consuming-shellSDK-step1.png)
 
-- To establish a communication with the SAP Field Service Management Shell host, you need to initialize the client library and send a ```REQUIRE_CONTEXT``` event. For more information, see **[ShellSDK - Library usage sample](https://sap.github.io/fsm-shell/#/usage-sample?id=sending-event-to-the-shell-host-application)**. Copy and paste the following code in the file ```/ui5extension/webapp/controller/View1.controller.js```:
+- To establish a communication with the SAP Field Service and Asset Management Shell host, you need to initialize the client library and send a ```REQUIRE_CONTEXT``` event. For more information, see **[ShellSDK - Library usage sample](https://sap.github.io/fsm-shell/#/usage-sample?id=sending-event-to-the-shell-host-application)**. Copy and paste the following code in the file ```/ui5extension/webapp/controller/View1.controller.js```:
 
 ```javascript
 sap.ui.define([
@@ -92,7 +92,7 @@ return Controller.extend("ui5extension.controller.View1", {
 
 ![Consuming shellSDK 2](./assets/ExtensionOnSapCP-UI5/consuming-shellSDK-step2.png)
 
-- To display some data pulled from SAP Field Service Management, let's change the template view generated within the project. Replace the content in the file ```/ui5extension/webapp/view/View1.view.xml``` with the following code:
+- To display some data pulled from SAP Field Service and Asset Management, let's change the template view generated within the project. Replace the content in the file ```/ui5extension/webapp/view/View1.view.xml``` with the following code:
 
 ```xml
 <mvc:View controllerName="ui5extension.controller.View1"
@@ -177,9 +177,9 @@ return Controller.extend("ui5extension.controller.View1", {
 
 ![Building, deploying, and testing 3](./assets/ExtensionOnSapCP-UI5/build-deploy-and-test-step3.png)
 
-## Step 4: Register the SAPUI5 Application as an extension in SAP Field Service Management
+## Step 4: Register the SAPUI5 Application as an extension in SAP Field Service and Asset Management
 
-- Login to SAP Field Service Management and open the **Foundational Services** application, then navigate to **Extensions** > **Installed**, and choose **Add Extension**:
+- Login to SAP Field Service and Asset Management and open the **Foundational Services** application, then navigate to **Extensions** > **Installed**, and choose **Add Extension**:
 
 ![Registering, consuming SAP UI5 app 1](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step1.png)
 
@@ -207,6 +207,6 @@ return Controller.extend("ui5extension.controller.View1", {
 
 ![Registering, consuming SAP UI5 app 7](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step7.png)
 
-- The SAPUI5 should be loaded as an extension and displaying information from SAP Field Service Management:
+- The SAPUI5 should be loaded as an extension and displaying information from SAP Field Service and Asset Management:
 
 ![Registering, consuming SAP UI5 app 8](./assets/ExtensionOnSapCP-UI5/register-consume-ui5-app-step8.png)

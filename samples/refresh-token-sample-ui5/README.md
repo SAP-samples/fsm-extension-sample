@@ -1,6 +1,6 @@
-# SAP Field Service Management - Token Refresh Sample (SAP UI5)
+# SAP Field Service and Asset Management - Token Refresh Sample (SAP UI5)
 
-This is an SAP Field Service Management extension project demonstrating how to handle token refresh and display authentication tokens in real-time using SAP UI5.
+This is an SAP Field Service and Asset Management extension project demonstrating how to handle token refresh and display authentication tokens in real-time using SAP UI5.
 
 **Do not use this sample or parts in your productive code**. It should be used only as a reference, since it does not follow any particular security, performance, or quality standards.
 **There will not be support if you use code from this project in your productive environment**.
@@ -11,7 +11,7 @@ This is an SAP Field Service Management extension project demonstrating how to h
 - **Language**: TypeScript with strict mode
 - **UI Components**: SAP UI5 controls (TextArea, MessageStrip, etc.)
 - **Data Binding**: JSON Model for reactive UI updates
-- **FSM Shell SDK**: Official SDK for FSM extensions. It handles authentication, context, and event communication with the FSM platform
+- **SAP Field Service and Asset Management Shell SDK**: Official SDK for SAP Field Service and Asset Management extensions. It handles authentication, context, and event communication with the SAP Field Service and Asset Management platform
 - **UI Display**: Real-time token history with timestamps in a growing TextArea
 
 ## Working with the Sample
@@ -19,7 +19,7 @@ This is an SAP Field Service Management extension project demonstrating how to h
 ### Prerequisites
 
 - An account in SAP BTP
-- Access to SAP Field Service Management
+- Access to SAP Field Service and Asset Management
 
 ### Step by Step
 
@@ -45,7 +45,7 @@ This is an SAP Field Service Management extension project demonstrating how to h
 
    This generates optimized UI5 files ready for deployment.
 
-4. Deploy the extension to SAP FSM and access it through the FSM Shell to see token refresh in action
+4. Deploy the extension to SAP Field Service and Asset Management and access it through the SAP Field Service and Asset Management Shell to see token refresh in action
 
 ## Project Structure
 
@@ -68,7 +68,7 @@ token-refresh-sample-ui5/
 │   │   └── models.ts             # JSON model initialization
 │   │
 │   ├── util/                     # Utility services
-│   │   ├── shell-sdk.service.ts  # FSM Shell SDK service wrapper
+│   │   ├── shell-sdk.service.ts  # SAP Field Service and Asset Management Shell SDK service wrapper
 │   │   └── util.ts               # Common utilities
 │   │
 │   ├── i18n/                     # Internationalization

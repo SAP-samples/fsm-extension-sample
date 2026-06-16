@@ -4,7 +4,7 @@
   publish = "dist"
   command = "npm run build"
 
-# CORS headers to allow FSM Shell to load the extension
+# CORS headers to allow SAP Field Service and Asset Management Shell to load the extension
 [[headers]]
   for = "/*"
   [headers.values]
