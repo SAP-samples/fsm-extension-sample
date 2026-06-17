@@ -1,10 +1,10 @@
-# SAP Field Service Management - Sample Extensions
+# SAP Field Service and Asset Management - Sample Extensions
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/fsm-extension-sample)](https://api.reuse.software/info/github.com/SAP-samples/fsm-extension-sample)
 
-This repository contains samples that demonstrate the API usage patterns for SAP Field Service Management extensions. These code samples are created to help developers start building extensions and are designed to run on any platform.
+This repository contains samples that demonstrate the API usage patterns for SAP Field Service and Asset Management extensions. These code samples are created to help developers start building extensions and are designed to run on any platform.
 
-You can find more information about the SAP Field Service Management API and the extensions concept in the [SAP Field Service Management Help Portal](https://help.sap.com/viewer/product/SAP_FIELD_SERVICE_MANAGEMENT/Cloud/en-US).
+You can find more information about the SAP Field Service and Asset Management API and the extensions concept in the [SAP Field Service and Asset Management Help Portal](https://help.sap.com/viewer/product/SAP_FIELD_SERVICE_MANAGEMENT/Cloud/en-US).
 
 ## Disclaimer
 
@@ -12,7 +12,7 @@ Do not use the samples or parts of them in your productive code. The samples are
 
 ## Prerequisite for Using the Samples
 
-To run the sample extensions, you need access to SAP Field Service Management. You can find more information about getting access in the [SAP Field Service Management – SAP Help Portal](https://help.sap.com/viewer/product/SAP_FIELD_SERVICE_MANAGEMENT/Cloud/en-US).
+To run the sample extensions, you need access to SAP Field Service and Asset Management. You can find more information about getting access in the [SAP Field Service and Asset Management – SAP Help Portal](https://help.sap.com/viewer/product/SAP_FIELD_SERVICE_MANAGEMENT/Cloud/en-US).
 
 ## Using the Samples
 

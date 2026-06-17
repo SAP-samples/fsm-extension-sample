@@ -1,7 +1,7 @@
 {
   "name": "fsm-extension-refresh-token-sample",
   "version": "1.0.0",
-  "description": "FSM Extension - Refresh Token Sample (TypeScript + Vite)",
+  "description": "SAP Field Service and Asset Management Extension - Refresh Token Sample (TypeScript + Vite)",
   "type": "module",
   "scripts": {
     "dev": "vite",
