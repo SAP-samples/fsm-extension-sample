@@ -38,7 +38,7 @@ To receive the access URL for the extension, you can use an external solution li
 
 ### Accessing the Web Container with the Extension
 
-1. On your mobile phone, open the SAP Field Service Management mobile application proceed with the login.
+1. On your mobile phone, open the SAP Field Service and Asset Management mobile application proceed with the login.
 2. From the burger menu, access the side menu.
 3. From the side menu, select the object type that you have chosen during the web container creation, for example, Equipment. A list of the respective object type is displayed.
 4. From the list, select an entry.

@@ -12,7 +12,7 @@
 
 ![Create new project 1](./assets/ExtensionOnSapBuild/create-project-step1.png)
 
-- For simplicity, we are not going to create a new project from scratch. In instead, we are providing a FSM-Extension sample template that covers some of the fundaments when developing an FSM extension. Please download it from [here](https://github.com/SAP-samples/fsm-extension-sample/blob/main/docs/assets/ExtensionOnSapBuild/FSM-Extension.zip.gpg) and save it on your computer.
+- For simplicity, we are not going to create a new project from scratch. In instead, we are providing an FSM-Extension sample template that covers some of the fundaments when developing an extension for SAP Field Service and Asset Management. Please download it from [here](https://github.com/SAP-samples/fsm-extension-sample/blob/main/docs/assets/ExtensionOnSapBuild/FSM-Extension.zip.gpg) and save it on your computer.
 
 - In the SAP build lobby, choose **import**:
 
@@ -70,9 +70,9 @@
 
 ![Deploy and test 4](./assets/ExtensionOnSapBuild/deploy-and-test-project-step4.png)
 
-## Step 4: Register the FSM Extension in SAP Field Service Management
+## Step 4: Register the SAP Field Service and Asset Management Extension in SAP Field Service and Asset Management
 
-- Login to SAP Field Service Management and open the **Foundational Services** application, then navigate to **Extensions** > **Installed**, and choose **Add Extension**:
+- Login to SAP Field Service and Asset Management and open the **Foundational Services** application, then navigate to **Extensions** > **Installed**, and choose **Add Extension**:
 
 ![Register extension 1](./assets/ExtensionOnSapBuild/register-extension-step1.png)
 
@@ -100,6 +100,6 @@
 
 ![Register extension 7](./assets/ExtensionOnSapBuild/register-extension-step7.png)
 
-- The FSM-Extension sample template should be loaded and displaying information from SAP Field Service Management:
+- The FSM-Extension sample template should be loaded and displaying information from SAP Field Service and Asset Management:
 
 ![Register extension 8](./assets/ExtensionOnSapBuild/register-extension-step8.png)

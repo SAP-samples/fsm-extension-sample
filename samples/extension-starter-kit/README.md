@@ -1,6 +1,6 @@
-# SAP Field Service Management Extension Starter Kit
+# SAP Field Service and Asset Management Extension Starter Kit
 
-This is an SAP Field Service Management extension project configured for quick-start development with contemporary tooling. The setup utilizes TypeScript and Node.js, enabling TypeScript-based development with npm package management. Pre-configured npm scripts handle the TypeScript compilation process and serve the resulting application files (HTML, CSS, and JavaScript) through a secure tunnel, making them publicly accessible via HTTPS.
+This is an SAP Field Service and Asset Management extension project configured for quick-start development with contemporary tooling. The setup utilizes TypeScript and Node.js, enabling TypeScript-based development with npm package management. Pre-configured npm scripts handle the TypeScript compilation process and serve the resulting application files (HTML, CSS, and JavaScript) through a secure tunnel, making them publicly accessible via HTTPS.
 
 **Use this sample or parts of it in production environments at your own risk**. It should be used only as a reference, since it does not follow any particular security, performance, or quality standards.
 
@@ -24,7 +24,7 @@ The Ngrok publicly accessible URL should be displayed. This is an example how it
 
 ### Next Steps
 
-Now you copy the URL, and install it as an extension in the FSM Extension Management app. Anytime you change and save the content in the index.html, it will be automatically reflected in the UI. For more information about the manual installation and the placement of an extension application, please see the following references:
+Now you copy the URL, and install it as an extension in the SAP Field Service and Asset Management Extension Management app. Anytime you change and save the content in the index.html, it will be automatically reflected in the UI. For more information about the manual installation and the placement of an extension application, please see the following references:
 
 - [Manual Installation of an Extension](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/install-manually.html)
 - [Placing an Extension App](https://help.sap.com/docs/SAP_FIELD_SERVICE_MANAGEMENT/fsm_extensions/place-an-extension-app.html)

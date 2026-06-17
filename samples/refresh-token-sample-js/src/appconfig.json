@@ -1,7 +1,7 @@
 {
   "name": "Refresh token sample (JavaScript)",
   "provider": "SAP FSM",
-  "description": "Sample extension to demo the refresh token functionality in FSM Shell SDK for JavaScript extensions.",   
+  "description": "Sample extension to demo the refresh token functionality in SAP Field Service and Asset Management Shell SDK for JavaScript extensions.",   
   "version": "1.0.0", 
   "icon": "https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png"
 }

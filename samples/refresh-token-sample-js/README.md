@@ -1,6 +1,6 @@
-# SAP Field Service Management - Refresh Token Sample (JavaScript)
+# SAP Field Service and Asset Management - Refresh Token Sample (JavaScript)
 
-This is an SAP Field Service Management extension project demonstrating how to handle token refresh and display authentication tokens in real-time using Javascript.
+This is an SAP Field Service and Asset Management extension project demonstrating how to handle token refresh and display authentication tokens in real-time using Javascript.
 
 **Do not use this samples or parts of your productive code**. It should be used only as a reference, since it does not follow any particular security, performance, or quality standards.
 **There will be no support if you use code from this project in your productive environment**.
@@ -12,14 +12,14 @@ This is an SAP Field Service Management extension project demonstrating how to h
 - **Module System**: ES Modules (ESNext)
 - **Development**: Hot Module Replacement (HMR) with instant reload
 - **Production**: Optimized build with code splitting and minification
-- **FSM Shell SDK**: Official SDK for FSM extensions. It handles authentication, context, and event communication with the FSM platform
+- **SAP Field Service and Asset Management Shell SDK**: Official SDK for SAP Field Service and Asset Management extensions. It handles authentication, context, and event communication with the SAP Field Service and Asset Management platform
 
 ## Working with the Sample
 
 ### Prerequisites
 
 - Node.js installed (v22 or higher recommended)
-- Access to SAP Field Service Management
+- Access to SAP Field Service and Asset Management
 
 ### Step by Step
 
@@ -60,7 +60,7 @@ refresh-token-sample-js/
 │   ├── index.js                  # Main application logic and UI updates
 │   ├── util/
 │   │   ├── util.js               # BehaviorSubject implementation
-│   │   └── shell-sdk.service.js  # FSM Shell SDK service wrapper
+│   │   └── shell-sdk.service.js  # SAP Field Service and Asset Management Shell SDK service wrapper
 │   └── styles/
 │       └── styles.css            # Application styles
 │
