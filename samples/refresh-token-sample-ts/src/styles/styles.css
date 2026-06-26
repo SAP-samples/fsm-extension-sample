@@ -23,8 +23,16 @@ h2 {
   margin-top: 10px;
 }
 
-.token-display {
-  white-space: pre-wrap;
-  word-break: break-word;
-  overflow-wrap: break-word;
+.error-message {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  color: #856404;
+  margin-top: 10px;
+  min-height: 0;
+  padding: 10px 15px;
+}
+
+.error-message:empty {
+  display: none;
 }

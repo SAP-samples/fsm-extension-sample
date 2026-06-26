@@ -25,6 +25,11 @@ export default class View1 extends Controller {
             return;
         }
 
+        // Subscribe to error stream and display error messages to the user
+        shellSdkService.subscribeToError((message) => {
+            model.setProperty("/errorMessage", message ?? "");
+        });
+
         // Subscribe to auth stream and display token accumulation
         const authTokenStream = shellSdkService.subscribeToAuth((auth) => {
             if (auth) {
