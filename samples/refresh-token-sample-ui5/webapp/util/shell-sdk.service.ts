@@ -24,11 +24,17 @@ export interface ShellContext {
   }
 }
 
-export default class  ShellSdkService {
+const MAX_RETRIES = 3;
+const RETRY_DELAY_MS = 5000;
+
+export default class ShellSdkService {
   private static instance: ShellSdkService;
   private shellSdk: ShellSdk;
   private authSubject: BehaviorSubject<AuthResponse> = new BehaviorSubject<AuthResponse>(undefined as unknown as AuthResponse);
+  private errorSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   private refreshTimeoutId: number | null = null;
+  private retryCount = 0;
+  private retryTimeoutId: number | null = null;
   // Never hardcode credentials in production code! This is for demo purposes only.
   // Use secure storage mechanisms in productive applications, such as backend services.
   private clientCredentials = {
@@ -56,7 +62,32 @@ export default class  ShellSdkService {
       throw new Error('Extension is not running inside FSM Shell');
     }
 
-    this.getContext(this.clientCredentials).then((context) => {      
+    this.shellSdk.on(SHELL_EVENTS.ERROR, (error: unknown) => {
+      console.error('Shell error received:', error);
+
+      if (this.retryCount >= MAX_RETRIES) {
+        // Stop retrying after MAX_RETRIES attempts to avoid excessive API calls.
+        // Continued retrying on persistent errors can result in deactivation of the extension.
+        this.errorSubject.next(`Shell error: ${error}. Maximum retries (${MAX_RETRIES}) reached. Please reload the extension.`);
+        return;
+      }
+
+      this.retryCount++;
+      this.errorSubject.next(`Shell error: ${error}. Retrying (${this.retryCount}/${MAX_RETRIES})...`);
+
+      // Wait before retrying to avoid hammering the Shell with requests
+      if (this.retryTimeoutId) {
+        clearTimeout(this.retryTimeoutId);
+      }
+      this.retryTimeoutId = setTimeout(() => {
+        this.shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, {
+          response_type: 'token'
+        });
+      }, RETRY_DELAY_MS) as unknown as number;
+    });
+
+    this.getContext(this.clientCredentials).then((context) => {
+      this.retryCount = 0; // Reset retry counter on successful context retrieval
       // Initialize refresh token strategy with the first token
       this.setupTokenAutoRefresh(context.auth!);
     }).catch((error) => {
@@ -71,7 +102,7 @@ export default class  ShellSdkService {
   public isInsideShell(): boolean {
     return ShellSdk.isInsideShell();
   }
-  
+
   public getContext({clientIdentifier, clientSecret}: {clientIdentifier: string, clientSecret: string}): Promise<ShellContext> {
     return new Promise((resolve, reject) => {
       if (!this.isInsideShell()) {
@@ -104,6 +135,10 @@ export default class  ShellSdkService {
     return this.authSubject.subscribe(callback);
   }
 
+  public subscribeToError(callback: (message: string | null) => void): () => void {
+    return this.errorSubject.subscribe(callback);
+  }
+
   private scheduleTokenRefresh(expiresIn: number): void {
     // This is a defensive approach, just in case this method is called multiple times
     if (this.refreshTimeoutId) { // Cancel any existing timeout to prevent multiple timers
@@ -113,7 +148,7 @@ export default class  ShellSdkService {
     // Schedule a token refresh 5 seconds before the current one expires
     const delayMs = (expiresIn * 1000) - 5000;
     this.refreshTimeoutId = setTimeout(() => {
-      // Request a new token:        
+      // Request a new token:
       // IMPORTANT: You only receive a new token in case the current token's validation period
       // is less than one minute. If a new token is requested and the validation period is one
       // minute or more, you receive the current token again with an updated validation period.
@@ -122,13 +157,13 @@ export default class  ShellSdkService {
       this.shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, {
         response_type: 'token'
       });
-    }, delayMs);
+    }, delayMs) as unknown as number;
   }
 
   private setupTokenAutoRefresh(auth: AuthResponse): void {
     this.shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, (response: AuthResponse) => {
-        this.authSubject.next(response); // Emit new token to the stream
-      
+      this.authSubject.next(response); // Emit new token to the stream
+
       // Schedule next refresh
       this.scheduleTokenRefresh(response.expires_in);
     });
